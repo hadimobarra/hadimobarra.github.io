@@ -1,0 +1,45 @@
+@import url("https://v1.fontapi.ir/css/Vazir");
+.container {
+  margin-top: 30%;
+  padding-top: 20px;
+  height: auto;
+  background-color: #191919;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+.container p {
+  line-height: 50px;
+  font-weight: bold;
+}
+
+.widthfooter {
+  width: 30%;
+  text-align: justify;
+}
+
+.widthfooter h2 {
+  font-size: 24px !important;
+  text-align: right;
+  font-family: Vazir, sans-serif;
+}
+
+.widthfooter p {
+  text-align: right;
+  font-family: Vazir, sans-serif;
+  line-height: 31.25px;
+  margin-top: 10px;
+}
+
+.icon {
+  margin-top: 50px;
+  margin: 0px 10px;
+}
+/*# sourceMappingURL=Footer.module.css.map */

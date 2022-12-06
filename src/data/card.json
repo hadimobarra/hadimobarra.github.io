@@ -1,0 +1,28 @@
+{
+"cards" : [
+	{
+		"title" : "UX Design",
+		"image" : "../assets/images/UIUX.jpg"
+
+	},
+	{
+		"title": "Front-end",
+		"image":"../assets/images/frontend.jpg"
+
+	},
+	{	
+		"title": "Back-end",
+		"image":"../assets/images/backend.jpg"
+
+	},
+	{ 
+		"title": "Data",
+		"image": "../assets/images/data.jpg"
+		
+
+	}
+
+]
+
+
+}

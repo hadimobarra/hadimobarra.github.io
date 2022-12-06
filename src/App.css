@@ -1,5 +1,19 @@
+
+@font-face {
+  font-family: Vazirmatn, sans-serif;
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+}
+body{
+  font-family: Vazirmatn, sans-serif;
+}
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
 .App {
   text-align: center;
+  font-family: Vazirmatn, sans-serif;
 }
 
 .App-logo {
