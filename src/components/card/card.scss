@@ -20,7 +20,14 @@
 		//	background-color:red;
 			border-radius:12px;
 		    margin-top:30px;	
-			}	
+			}
+
+
+	&__item:hover {
+			box-shadow:-6px -7px 22px 6px rgba(34,60 , 80 , 0.4);
+
+			}
+
 	&__image {
 			width:264px;
 			height:296px;
