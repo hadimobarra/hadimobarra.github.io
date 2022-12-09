@@ -1,0 +1,29 @@
+ [
+	{
+		"id":1,
+		"title" : "UX Design",
+		"image" :"/UIUX.jpg"
+
+	},
+	{
+		"id":2,
+		"title": "Front-end",
+		"image":"/frontend.jpg"
+
+	},
+	{	
+		"id":3,
+		"title": "Back-end",
+		"image":"/backend.jpg"
+
+	},
+	{ 
+		"id":4,
+		"title": "Data",
+		"image": "/data.jpg"
+		
+
+	}
+
+]
+

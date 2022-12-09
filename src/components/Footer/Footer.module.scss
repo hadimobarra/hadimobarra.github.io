@@ -1,0 +1,40 @@
+@import url('https://v1.fontapi.ir/css/Vazir');
+$base-color:white;
+$dark-color:#191919;
+$font-family:Vazir, sans-serif;
+@mixin base-style {
+    text-align: right;
+    font-family: $font-family;
+  }
+.container{
+    //margin-top: 30%;
+   padding-top: 20px;
+    height:auto;
+    background-color: $dark-color;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color:$base-color;
+ p{
+    line-height: 50px;
+    font-weight: bold;
+}
+}
+.widthfooter{
+    width: 30%;
+    text-align: justify;
+h2{
+font-size: 24px !important;
+  @include base-style;
+}
+ p{
+    @include base-style;
+    line-height:31.25px;
+    margin-top: 10px;
+   
+}
+}
+.icon{
+    margin-top: 50px;
+    margin: 0px 10px;
+}
