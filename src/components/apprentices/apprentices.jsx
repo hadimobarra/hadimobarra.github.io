@@ -4,7 +4,7 @@ import './apprentices.scss';
 
 const Apprentices = () => {
 	return (
-		<div className="container">
+		<div className="container01">
 			<h2>Karamozan</h2>
 			<Slider />
 		</div>

@@ -1,0 +1,21 @@
+.card {
+	height: max-content;
+	width: max-content;
+	border-radius: 96px;
+	background: #FFFFFF;
+	text-align: center;
+	box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+	margin: 5px 10px;
+	&:hover {
+		box-shadow: 0px 0px 30px rgba(100, 100, 200, 0.5);
+	}
+	&-img {
+		padding: 5px;
+	}
+	&-link {
+		height: 45px;
+		width: 45px;
+		cursor: pointer;
+	}
+	
+}

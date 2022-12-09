@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Card from '../card/card';
+import Card from '../sliderCard/sliderCard';
 import Boy1 from '../../assets/images/pic 3.png';
 import Boy2 from '../../assets/images/pic 4.png';
 import Girl1 from '../../assets/images/pic 1.png';
@@ -49,8 +49,8 @@ const Slider = () => {
 
 	
 	return (
-		<div className="cardContainer" >
-			<button className="btn" onClick={prev} ><img src={Left} /></button>
+		<div className="cardContainer01" >
+			<button className="btn01" onClick={prev} ><img src={Left} /></button>
 			{
 				json.slice(slidesToShow[0], slidesToShow[1]).map((e, id) => {
 					return (
@@ -58,7 +58,7 @@ const Slider = () => {
 					)
 			})
 			}
-			<button className="btn" onClick={next} ><img src={Right} /></button>
+			<button className="btn01" onClick={next} ><img src={Right} /></button>
 		</div>
 	)
 }

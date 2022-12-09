@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './card.scss';
+import './sliderCard.scss';
 
-const Card = ({img, name, link}) => {
+const CardItems = ({img, name, link}) => {
 	return (
 		<div className="card">
 			<img className="card-img" src={img}/>
@@ -12,4 +12,4 @@ const Card = ({img, name, link}) => {
 	)
 }
 
-export default Card;
+export default CardItems;
