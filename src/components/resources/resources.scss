@@ -1,0 +1,122 @@
+@mixin book-lable {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #C8C8C8;
+			border: 1px solid #C8C8C8;
+			height: 27px;
+			width: 71px;
+			font-weight: 500;
+			font-size: 16px;
+			border-radius: 15px;
+}
+
+@mixin resource-title {
+			font-size: 24px;
+			font-weight: 800;
+			line-height: 38px;
+			color: #333333;
+}
+
+@mixin sign {
+	width: 24px;
+	height: 9px;
+	position: absolute;
+	right: 50px;
+	top: 25px;
+}
+
+.resources {
+	background: #FFFFFF;
+//	height: 60px;
+	margin: 20px 0px;
+	width: 1244px;
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.13);
+    border-radius: 10px;
+	cursor: pointer;
+	position: relative;
+	&-text0 {
+		display: none;
+	}
+	&-text {
+		display: flex;
+		height: 60px;
+		align-items: center;
+		&_paragraph {
+			@include resource-title;
+			margin: 0 25px;
+		}
+		&_lable {
+			@include book-lable;
+		}
+	}
+	&-sign0 {
+		display: none;
+	}
+	&-sign {
+		@include sign;
+	}
+	&-sign2 {
+		@include sign;
+		transform: rotate(180deg);
+	}
+	&-items {
+		display: flex;
+		padding: 30px;
+		background: #FFFFFF;
+		box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.13);
+		&_img {
+			height: 260px;
+			width: 171;
+		}
+		&_info {
+			display: block;
+			margin: 0 0 0 40px;
+			width: 550px;
+			&__one {
+				font-size: 24px;
+				font-weight: 800;
+				line-height: 38px;
+				color: #333333;
+				display: flex;
+				align-items: center;
+				&__title {
+					@include resource-title;
+				}
+				&__lable {
+					@include book-lable;
+					margin: 0px 10px;
+				}
+			}	
+			&__two {
+				font-size: 16px;
+				font-weight: 500;
+				color: #333333;
+				line-height: 25px;
+
+			}
+			&__three {
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 31px;
+				color: #280C66;
+
+			}
+			&__four {
+				width: max-content;
+				height: 33px;
+				background: #844CFF;
+				display: flex;
+				text-align: center;
+				align-items: center;
+				line-height: 25px;
+				font-size: 15px;
+				font-weight: 500;
+				color: white;
+				border-radius: 30px;
+				padding: 6px;
+				margin-top: 10px;
+			}
+		}
+	}
+}

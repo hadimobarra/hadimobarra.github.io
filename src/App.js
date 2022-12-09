@@ -1,9 +1,11 @@
-
+import SrcLearn from './components/srcContainer/srcContainer';
+import Apprentices from './components/apprentices/apprentices';
 
 function App() {
   return (
     <div className="App">
-     Name 
+		<SrcLearn />
+		<Apprentices />
     </div>
   );
 }
