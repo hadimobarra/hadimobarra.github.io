@@ -1,6 +1,6 @@
 import React from 'react';
 import Resource from '../resources/resources';
-import './srcContainer';
+import './srcContainer.scss';
 //import myJson from '../../data/sourceData.json';
 
 const SrcContainer = () => {
@@ -10,7 +10,7 @@ const SrcContainer = () => {
 		{title: 'Sprint: How To Solve Big Problems', body: '3. by Jake knapp (Author), John zeratsky (Author), Braden kowitz (Author), Dan Bittner (Reader)', review: '1,875'},
 	];
 	return (
-		<div className="container" >
+		<div className="container2" >
 			<h2>Manabe YadGiri</h2>
 			{
 				srcJson.map((item, index) => {

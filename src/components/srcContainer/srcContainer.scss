@@ -1,5 +1,10 @@
 
-.container {
+.container2 {
 	width: 100%;
 	background: #FAFAFA;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 100px 0px;
 }

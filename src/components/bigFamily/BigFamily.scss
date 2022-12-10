@@ -1,14 +1,10 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+//* {
+//  margin: 0;
+//  padding: 0;
+//  box-sizing: border-box;
+//}
 $icon-color: #844cff;
-*::before {
-  background-color: $icon-color;
-  content: "";
-  border-radius: 50%;
-}
+
 .bigFamily__container {
   width: 80%;
   .bigFamily__section {
@@ -21,6 +17,8 @@ $icon-color: #844cff;
     text-align: right;
   }
 }
+
+
 .section-two__title {
   position: relative;
   margin-top: 90px;
@@ -39,16 +37,18 @@ $icon-color: #844cff;
     display: inline-block;
   }
 }
+
+
 .section-two__item {
   position: relative;
   font-size: 20px;
   margin-bottom: 30px;
 
-  p {
-    margin-right: 5px;
-    font-family: VazirMatnBold;
-    font-size: 15px;
-  }
+ // p {
+ //   margin-right: 5px;
+ //   font-family: VazirMatnBold;
+ //   font-size: 15px;
+ // }
   &::before {
     width: 15px;
     height: 15px;
