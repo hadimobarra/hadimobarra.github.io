@@ -4,7 +4,7 @@ import SecondPagePhoto from '../../components/photoSecondPage/SecondPhotoSection
 import LearnSrc from '../../components/srcContainer/srcContainer';
 import Apprentices from '../../components/apprentices/apprentices';
 
-const BackPage = () => {
+const DataPage = () => {
 	return (
 		<Layout>
 			<SecondPagePhoto />
@@ -14,4 +14,4 @@ const BackPage = () => {
 	)
 }
 
-export default BackPage;
+export default DataPage;

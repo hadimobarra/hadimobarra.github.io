@@ -11,7 +11,7 @@ const SrcContainer = () => {
 	];
 	return (
 		<div className="container2" >
-			<h2>Manabe YadGiri</h2>
+			<h2 className="container2-h2" >منابع یادگیری</h2>
 			{
 				srcJson.map((item, index) => {
 					return (

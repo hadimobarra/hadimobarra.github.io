@@ -70,7 +70,9 @@
 			width: 171;
 		}
 		&_info {
-			display: block;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
 			margin: 0 0 0 40px;
 			width: 550px;
 			&__one {

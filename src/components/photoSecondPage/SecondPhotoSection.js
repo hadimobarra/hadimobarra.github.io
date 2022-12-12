@@ -1,11 +1,10 @@
 import React from "react";
-import Card from "../Ui/Card";
 import "./SecondPhotoSection.scss";
 const SecondPhotoSection = () => {
   return (
     <div className="background">
       <div className="background__image">
-        <Card className="background__container">
+        <div className="background__container">
           <div className="background__text">
             <h1 className="background__title">نسل آینده طراحی تجربه کاربر </h1>
             <p className="background__passage">
@@ -13,7 +12,7 @@ const SecondPhotoSection = () => {
               که از طریق تحقیقات و طراحی حاصل می شود
             </p>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );

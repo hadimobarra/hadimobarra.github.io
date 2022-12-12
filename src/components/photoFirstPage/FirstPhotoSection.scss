@@ -1,12 +1,7 @@
-//* {
-//  margin: 0;
-//  padding: 0;
-// box-sizing: border-box;
-//}
 .bg {
   width: 100%;
   height: 740px;
-  .bg__image {
+  &__image {
     width: 100%;
     height: 100%;
     background: linear-gradient(
@@ -14,16 +9,16 @@
         rgba(255, 255, 255, 0) 67.7%,
         #ffffff 100%
       ),
-      url("../../assets/images/Rectangle\ 15\ \(1\).png") no-repeat center center;
+      url("../../assets/images/Rectangle\ 15\ \(1\).png") no-repeat center
+        center;
     background-size: cover;
   }
-  .bg__heading {
+  &__heading {
     font-family: VazirMatnExtraBold;
     font-style: normal;
     text-align: center;
     padding-top: 511px;
     color: #191919;
     font-size: 20px;
-    // font-size: 30px;
   }
 }

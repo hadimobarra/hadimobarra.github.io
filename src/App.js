@@ -1,30 +1,24 @@
-import React,{Component}  from "react";
+import React from "react";
 import './App.css'
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import {Route , Routes} from "react-router-dom";
-import SrcLearn from './components/srcContainer/srcContainer';
-import Apprentices from './components/apprentices/apprentices';
-//import Fpage from './components/photoSecondPage/SecondPhotoSection';
-//import Spage from './components/photoSecondPage/SecondPhotoSection';
-//import MyCards from './components/card/Card';
-//import HamrahFamily from './components/bigFamily/BigFamily';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import IntroPage from './pages/introPage/introPage';
+import FrontPage from './pages/frontPage/frontPage';
+import UiPage from './pages/uiPage/uiPage';
+import BackPage from './pages/backPage/backPage';
+import DataPage from './pages/dataPage/dataPage';
 
 	
 function App() {
     return (
-        <>
-            {/*Navbar*/}
-            <Navbar />
-			
-			<SrcLearn />
-			<Apprentices />
+		<>
 			<Routes>
-            </Routes>
-            {/*Footer*/}
-            <Footer />
-
-        </>
+				<Route exact path="/" element={<IntroPage />} />
+				<Route path="/ui" element={<UiPage />} />
+				<Route path="/front" element={<FrontPage />} />
+				<Route path="/back" element={<BackPage />} />
+				<Route path="/data" element={<DataPage />} />
+			</Routes>
+		</> 
     )
 }
 

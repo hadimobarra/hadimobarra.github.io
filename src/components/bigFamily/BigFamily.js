@@ -1,42 +1,33 @@
 import React from "react";
 import "./BigFamily.scss";
-import Card from "../Ui/Card";
-import LottieControl from "./Animation"
+import LottieControl from "./Animation";
 const BigFamily = () => {
   return (
-    <Card className="bigFamily__container">
+    <div className="bigFamily">
       <div className="bigFamily__section">
         <div className="bigFamily__section-one">
-          <LottieControl/>
+          <LottieControl />
         </div>
         <div className="bigFamily__section-two">
           <div className="section-two__title">
             <h2>...!عضوی از خانواده بزرگ همراه اول شوید</h2>
           </div>
           <div className="section-two__items">
-            <div className="section-two__item">
-              <p> کسب تجربه در کنار بهترین‌ها</p>
-            </div>
-            <div className="section-two__item">
-      
-              <p>ارائه گواهی معتبر در پایان دوره</p>
-            </div>
-            <div className="section-two__item">
-     
-              <p>امکان استخدام پس از دوره</p>
-            </div>
-            <div className="section-two__item">
-          
-              <p>به ‌صورت حضوری و تمام وقت</p>
-            </div>
-            <div className="section-two__item">
-       
-              <p>دریافت حقوق و بیمه حین دوره کارآموزی</p>
-            </div>
+            <ul>
+              <li className="section-two__item">کسب تجربه در کنار بهترین‌ها</li>
+              <li className="section-two__item">
+                ارائه گواهی معتبر در پایان دوره
+              </li>
+              <li className="section-two__item">امکان استخدام پس از دوره</li>
+              <li className="section-two__item">به ‌صورت حضوری و تمام وقت</li>
+              <li className="section-two__item">
+                دریافت حقوق و بیمه حین دوره کارآموزی
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };
 

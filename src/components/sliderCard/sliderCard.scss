@@ -1,5 +1,5 @@
 .card {
-	height: max-content;
+	height: 265px;
 	width: 173px;
 	border-radius: 96px;
 	background: #FFFFFF;
@@ -9,11 +9,13 @@
 	padding: 0px 0px 20px 0px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-
+	cursor: pointer;
 	&:hover {
 		box-shadow: 0px 0px 30px rgba(100, 100, 200, 0.5);
+	}
+	&-name {
+		margin: 7px 0px; 
 	}
 	&-img {
 		padding: 5px;

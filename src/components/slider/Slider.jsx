@@ -16,7 +16,7 @@ const Slider = () => {
 		{name: 'Mobina Esmaili(3)', img: Girl1, linkTo: LinkedIn},
 		{name: 'Mahya Behbody(4)', img: Girl2, linkTo: LinkedIn},
 		{name: 'Melika Karimi(5)', img: Girl1, linkTo: LinkedIn},
-		{name: 'Ali Ali(6)', img: Boy2, linkTo: LinkedIn},
+		{name: 'Mohammad amin(6)', img: Boy2, linkTo: LinkedIn},
 		{name: 'Hanieh Aboutalebi(7)', img: Girl1, linkTo: LinkedIn},
 		{name: 'Shaghayegh Mobasher(8)', img: Girl2, linkTo: LinkedIn}
 	];
