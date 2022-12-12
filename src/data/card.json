@@ -2,27 +2,27 @@
 	{
 		"id":1,
 		"title" : "UX Design",
-		"image" :"/UIUX.jpg"
-
+		"image" :"/UIUX.jpg",
+		"to": "/ui"
 	},
 	{
 		"id":2,
 		"title": "Front-end",
-		"image":"/frontend.jpg"
-
+		"image":"/frontend.jpg",
+		"to": "/front"
 	},
 	{	
 		"id":3,
 		"title": "Back-end",
-		"image":"/backend.jpg"
+		"image":"/backend.jpg",
+		"to": "/back"
 
 	},
 	{ 
 		"id":4,
 		"title": "Data",
-		"image": "/data.jpg"
-		
-
+		"image": "/data.jpg",
+		"to": "/data"
 	}
 
 ]

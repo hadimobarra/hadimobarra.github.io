@@ -1,22 +1,26 @@
-.card {
-//	background-color:blue;
+
+.cardsIn {
+	background-color: #FAFAFA;
 	text-align:center;
 	&__sub {
 		font-weight:800;
 		font-size:30px;
+		padding: 40px 0px 0px 0px;
 	}
 	&__container {
 		padding:0 40px;
 		display:flex;
 		align-items:center;
 		justify-content:space-evenly;
+		padding: 40px 0px;
+		margin: 0px 0px 40px 0px;
 		
 	}
 	&__item {
 		//	position:absolute;
 			width:264px;
 			height:430px;
-			box-shadow:-6px -7px 32px 6px rgba(34,60 , 80 , 0.4);
+			box-shadow: 3px 3px 10px 1px rgba(3,60 , 80 , 0.4);
 		//	background-color:red;
 			border-radius:12px;
 		    margin-top:30px;	
@@ -24,8 +28,9 @@
 
 
 	&__item:hover {
-			box-shadow:-6px -7px 22px 6px rgba(34,60 , 80 , 0.4);
-
+			box-shadow: 1px 1px 25px 6px rgba(100,100 , 200 , 0.5);
+			cursor: pointer;
+			transition: 0.3s ease-in-out;
 			}
 
 	&__image {
@@ -47,4 +52,5 @@
 
 
 }
+
 
