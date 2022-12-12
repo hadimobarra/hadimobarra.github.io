@@ -7,7 +7,7 @@ const SrcContainer = () => {
 	let srcJson = [
 		{title: 'The Design of everyday Thing', body: '1. by Jake knapp (Author), John zeratsky (Author), Braden kowitz (Author), Dan Bittner (Reader)', review: '2,910'},
 		{title: 'Universal Principles of Design', body: '2. by Jake knapp (Author), John zeratsky (Author), Braden kowitz (Author), Dan Bittner (Reader)', review: '3,418'},
-		{title: 'Sprint: How To Solve Big Problems', body: '3. by Jake knapp (Author), John zeratsky (Author), Braden kowitz (Author), Dan Bittner (Reader)', review: '1,875'},
+		{title: 'Sprint: How To Solve Big', body: '3. by Jake knapp (Author), John zeratsky (Author), Braden kowitz (Author), Dan Bittner (Reader)', review: '1,875'},
 	];
 	return (
 		<div className="container2" >
