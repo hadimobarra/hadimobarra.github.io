@@ -1,0 +1,51 @@
+$icon-color: #844cff;
+.bigFamily {
+  width: 80%;
+  margin: 0 auto;
+  text-align: right;
+  &__section {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    &-one,
+    &-two {
+      width: 50%;
+    }
+  }
+}
+.section-two__title {
+  position: relative;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  font-family: VazirMatnExtraBold;
+  h2 {
+    margin-right: 15px;
+  }
+  &::before {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: -30px;
+    display: inline-block;
+    background-color: $icon-color;
+    content: "";
+    border-radius: 50%;
+  }
+}
+.section-two__item {
+  font-size: 20px;
+}
+.section-two__items {
+  ul {
+    font-family: VazirMatnBold;
+    list-style: none;
+    li::after {
+      content: "\2022";
+      color: $icon-color;
+      display: inline-block;
+      margin-left: 20px;
+margin-right: -25px;
+      font-size: 30px;
+    }
+  }
+}
