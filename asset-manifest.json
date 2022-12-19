@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/nextgen/static/css/main.10b2baf1.css",
-    "main.js": "/nextgen/static/js/main.c178c9cf.js",
-    "static/media/Rectangle 15.png": "/nextgen/static/media/Rectangle 15.ec321509ad93427962e2.png",
-    "static/media/Rectangle 15 (1).png": "/nextgen/static/media/Rectangle 15 (1).2643c9f6ba2ed4029828.png",
-    "static/media/data.jpg": "/nextgen/static/media/data.6f80146d400d0a57adee.jpg",
-    "static/media/frontend.jpg": "/nextgen/static/media/frontend.ea2df63c68ea395eb363.jpg",
-    "static/media/UIUX.jpg": "/nextgen/static/media/UIUX.8ad35dfd1c2b3c0a346b.jpg",
-    "static/media/Rectangle 11.png": "/nextgen/static/media/Rectangle 11.e61150405780d91e425b.png",
-    "static/media/backend.jpg": "/nextgen/static/media/backend.fb7c26afd7649b58e635.jpg",
-    "static/media/pic 2.png": "/nextgen/static/media/pic 2.f0b5efd895dd7fa0f380.png",
-    "static/media/pic 4.png": "/nextgen/static/media/pic 4.839257a40a41d90ddae5.png",
-    "static/media/pic 1.png": "/nextgen/static/media/pic 1.e0c6e5cd1e562056b19c.png",
-    "static/media/pic 3.png": "/nextgen/static/media/pic 3.bce1903ce3bc568465fe.png",
-    "index.html": "/nextgen/index.html",
-    "static/media/git_keep.txt": "/nextgen/static/media/git_keep.31d6cfe0d16ae931b73c.txt",
-    "main.10b2baf1.css.map": "/nextgen/static/css/main.10b2baf1.css.map",
-    "main.c178c9cf.js.map": "/nextgen/static/js/main.c178c9cf.js.map"
+    "main.css": "/next-gen/static/css/main.ed5cc765.css",
+    "main.js": "/next-gen/static/js/main.94082877.js",
+    "static/media/Rectangle 15.png": "/next-gen/static/media/Rectangle 15.ec321509ad93427962e2.png",
+    "static/media/Rectangle 15 (1).png": "/next-gen/static/media/Rectangle 15 (1).2643c9f6ba2ed4029828.png",
+    "static/media/data.jpg": "/next-gen/static/media/data.6f80146d400d0a57adee.jpg",
+    "static/media/frontend.jpg": "/next-gen/static/media/frontend.ea2df63c68ea395eb363.jpg",
+    "static/media/UIUX.jpg": "/next-gen/static/media/UIUX.8ad35dfd1c2b3c0a346b.jpg",
+    "static/media/Rectangle 11.png": "/next-gen/static/media/Rectangle 11.e61150405780d91e425b.png",
+    "static/media/backend.jpg": "/next-gen/static/media/backend.fb7c26afd7649b58e635.jpg",
+    "static/media/pic 2.png": "/next-gen/static/media/pic 2.f0b5efd895dd7fa0f380.png",
+    "static/media/pic 4.png": "/next-gen/static/media/pic 4.839257a40a41d90ddae5.png",
+    "static/media/pic 1.png": "/next-gen/static/media/pic 1.e0c6e5cd1e562056b19c.png",
+    "static/media/pic 3.png": "/next-gen/static/media/pic 3.bce1903ce3bc568465fe.png",
+    "index.html": "/next-gen/index.html",
+    "static/media/git_keep.txt": "/next-gen/static/media/git_keep.31d6cfe0d16ae931b73c.txt",
+    "main.ed5cc765.css.map": "/next-gen/static/css/main.ed5cc765.css.map",
+    "main.94082877.js.map": "/next-gen/static/js/main.94082877.js.map"
   },
   "entrypoints": [
-    "static/css/main.10b2baf1.css",
-    "static/js/main.c178c9cf.js"
+    "static/css/main.ed5cc765.css",
+    "static/js/main.94082877.js"
   ]
 }
