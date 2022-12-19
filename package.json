@@ -2,7 +2,7 @@
   "name": "next-gen",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nextgen.github.io",
+  "homepage": "https://hadimobarra.github.io/nextgen",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
