@@ -1,0 +1,198 @@
+1:"$Sreact.fragment"
+2:I[63178,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"ThemeProvider"]
+3:I[46979,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"I18nProvider"]
+4:I[82432,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"Header"]
+5:I[71843,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"CommandMenu"]
+6:I[39756,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+7:I[37457,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+8:I[46696,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"Toaster"]
+d:I[68027,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default",1]
+:HL["/_next/static/chunks/09ydo9fxxfkpc.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.08e28id.o-okb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"c":["","blog",""],"q":"","i":false,"f":[[["",{"children":["blog",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/09ydo9fxxfkpc.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0x.~j7vy9ohz0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0q7a977tw202o.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/09uby5slyf9sp.js","async":true,"nonce":"$undefined"}],["$","script","script-3",{"src":"/_next/static/chunks/0tibqz6d1bd2e.js","async":true,"nonce":"$undefined"}],["$","script","script-4",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable","children":[["$","head",null,{"children":[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Hadi Mobarra\",\"givenName\":\"Hadi\",\"familyName\":\"Mobarra\",\"jobTitle\":\"Front-End Developer\",\"description\":\"Front-End Developer with a Master's Degree in Computer Engineering. Expert in React, Next.js, TypeScript, and building scalable web applications.\",\"url\":\"https://hadimobarra.github.io\",\"email\":\"hadimobarra@gmail.com\",\"telephone\":\"+989147482284\",\"sameAs\":[\"https://github.com/hadimobarra\",\"https://linkedin.com/in/hadimobarra\"],\"knowsAbout\":[\"React\",\"Next.js\",\"TypeScript\",\"JavaScript\",\"Front-End Development\",\"Web Development\",\"Computer Engineering\"],\"alumniOf\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Master's Degree in Computer Engineering\"},\"image\":\"https://hadimobarra.github.io/images/profile.jpg\"}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"Hadi Mobarra\",\"url\":\"https://hadimobarra.github.io\",\"author\":{\"@type\":\"Person\",\"name\":\"Hadi Mobarra\"},\"description\":\"Front-End Developer with a Master's Degree in Computer Engineering. Specializing in React, Next.js, and building high-performance web applications.\"}"}}]]}],["$","body",null,{"className":"min-h-screen flex flex-col antialiased","children":["$","$L2",null,{"attribute":"class","defaultTheme":"light","enableSystem":false,"children":[["$","$L3",null,{"children":[["$","$L4",null,{}],["$","$L5",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L6",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}],["$","$L8",null,{"position":"top-center","richColors":true,"closeButton":true}]]}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L6",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",["$La"],"$Lb"]}],{},null,false,null]},null,false,null]},null,false,null],"$Lc",false]],"m":"$undefined","G":["$d",["$Le"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"ymbp0TRlB5oiGJH3_CzHI"}
+f:I[37880,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0go5.g46z~v77.js"],"BlogListing"]
+13:I[97367,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+14:"$Sreact.suspense"
+16:I[97367,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"ViewportBoundary"]
+18:I[97367,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"MetadataBoundary"]
+10:T600,
+## Introduction
+
+Next.js has become one of the most popular frameworks for building React applications. Its powerful features like server-side rendering, static generation, and API routes make it an excellent choice for building scalable web applications.
+
+## 1. Use the App Router
+
+Next.js 13+ introduced the App Router, which provides a more intuitive way to organize your application. Use the `app/` directory for new projects.
+
+## 2. Leverage Server Components
+
+By default, components in the App Router are Server Components. This means they run on the server and reduce the JavaScript sent to the client.
+
+## 3. Optimize Images
+
+Use the `next/image` component for automatic image optimization. It provides lazy loading, responsive images, and WebP format support.
+
+## 4. Implement Proper Caching
+
+Next.js provides multiple caching strategies. Use `generateStaticParams` for static generation and ISR for dynamic content that needs periodic updates.
+
+## 5. Use TypeScript
+
+TypeScript provides type safety and better developer experience. Always use TypeScript in your Next.js projects.
+
+## 6. Environment Variables
+
+Use `.env.local` for local development and `.env.production` for production. Prefix client-side variables with `NEXT_PUBLIC_`.
+
+## 7. Error Handling
+
+Implement proper error boundaries and custom error pages. Use the `error.js` and `not-found.js` files in the App Router.
+
+## Conclusion
+
+Following these best practices will help you build scalable, maintainable Next.js applications that perform well in production.
+11:T569,
+## Introduction
+
+Performance is critical for user experience and SEO. Google's Core Web Vitals have made performance optimization more important than ever.
+
+## Core Web Vitals
+
+### Largest Contentful Paint (LCP)
+
+LCP measures loading performance. Aim for LCP under 2.5 seconds.
+
+- Optimize images with proper formats (WebP, AVIF)
+- Use CDN for static assets
+- Implement lazy loading
+
+### First Input Delay (FID)
+
+FID measures interactivity. Aim for FID under 100ms.
+
+- Code splitting
+- Reduce JavaScript execution time
+- Use web workers for heavy computations
+
+### Cumulative Layout Shift (CLS)
+
+CLS measures visual stability. Aim for CLS under 0.1.
+
+- Set explicit dimensions for images
+- Reserve space for dynamic content
+- Avoid inserting content above existing content
+
+## Image Optimization
+
+Images are often the largest assets on a page. Use the following strategies:
+
+```typescript
+import Image from 'next/image';
+
+<Image
+  src="/hero.jpg"
+  alt="Hero Image"
+  width={1200}
+  height={630}
+  priority
+/>
+```
+
+## Code Splitting
+
+Split your code into smaller chunks that load on demand:
+
+```typescript
+import dynamic from 'next/dynamic';
+
+const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
+  loading: () => <p>Loading...</p>,
+});
+```
+
+## Conclusion
+
+Performance optimization is an ongoing process. Monitor your metrics regularly and make incremental improvements.
+12:T592,
+## Introduction
+
+As React applications grow, maintaining a clean architecture becomes crucial. This guide covers proven patterns for building scalable React applications.
+
+## Component Architecture
+
+### Presentational vs Container Components
+
+Separate presentation from logic:
+
+- **Presentational Components**: Focus on how things look
+- **Container Components**: Focus on how things work
+
+### Compound Components
+
+Create flexible, reusable components:
+
+```tsx
+function Tabs({ children }) {
+  const [active, setActive] = useState(0);
+  return (
+    <TabsContext.Provider value={{ active, setActive }}>
+      {children}
+    </TabsContext.Provider>
+  );
+}
+```
+
+## State Management
+
+### Choose the Right Tool
+
+- **Local State**: useState, useReducer
+- **Global State**: Zustand, Context API
+- **Server State**: React Query, SWR
+
+### Zustand Example
+
+```typescript
+import { create } from 'zustand';
+
+const useStore = create((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+}));
+```
+
+## Folder Structure
+
+A scalable folder structure:
+
+```
+src/
+  components/
+  hooks/
+  lib/
+  pages/
+  types/
+  utils/
+```
+
+## Testing
+
+Implement comprehensive testing:
+
+- Unit tests with Vitest
+- Integration tests with React Testing Library
+- E2E tests with Playwright
+
+## Conclusion
+
+Good architecture is an investment that pays off as your application grows. Start with clean patterns from the beginning.
+9:["$","$Lf",null,{"posts":[{"slug":"nextjs-best-practices","frontmatter":{"title":"Next.js Best Practices for Building Scalable Applications","description":"Learn the essential best practices for building production-ready Next.js applications that scale well and remain maintainable.","date":"2024-12-15","tags":["Next.js","React","Web Development"]},"content":"$10","readingTime":2},{"slug":"frontend-performance","frontmatter":{"title":"Front-End Performance Optimization Guide","description":"A comprehensive guide to optimizing front-end performance, covering Core Web Vitals, lazy loading, code splitting, and more.","date":"2024-11-20","tags":["Performance","Web Development","Optimization"]},"content":"$11","readingTime":1},{"slug":"react-architecture","frontmatter":{"title":"React Architecture: Building Maintainable Applications","description":"Explore proven architectural patterns for building large-scale React applications that are easy to maintain and extend.","date":"2024-10-10","tags":["React","Architecture","TypeScript"]},"content":"$12","readingTime":1}]}]
+a:["$","script","script-0",{"src":"/_next/static/chunks/0go5.g46z~v77.js","async":true,"nonce":"$undefined"}]
+b:["$","$L13",null,{"children":["$","$14",null,{"name":"Next.MetadataOutlet","children":"$@15"}]}]
+c:["$","$1","h",{"children":[null,["$","$L16",null,{"children":"$L17"}],["$","div",null,{"hidden":true,"children":["$","$L18",null,{"children":["$","$14",null,{"name":"Next.Metadata","children":"$L19"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+e:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/09ydo9fxxfkpc.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1a:I[27201,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"IconMark"]
+15:null
+19:[["$","title","0",{"children":"Blog | Hadi Mobarra"}],["$","meta","1",{"name":"description","content":"Read articles about web development, React, Next.js, TypeScript, and front-end engineering best practices."}],["$","meta","2",{"name":"author","content":"Hadi Mobarra"}],["$","link","3",{"rel":"manifest","href":"/manifest.webmanifest","crossOrigin":"$undefined"}],["$","meta","4",{"name":"keywords","content":"Hadi Mobarra,Front-End Developer,React Developer,Next.js Developer,Computer Engineer,Web Developer,TypeScript,Portfolio"}],["$","meta","5",{"name":"creator","content":"Hadi Mobarra"}],["$","meta","6",{"name":"robots","content":"index, follow"}],["$","meta","7",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","link","8",{"rel":"canonical","href":"https://hadimobarra.github.io/"}],["$","meta","9",{"property":"og:title","content":"Blog | Hadi Mobarra"}],["$","meta","10",{"property":"og:description","content":"Read articles about web development, React, Next.js, TypeScript, and front-end engineering."}],["$","meta","11",{"property":"og:url","content":"https://hadimobarra.github.io/blog/"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:creator","content":"Hadi Mobarra"}],["$","meta","14",{"name":"twitter:title","content":"Hadi Mobarra | Front-End Developer & Computer Engineer"}],["$","meta","15",{"name":"twitter:description","content":"Front-End Developer with a Master's Degree in Computer Engineering. Specializing in React, Next.js, and building high-performance web applications."}],["$","meta","16",{"name":"twitter:image","content":"https://hadimobarra.github.io/og.jpg"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?favicon.0x3dzn~oxb6tn.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L1a","18",{}]]

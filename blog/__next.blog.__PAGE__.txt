@@ -1,0 +1,179 @@
+1:"$Sreact.fragment"
+2:I[37880,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0go5.g46z~v77.js"],"BlogListing"]
+8:I[97367,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+9:"$Sreact.suspense"
+3:T600,
+## Introduction
+
+Next.js has become one of the most popular frameworks for building React applications. Its powerful features like server-side rendering, static generation, and API routes make it an excellent choice for building scalable web applications.
+
+## 1. Use the App Router
+
+Next.js 13+ introduced the App Router, which provides a more intuitive way to organize your application. Use the `app/` directory for new projects.
+
+## 2. Leverage Server Components
+
+By default, components in the App Router are Server Components. This means they run on the server and reduce the JavaScript sent to the client.
+
+## 3. Optimize Images
+
+Use the `next/image` component for automatic image optimization. It provides lazy loading, responsive images, and WebP format support.
+
+## 4. Implement Proper Caching
+
+Next.js provides multiple caching strategies. Use `generateStaticParams` for static generation and ISR for dynamic content that needs periodic updates.
+
+## 5. Use TypeScript
+
+TypeScript provides type safety and better developer experience. Always use TypeScript in your Next.js projects.
+
+## 6. Environment Variables
+
+Use `.env.local` for local development and `.env.production` for production. Prefix client-side variables with `NEXT_PUBLIC_`.
+
+## 7. Error Handling
+
+Implement proper error boundaries and custom error pages. Use the `error.js` and `not-found.js` files in the App Router.
+
+## Conclusion
+
+Following these best practices will help you build scalable, maintainable Next.js applications that perform well in production.
+4:T569,
+## Introduction
+
+Performance is critical for user experience and SEO. Google's Core Web Vitals have made performance optimization more important than ever.
+
+## Core Web Vitals
+
+### Largest Contentful Paint (LCP)
+
+LCP measures loading performance. Aim for LCP under 2.5 seconds.
+
+- Optimize images with proper formats (WebP, AVIF)
+- Use CDN for static assets
+- Implement lazy loading
+
+### First Input Delay (FID)
+
+FID measures interactivity. Aim for FID under 100ms.
+
+- Code splitting
+- Reduce JavaScript execution time
+- Use web workers for heavy computations
+
+### Cumulative Layout Shift (CLS)
+
+CLS measures visual stability. Aim for CLS under 0.1.
+
+- Set explicit dimensions for images
+- Reserve space for dynamic content
+- Avoid inserting content above existing content
+
+## Image Optimization
+
+Images are often the largest assets on a page. Use the following strategies:
+
+```typescript
+import Image from 'next/image';
+
+<Image
+  src="/hero.jpg"
+  alt="Hero Image"
+  width={1200}
+  height={630}
+  priority
+/>
+```
+
+## Code Splitting
+
+Split your code into smaller chunks that load on demand:
+
+```typescript
+import dynamic from 'next/dynamic';
+
+const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
+  loading: () => <p>Loading...</p>,
+});
+```
+
+## Conclusion
+
+Performance optimization is an ongoing process. Monitor your metrics regularly and make incremental improvements.
+5:T592,
+## Introduction
+
+As React applications grow, maintaining a clean architecture becomes crucial. This guide covers proven patterns for building scalable React applications.
+
+## Component Architecture
+
+### Presentational vs Container Components
+
+Separate presentation from logic:
+
+- **Presentational Components**: Focus on how things look
+- **Container Components**: Focus on how things work
+
+### Compound Components
+
+Create flexible, reusable components:
+
+```tsx
+function Tabs({ children }) {
+  const [active, setActive] = useState(0);
+  return (
+    <TabsContext.Provider value={{ active, setActive }}>
+      {children}
+    </TabsContext.Provider>
+  );
+}
+```
+
+## State Management
+
+### Choose the Right Tool
+
+- **Local State**: useState, useReducer
+- **Global State**: Zustand, Context API
+- **Server State**: React Query, SWR
+
+### Zustand Example
+
+```typescript
+import { create } from 'zustand';
+
+const useStore = create((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+}));
+```
+
+## Folder Structure
+
+A scalable folder structure:
+
+```
+src/
+  components/
+  hooks/
+  lib/
+  pages/
+  types/
+  utils/
+```
+
+## Testing
+
+Implement comprehensive testing:
+
+- Unit tests with Vitest
+- Integration tests with React Testing Library
+- E2E tests with Playwright
+
+## Conclusion
+
+Good architecture is an investment that pays off as your application grows. Start with clean patterns from the beginning.
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"posts":[{"slug":"nextjs-best-practices","frontmatter":{"title":"Next.js Best Practices for Building Scalable Applications","description":"Learn the essential best practices for building production-ready Next.js applications that scale well and remain maintainable.","date":"2024-12-15","tags":["Next.js","React","Web Development"]},"content":"$3","readingTime":2},{"slug":"frontend-performance","frontmatter":{"title":"Front-End Performance Optimization Guide","description":"A comprehensive guide to optimizing front-end performance, covering Core Web Vitals, lazy loading, code splitting, and more.","date":"2024-11-20","tags":["Performance","Web Development","Optimization"]},"content":"$4","readingTime":1},{"slug":"react-architecture","frontmatter":{"title":"React Architecture: Building Maintainable Applications","description":"Explore proven architectural patterns for building large-scale React applications that are easy to maintain and extend.","date":"2024-10-10","tags":["React","Architecture","TypeScript"]},"content":"$5","readingTime":1}]}],["$L6"],"$L7"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"ymbp0TRlB5oiGJH3_CzHI"}
+6:["$","script","script-0",{"src":"/_next/static/chunks/0go5.g46z~v77.js","async":true}]
+7:["$","$L8",null,{"children":["$","$9",null,{"name":"Next.MetadataOutlet","children":"$@a"}]}]
+a:null

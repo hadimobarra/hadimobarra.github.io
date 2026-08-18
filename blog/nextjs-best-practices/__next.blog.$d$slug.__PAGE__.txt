@@ -1,0 +1,23 @@
+1:"$Sreact.fragment"
+2:I[42333,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0z84f4mu_xbz1.js"],"BlogPostContent"]
+4:I[97367,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+3:T798,<h2 id="introduction">Introduction</h2>
+<p>Next.js has become one of the most popular frameworks for building React applications. Its powerful features like server-side rendering, static generation, and API routes make it an excellent choice for building scalable web applications.</p>
+<h2 id="1-use-the-app-router">1. Use the App Router</h2>
+<p>Next.js 13+ introduced the App Router, which provides a more intuitive way to organize your application. Use the <code>app/</code> directory for new projects.</p>
+<h2 id="2-leverage-server-components">2. Leverage Server Components</h2>
+<p>By default, components in the App Router are Server Components. This means they run on the server and reduce the JavaScript sent to the client.</p>
+<h2 id="3-optimize-images">3. Optimize Images</h2>
+<p>Use the <code>next/image</code> component for automatic image optimization. It provides lazy loading, responsive images, and WebP format support.</p>
+<h2 id="4-implement-proper-caching">4. Implement Proper Caching</h2>
+<p>Next.js provides multiple caching strategies. Use <code>generateStaticParams</code> for static generation and ISR for dynamic content that needs periodic updates.</p>
+<h2 id="5-use-typescript">5. Use TypeScript</h2>
+<p>TypeScript provides type safety and better developer experience. Always use TypeScript in your Next.js projects.</p>
+<h2 id="6-environment-variables">6. Environment Variables</h2>
+<p>Use <code>.env.local</code> for local development and <code>.env.production</code> for production. Prefix client-side variables with <code>NEXT_PUBLIC_</code>.</p>
+<h2 id="7-error-handling">7. Error Handling</h2>
+<p>Implement proper error boundaries and custom error pages. Use the <code>error.js</code> and <code>not-found.js</code> files in the App Router.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Following these best practices will help you build scalable, maintainable Next.js applications that perform well in production.</p>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"slug":"nextjs-best-practices","title":"Next.js Best Practices for Building Scalable Applications","description":"Learn the essential best practices for building production-ready Next.js applications that scale well and remain maintainable.","date":"2024-12-15","readingTime":2,"tags":["Next.js","React","Web Development"],"htmlContent":"$3"}],[["$","script","script-0",{"src":"/_next/static/chunks/0z84f4mu_xbz1.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"ymbp0TRlB5oiGJH3_CzHI"}
+6:null
