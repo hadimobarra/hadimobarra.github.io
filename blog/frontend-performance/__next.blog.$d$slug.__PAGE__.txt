@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[42333,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0z84f4mu_xbz1.js"],"BlogPostContent"]
-5:I[97367,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0tibqz6d1bd2e.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+2:I[42333,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0_abzzxyf5t8l.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0z84f4mu_xbz1.js"],"BlogPostContent"]
+5:I[97367,["/_next/static/chunks/0x.~j7vy9ohz0.js","/_next/static/chunks/0q7a977tw202o.js","/_next/static/chunks/09uby5slyf9sp.js","/_next/static/chunks/0_abzzxyf5t8l.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 6:"$Sreact.suspense"
 3:Tb46,<h2 id="introduction">Introduction</h2>
 <p>Performance is critical for user experience and SEO. Google's Core Web Vitals have made performance optimization more important than ever.</p>
@@ -47,6 +47,6 @@
 });
 </code></pre>
 <h2 id="conclusion">Conclusion</h2>
-<p>Performance optimization is an ongoing process. Monitor your metrics regularly and make incremental improvements.</p>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"slug":"frontend-performance","title":"Front-End Performance Optimization Guide","description":"A comprehensive guide to optimizing front-end performance, covering Core Web Vitals, lazy loading, code splitting, and more.","date":"2024-11-20","readingTime":1,"tags":["Performance","Web Development","Optimization"],"htmlContent":"$3"}],[["$","script","script-0",{"src":"/_next/static/chunks/0z84f4mu_xbz1.js","async":true}]],"$L4"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"ymbp0TRlB5oiGJH3_CzHI"}
+<p>Performance optimization is an ongoing process. Monitor your metrics regularly and make incremental improvements.</p>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"slug":"frontend-performance","title":"Front-End Performance Optimization Guide","description":"A comprehensive guide to optimizing front-end performance, covering Core Web Vitals, lazy loading, code splitting, and more.","date":"2024-11-20","readingTime":1,"tags":["Performance","Web Development","Optimization"],"htmlContent":"$3"}],[["$","script","script-0",{"src":"/_next/static/chunks/0z84f4mu_xbz1.js","async":true}]],"$L4"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"cUqL5Gx0R8ba2SVDQsLvo"}
 4:["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]
 7:null
