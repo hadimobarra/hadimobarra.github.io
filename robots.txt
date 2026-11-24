@@ -1,6 +1,4 @@
 User-Agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /api/
 
 Sitemap: https://hadimobarra.github.io/sitemap.xml
