@@ -113,6 +113,18 @@
 <priority>0.7</priority>
 </url>
 <url>
+<loc>https://hadimobarra.github.io/rtl/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://hadimobarra.github.io/rtl/" />
+<xhtml:link rel="alternate" hreflang="fa" href="https://hadimobarra.github.io/fa/rtl/" />
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://hadimobarra.github.io/fa/rtl/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://hadimobarra.github.io/rtl/" />
+<xhtml:link rel="alternate" hreflang="fa" href="https://hadimobarra.github.io/fa/rtl/" />
+<priority>0.5</priority>
+</url>
+<url>
 <loc>https://hadimobarra.github.io/hire/</loc>
 <xhtml:link rel="alternate" hreflang="en" href="https://hadimobarra.github.io/hire/" />
 <xhtml:link rel="alternate" hreflang="fa" href="https://hadimobarra.github.io/fa/hire/" />
@@ -248,6 +260,11 @@
 <priority>0.6</priority>
 </url>
 <url>
+<loc>https://hadimobarra.github.io/blog/persian-in-data-tools/</loc>
+<lastmod>2026-11-24T00:00:00.000Z</lastmod>
+<priority>0.6</priority>
+</url>
+<url>
 <loc>https://hadimobarra.github.io/blog/resumable-uploads-tus/</loc>
 <lastmod>2026-11-24T00:00:00.000Z</lastmod>
 <priority>0.6</priority>
@@ -268,7 +285,12 @@
 <priority>0.6</priority>
 </url>
 <url>
-<loc>https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/</loc>
+<loc>https://hadimobarra.github.io/blog/async-iterators-generators-streams/</loc>
+<lastmod>2026-11-24T00:00:00.000Z</lastmod>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/</loc>
 <lastmod>2026-11-24T00:00:00.000Z</lastmod>
 <priority>0.6</priority>
 </url>
@@ -278,7 +300,22 @@
 <priority>0.6</priority>
 </url>
 <url>
+<loc>https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/</loc>
+<lastmod>2026-11-24T00:00:00.000Z</lastmod>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/</loc>
+<lastmod>2026-11-24T00:00:00.000Z</lastmod>
+<priority>0.6</priority>
+</url>
+<url>
 <loc>https://hadimobarra.github.io/blog/proxy-and-reflect-metaprogramming/</loc>
+<lastmod>2026-11-24T00:00:00.000Z</lastmod>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://hadimobarra.github.io/blog/react-server-components-mental-model/</loc>
 <lastmod>2026-11-24T00:00:00.000Z</lastmod>
 <priority>0.6</priority>
 </url>
@@ -294,26 +331,6 @@
 </url>
 <url>
 <loc>https://hadimobarra.github.io/blog/web-workers-off-main-thread/</loc>
-<lastmod>2026-11-24T00:00:00.000Z</lastmod>
-<priority>0.6</priority>
-</url>
-<url>
-<loc>https://hadimobarra.github.io/blog/react-server-components-mental-model/</loc>
-<lastmod>2026-11-24T00:00:00.000Z</lastmod>
-<priority>0.6</priority>
-</url>
-<url>
-<loc>https://hadimobarra.github.io/blog/async-iterators-generators-streams/</loc>
-<lastmod>2026-11-24T00:00:00.000Z</lastmod>
-<priority>0.6</priority>
-</url>
-<url>
-<loc>https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/</loc>
-<lastmod>2026-11-24T00:00:00.000Z</lastmod>
-<priority>0.6</priority>
-</url>
-<url>
-<loc>https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/</loc>
 <lastmod>2026-11-24T00:00:00.000Z</lastmod>
 <priority>0.6</priority>
 </url>
@@ -362,7 +379,15 @@
 <priority>0.5</priority>
 </url>
 <url>
+<loc>https://hadimobarra.github.io/blog/topics/open-source/</loc>
+<priority>0.5</priority>
+</url>
+<url>
 <loc>https://hadimobarra.github.io/blog/topics/core-web-vitals/</loc>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://hadimobarra.github.io/blog/topics/data-platforms/</loc>
 <priority>0.5</priority>
 </url>
 <url>
@@ -374,7 +399,7 @@
 <priority>0.5</priority>
 </url>
 <url>
-<loc>https://hadimobarra.github.io/blog/topics/open-source/</loc>
+<loc>https://hadimobarra.github.io/blog/topics/rtl-i18n/</loc>
 <priority>0.5</priority>
 </url>
 <url>
@@ -383,14 +408,6 @@
 </url>
 <url>
 <loc>https://hadimobarra.github.io/blog/topics/css/</loc>
-<priority>0.5</priority>
-</url>
-<url>
-<loc>https://hadimobarra.github.io/blog/topics/data-platforms/</loc>
-<priority>0.5</priority>
-</url>
-<url>
-<loc>https://hadimobarra.github.io/blog/topics/rtl-i18n/</loc>
 <priority>0.5</priority>
 </url>
 <url>

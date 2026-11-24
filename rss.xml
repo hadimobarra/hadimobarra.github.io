@@ -346,6 +346,63 @@ tags.<span class="hljs-title function_">map</span>(<span class="hljs-function">(
 <p>Anything that comes from storage, a network or <code>localStorage</code> was written by some other version of your software. Parse it as if a stranger wrote it. For types that help after the boundary, see <a href="https://hadimobarra.github.io/blog/typescript-type-level-programming/">TypeScript as a programming language</a>.</p>]]></content:encoded>
     </item>
     <item>
+      <title>What Persian Users See in Two Open-Source Data Tools</title>
+      <link>https://hadimobarra.github.io/blog/persian-in-data-tools/</link>
+      <guid>https://hadimobarra.github.io/blog/persian-in-data-tools/</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <description>I ran Apache Superset and OpenMetadata in Persian and measured what changed. The layout doesn't turn around, some translations mean something else, and one language code may explain the strangest results.</description>
+      <category>RTL &amp; i18n</category>
+      <category>Data Platforms</category>
+      <category>Open Source</category>
+      <content:encoded><![CDATA[<h2 id="two-tools-one-question">Two tools, one question</h2>
+<p>More than two billion people use Arabic-script languages, according to <a href="https://kclpure.kcl.ac.uk/ws/files/383439862/2026_VIS_RTL_Interviews_tools_revised_-2.pdf">a recent study of chart tools</a>. It tested seven tools, and none of them was Apache Superset or OpenMetadata, the two I contribute to. So I ran both in Persian, with a small Persian dataset, and measured what happened. The <a href="https://hadimobarra.github.io/rtl/">report card</a> has every result and screenshot.</p>
+<h2 id="the-layout-doesnt-turn-around">The layout doesn't turn around</h2>
+<p>After switching to Persian, neither Superset 6.1.0 nor OpenMetadata 1.12.14 set a direction on the page. The navigation stayed on the left. Every Persian text sat in a left-to-right container, which shows in small ways: the full stop moves to the wrong end of a sentence, and a long title loses its <em>first</em> letters instead of its last.</p>
+<p>This is known. Superset's <a href="https://github.com/apache/superset/issues/25258">RTL issue</a> is closed as mostly done, and a <a href="https://github.com/apache/superset/pull/34629">pull request</a> that aimed to finish it was closed unmerged after the theme code it depended on had changed several times. OpenMetadata fixed a <a href="https://github.com/open-metadata/OpenMetadata/issues/37397">direction regression</a> this month, after the version I tested.</p>
+<h2 id="translated-isnt-the-same-as-correct">Translated isn't the same as correct</h2>
+<p>Superset's Persian file has 5,957 entries. 2,473 of them are marked <em>fuzzy</em>, which means unreviewed: 1,569 come from a machine translation that says so in a comment, and 904 were guessed from similar sentences. Release 6.1.0 includes fuzzy entries when it builds translations. The guesses can be far off:</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>English</th>
+<th>What the Persian says</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter the user's password</td>
+<td>Enter the alert name</td>
+</tr>
+<tr>
+<td>The password reset was successful</td>
+<td>This dashboard was saved successfully</td>
+</tr>
+<tr>
+<td>(Removed)</td>
+<td>Dear assistant, your task doesn't contain any text for translation</td>
+</tr>
+</tbody>
+</table></div>
+<p>The last one isn't fuzzy. It's a reply from a chatbot, saved as a translation.</p>
+<h2 id="a-language-code-that-may-explain-a-mystery">A language code that may explain a mystery</h2>
+<p>OpenMetadata's Persian file contains Spanish ("Acción requerida"), Portuguese ("Salvar alterações"), Turkish, Pashto, Arabic and, in a few places, pirate English:</p>
+<blockquote>
+<p>Shiver me timbers! Error fetchin' the treasures…</p>
+</blockquote>
+<p>These are checked against the file as it was on 24 November 2026. The file is called <code>pr-pr.json</code>. The code for Persian is <code>fa</code>. My guess, and it is a guess, is that tools filling in missing strings read <code>pr-PR</code> as Puerto Rico, as Portuguese, or as pirate. Of its 7,243 entries, 188 contain no Persian, and 322 are identical to English.</p>
+<h2 id="how-to-check-your-own-project">How to check your own project</h2>
+<ol>
+<li><strong>Use standard codes.</strong> <code>fa</code>, <code>ar</code>, <code>he</code>. Tools make decisions based on them.</li>
+<li><strong>Set <code>lang</code> and <code>dir</code> on the document</strong> when the language changes.</li>
+<li><strong>Look for one translation shared by several sources.</strong> In Superset, that found 461 entries worth reading.</li>
+<li><strong>Check the script.</strong> A Persian file should contain Persian letters.</li>
+<li><strong>Don't ship what's marked unreviewed</strong>, or show which strings are.</li>
+</ol>
+<p>The <a href="https://github.com/hadimobarra/my-space-/tree/main/rtl-report">scripts</a> need only Python and a browser.</p>
+<h2 id="what-this-is-not">What this is not</h2>
+<p>It's a pilot: two tools, desktop only, default settings, no keyboard or screen reader testing. Both projects are free, and both have accepted fixes from me. If you work on either one, the review lists are there to use.</p>]]></content:encoded>
+    </item>
+    <item>
       <title>Resumable Uploads: What Happens When the Connection Drops</title>
       <link>https://hadimobarra.github.io/blog/resumable-uploads-tus/</link>
       <guid>https://hadimobarra.github.io/blog/resumable-uploads-tus/</guid>
@@ -801,198 +858,390 @@ Upload-Offset: 12163470
 <p>Generated interfaces need generated translation. Once text is addressed by path, a new connector is translated by adding a file, and an upgrade shows you exactly which sentences changed.</p>]]></content:encoded>
     </item>
     <item>
-      <title>Inside the JavaScript Event Loop: Tasks, Microtasks and the Rendering Steps</title>
-      <link>https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/</link>
-      <guid>https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/</guid>
-      <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
-      <description>A precise mental model of how the browser schedules your code — tasks, microtasks, requestAnimationFrame and rendering — and how to use it to write UIs that never freeze.</description>
+      <title>Async Iterators, Generators and Web Streams in Practice</title>
+      <link>https://hadimobarra.github.io/blog/async-iterators-generators-streams/</link>
+      <guid>https://hadimobarra.github.io/blog/async-iterators-generators-streams/</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Process data incrementally instead of all at once. A practical tour of generators, async iteration, backpressure, and the Web Streams API — with examples for paginated APIs, streaming fetch responses and LLM-style token streams.</description>
       <category>JavaScript</category>
       <category>Browser Internals</category>
-      <category>Performance</category>
-      <content:encoded><![CDATA[<h2 id="why-the-event-loop-still-trips-up-senior-engineers">Why the event loop still trips up senior engineers</h2>
-<p>Most of us learned the event loop as "JavaScript is single-threaded, async things go into a queue". That model is good enough until it isn't: a <code>Promise</code> chain that starves the renderer, a <code>setTimeout(fn, 0)</code> that fires <em>after</em> a frame you expected it to beat, or a <code>requestAnimationFrame</code> callback that runs twice as often as you thought.</p>
-<p>This article builds a precise model based on the HTML specification, then uses it to answer real production questions.</p>
-<h2 id="the-model-in-one-picture">The model in one picture</h2>
-<p>Every browser tab's main thread runs a loop that, simplified, looks like this:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
-  <span class="hljs-comment">// 1. Run ONE task (macrotask) from a task queue</span>
-  <span class="hljs-keyword">const</span> task = <span class="hljs-title function_">pickTaskFromSomeQueue</span>();
-  <span class="hljs-keyword">if</span> (task) <span class="hljs-title function_">run</span>(task);
+      <content:encoded><![CDATA[<h2 id="why-incremental-processing-matters">Why incremental processing matters</h2>
+<p>Loading a 200MB CSV into memory before showing anything, or waiting for a whole LLM response before rendering a word, are both symptoms of one habit: treating data as a single value instead of a <strong>sequence over time</strong>. JavaScript has three tools for sequences: generators, async iterators and streams.</p>
+<h2 id="generators-pausable-functions">Generators: pausable functions</h2>
+<p>A generator function returns an iterator. Each <code>yield</code> pauses execution until the consumer asks for the next value:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">range</span>(<span class="hljs-params">start, end, step = <span class="hljs-number">1</span></span>) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start; i &#x3C; end; i += step) <span class="hljs-keyword">yield</span> i;
+}
 
-  <span class="hljs-comment">// 2. Drain the ENTIRE microtask queue</span>
-  <span class="hljs-keyword">while</span> (microtaskQueue.<span class="hljs-property">length</span>) {
-    <span class="hljs-title function_">run</span>(microtaskQueue.<span class="hljs-title function_">shift</span>());
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> n <span class="hljs-keyword">of</span> <span class="hljs-title function_">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">3</span>)) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n); <span class="hljs-comment">// 0 3 6 9</span>
+</code></pre><span class="code-lang">js</span></div>
+<p>Because they're lazy, generators can describe infinite sequences and compose without creating intermediate arrays:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">map</span>(<span class="hljs-params">iter, fn</span>) { <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> x <span class="hljs-keyword">of</span> iter) <span class="hljs-keyword">yield</span> <span class="hljs-title function_">fn</span>(x); }
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">filter</span>(<span class="hljs-params">iter, fn</span>) { <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> x <span class="hljs-keyword">of</span> iter) <span class="hljs-keyword">if</span> (<span class="hljs-title function_">fn</span>(x)) <span class="hljs-keyword">yield</span> x; }
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">take</span>(<span class="hljs-params">iter, n</span>) {
+  <span class="hljs-keyword">if</span> (n &#x3C;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> x <span class="hljs-keyword">of</span> iter) {
+    <span class="hljs-keyword">yield</span> x;
+    <span class="hljs-keyword">if</span> (--n &#x3C;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>; <span class="hljs-comment">// closes the source iterator too</span>
   }
+}
 
-  <span class="hljs-comment">// 3. Maybe render (roughly every 16.7ms on a 60Hz display)</span>
-  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isRenderingOpportunity</span>()) {
-    <span class="hljs-title function_">runResizeAndScrollSteps</span>();
-    <span class="hljs-title function_">runAnimationFrameCallbacks</span>(); <span class="hljs-comment">// requestAnimationFrame</span>
-    <span class="hljs-title function_">recalcStyle</span>();
-    <span class="hljs-title function_">layout</span>();
-    <span class="hljs-title function_">runResizeObserverCallbacks</span>();
-    <span class="hljs-title function_">paint</span>();
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">naturals</span>(<span class="hljs-params"></span>) { <span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>; <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) <span class="hljs-keyword">yield</span> n++; }
+
+<span class="hljs-keyword">const</span> firstFiveEvenSquares = [...<span class="hljs-title function_">take</span>(<span class="hljs-title function_">filter</span>(<span class="hljs-title function_">map</span>(<span class="hljs-title function_">naturals</span>(), <span class="hljs-function">(<span class="hljs-params">n</span>) =></span> n * n), <span class="hljs-function">(<span class="hljs-params">n</span>) =></span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>), <span class="hljs-number">5</span>)];
+<span class="hljs-comment">// [0, 4, 16, 36, 64]</span>
+</code></pre><span class="code-lang">js</span></div>
+<p>Modern engines also ship <strong>iterator helpers</strong> natively, so the same pipeline can be written as <code>naturals().map(...).filter(...).take(5).toArray()</code>.</p>
+<h2 id="async-generators-sequences-that-arrive-over-time">Async generators: sequences that arrive over time</h2>
+<p>Add <code>async</code> and you can <code>await</code> inside and <code>yield</code> values as they become available. Consumers use <code>for await...of</code>.</p>
+<p>A classic use: hiding pagination behind a simple loop.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>* <span class="hljs-title function_">fetchAllIssues</span>(<span class="hljs-params">repo</span>) {
+  <span class="hljs-keyword">let</span> url = <span class="hljs-string">`https://api.github.com/repos/<span class="hljs-subst">${repo}</span>/issues?per_page=100`</span>;
+  <span class="hljs-keyword">while</span> (url) {
+    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url);
+    <span class="hljs-keyword">if</span> (!res.<span class="hljs-property">ok</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`HTTP <span class="hljs-subst">${res.status}</span>`</span>);
+    <span class="hljs-keyword">yield</span>* <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();                       <span class="hljs-comment">// yield each issue individually</span>
+    url = <span class="hljs-title function_">parseNextLink</span>(res.<span class="hljs-property">headers</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">"link"</span>));  <span class="hljs-comment">// null when there are no more pages</span>
   }
+}
 
-  <span class="hljs-comment">// 4. If idle, run requestIdleCallback callbacks</span>
+<span class="hljs-keyword">for</span> <span class="hljs-title function_">await</span> (<span class="hljs-keyword">const</span> issue <span class="hljs-keyword">of</span> <span class="hljs-title function_">fetchAllIssues</span>(<span class="hljs-string">"facebook/react"</span>)) {
+  <span class="hljs-keyword">if</span> (issue.<span class="hljs-property">title</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"hydration"</span>)) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(issue.<span class="hljs-property">number</span>, issue.<span class="hljs-property">title</span>);
+    <span class="hljs-keyword">break</span>; <span class="hljs-comment">// stops fetching further pages</span>
+  }
 }
 </code></pre><span class="code-lang">js</span></div>
-<p>Three rules fall out of this pseudo-code, and nearly every event-loop puzzle reduces to them:</p>
-<ol>
-<li><strong>One task per turn.</strong> Tasks never run back-to-back without giving microtasks (and possibly rendering) a chance.</li>
-<li><strong>Microtasks drain completely.</strong> If a microtask schedules another microtask, that one runs too, before anything else.</li>
-<li><strong>Rendering is opportunistic.</strong> The browser decides when a frame is due; your code can only <em>ask</em> to run right before it, via <code>requestAnimationFrame</code>.</li>
-</ol>
-<p><a href="https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/">View this part on the site</a></p>
-<h2 id="tasks-vs-microtasks">Tasks vs microtasks</h2>
-<p><strong>Tasks</strong> (often called macrotasks) come from: <code>setTimeout</code>/<code>setInterval</code>, user input events, <code>MessageChannel</code> messages, network callbacks, and parsing HTML.</p>
-<p><strong>Microtasks</strong> come from: promise reactions (<code>.then</code>, <code>await</code> continuations), <code>queueMicrotask</code>, and <code>MutationObserver</code>.</p>
-<p>Here's the classic quiz:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1: script"</span>);
-
-<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"2: timeout"</span>), <span class="hljs-number">0</span>);
-
-<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>()
-  .<span class="hljs-title function_">then</span>(<span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"3: microtask A"</span>))
-  .<span class="hljs-title function_">then</span>(<span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"4: microtask B"</span>));
-
-<span class="hljs-title function_">queueMicrotask</span>(<span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"5: queueMicrotask"</span>));
-
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"6: script end"</span>);
+<p>That <code>break</code> matters: leaving a <code>for await</code> loop calls the generator's <code>return()</code>, which runs any <code>finally</code> blocks. Pages after the one you needed are never requested. The consumer controls the pace — that's <strong>pull-based backpressure</strong>.</p>
+<h2 id="cleanup-with-finally">Cleanup with <code>finally</code></h2>
+<p>Generators are a natural place to tie resource lifetime to iteration:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>* <span class="hljs-title function_">watchEvents</span>(<span class="hljs-params">url</span>) {
+  <span class="hljs-keyword">const</span> source = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventSource</span>(url);
+  <span class="hljs-keyword">const</span> queue = [];
+  <span class="hljs-keyword">let</span> notify;
+  source.<span class="hljs-property">onmessage</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =></span> { queue.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(e.<span class="hljs-property">data</span>)); notify?.(); };
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+      <span class="hljs-keyword">while</span> (queue.<span class="hljs-property">length</span>) <span class="hljs-keyword">yield</span> queue.<span class="hljs-title function_">shift</span>();
+      <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =></span> (notify = r));
+    }
+  } <span class="hljs-keyword">finally</span> {
+    source.<span class="hljs-title function_">close</span>(); <span class="hljs-comment">// runs on break, return or throw</span>
+  }
+}
 </code></pre><span class="code-lang">js</span></div>
-<p>Output:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="language-text">1: script
-6: script end
-3: microtask A
-5: queueMicrotask
-4: microtask B
-2: timeout
-</code></pre><span class="code-lang">text</span></div>
-<p>The whole script is itself a task. When it finishes, the microtask queue holds <code>A</code> and <code>5</code>. Running <code>A</code> enqueues <code>B</code> at the <em>end</em> of the queue, so <code>5</code> goes first. Only after the queue is empty does the loop pick the next task — the timeout.</p>
-<p><a href="https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/">View this part on the site</a></p>
-<h2 id="await-is-just-a-microtask-boundary"><code>await</code> is just a microtask boundary</h2>
-<p>Every <code>await</code> splits a function: everything after it becomes a promise reaction. This is why <code>async</code> code that "looks" synchronous can still interleave with other microtasks:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"a1"</span>);
-  <span class="hljs-keyword">await</span> <span class="hljs-literal">null</span>;
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"a2"</span>);
-}
+<h2 id="web-streams-the-platforms-streaming-primitive">Web Streams: the platform's streaming primitive</h2>
+<p><code>ReadableStream</code>, <code>WritableStream</code> and <code>TransformStream</code> are standard in browsers, Node.js, Deno, Bun and edge runtimes. <code>fetch</code> response bodies are <code>ReadableStream</code>s, which means you can process a download <strong>as it arrives</strong>:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">"/api/large-export.ndjson"</span>);
 
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">b</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"b1"</span>);
-  <span class="hljs-keyword">await</span> <span class="hljs-literal">null</span>;
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"b2"</span>);
-}
+<span class="hljs-keyword">const</span> lines = res.<span class="hljs-property">body</span>
+  .<span class="hljs-title function_">pipeThrough</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TextDecoderStream</span>())   <span class="hljs-comment">// bytes -> text chunks</span>
+  .<span class="hljs-title function_">pipeThrough</span>(<span class="hljs-title function_">splitLines</span>());             <span class="hljs-comment">// text chunks -> lines</span>
 
-<span class="hljs-title function_">a</span>();
-<span class="hljs-title function_">b</span>();
-<span class="hljs-comment">// a1, b1, a2, b2</span>
+<span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span> <span class="hljs-title function_">await</span> (<span class="hljs-keyword">const</span> line <span class="hljs-keyword">of</span> lines) {         <span class="hljs-comment">// ReadableStream is async iterable</span>
+  <span class="hljs-keyword">if</span> (!line) <span class="hljs-keyword">continue</span>;
+  <span class="hljs-keyword">const</span> record = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(line);
+  count++;
+  <span class="hljs-keyword">if</span> (count % <span class="hljs-number">1000</span> === <span class="hljs-number">0</span>) <span class="hljs-title function_">renderProgress</span>(count);
+}
+</code></pre><span class="code-lang">js</span></div>
+<p>The <code>splitLines</code> transform buffers partial lines across chunk boundaries — the classic streaming bug to avoid:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">splitLines</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> buffer = <span class="hljs-string">""</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformStream</span>({
+    <span class="hljs-title function_">transform</span>(<span class="hljs-params">chunk, controller</span>) {
+      buffer += chunk;
+      <span class="hljs-keyword">const</span> lines = buffer.<span class="hljs-title function_">split</span>(<span class="hljs-string">"\n"</span>);
+      buffer = lines.<span class="hljs-title function_">pop</span>(); <span class="hljs-comment">// the last item may be an incomplete line</span>
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> line <span class="hljs-keyword">of</span> lines) controller.<span class="hljs-title function_">enqueue</span>(line);
+    },
+    <span class="hljs-title function_">flush</span>(<span class="hljs-params">controller</span>) {
+      <span class="hljs-keyword">if</span> (buffer) controller.<span class="hljs-title function_">enqueue</span>(buffer);
+    },
+  });
+}
 </code></pre><span class="code-lang">js</span></div>
 <blockquote>
-<p><strong>Rule of thumb:</strong> an <code>await</code> never yields to rendering or to user input. It only yields to <em>other microtasks</em>. If you want the browser to paint, you need a task boundary or a frame boundary.</p>
+<p>Async iteration of <code>ReadableStream</code> is supported in Node, Deno, Firefox and recent Chromium. Where it's missing, use <code>stream.getReader()</code> and call <code>read()</code> in a loop.</p>
 </blockquote>
-<h2 id="starving-the-renderer-with-microtasks">Starving the renderer with microtasks</h2>
-<p>Because microtasks drain completely, a recursive microtask chain blocks the page exactly like an infinite <code>while</code> loop:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">spin</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-title function_">queueMicrotask</span>(spin); <span class="hljs-comment">// the page is now frozen</span>
-}
-<span class="hljs-title function_">spin</span>();
-</code></pre><span class="code-lang">js</span></div>
-<p>A more realistic version: processing a big array with <code>await</code> in a loop and expecting the UI to stay responsive.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-comment">// ❌ Looks async, still blocks painting until all 50k items are done</span>
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">processAll</span>(<span class="hljs-params">items</span>) {
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> items) {
-    <span class="hljs-keyword">await</span> <span class="hljs-title function_">processItem</span>(item); <span class="hljs-comment">// resolves synchronously → microtask</span>
-  }
-}
-</code></pre><span class="code-lang">js</span></div>
-<p>If <code>processItem</code> resolves immediately, every iteration is a microtask and the browser never gets a rendering opportunity.</p>
-<h2 id="yielding-to-the-main-thread-properly">Yielding to the main thread properly</h2>
-<p>To let the browser paint and handle input, yield with a <strong>task</strong>, not a microtask. The modern API is <code>scheduler.yield()</code>, with a <code>setTimeout</code> fallback:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">yieldToMain</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-keyword">if</span> (globalThis.<span class="hljs-property">scheduler</span>?.<span class="hljs-property">yield</span>) {
-    <span class="hljs-keyword">return</span> scheduler.<span class="hljs-title function_">yield</span>();
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =></span> <span class="hljs-built_in">setTimeout</span>(resolve, <span class="hljs-number">0</span>));
-}
+<h2 id="streaming-text-into-the-ui">Streaming text into the UI</h2>
+<p>The same technique renders streamed AI responses token by token:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">useStreamedText</span>(<span class="hljs-params">url, body</span>) {
+  <span class="hljs-keyword">const</span> [text, setText] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">""</span>);
 
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">processAll</span>(<span class="hljs-params">items</span>) {
-  <span class="hljs-keyword">let</span> lastYield = performance.<span class="hljs-title function_">now</span>();
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> items) {
-    <span class="hljs-title function_">processItem</span>(item);
-    <span class="hljs-comment">// Yield roughly every 50ms (the "long task" threshold)</span>
-    <span class="hljs-keyword">if</span> (performance.<span class="hljs-title function_">now</span>() - lastYield > <span class="hljs-number">50</span>) {
-      <span class="hljs-keyword">await</span> <span class="hljs-title function_">yieldToMain</span>();
-      lastYield = performance.<span class="hljs-title function_">now</span>();
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =></span> {
+    <span class="hljs-keyword">const</span> controller = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbortController</span>();
+    (<span class="hljs-title function_">async</span> () => {
+      <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url, { <span class="hljs-attr">method</span>: <span class="hljs-string">"POST"</span>, body, <span class="hljs-attr">signal</span>: controller.<span class="hljs-property">signal</span> });
+      <span class="hljs-keyword">const</span> stream = res.<span class="hljs-property">body</span>.<span class="hljs-title function_">pipeThrough</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TextDecoderStream</span>());
+      <span class="hljs-keyword">for</span> <span class="hljs-title function_">await</span> (<span class="hljs-keyword">const</span> chunk <span class="hljs-keyword">of</span> stream) {
+        <span class="hljs-title function_">setText</span>(<span class="hljs-function">(<span class="hljs-params">prev</span>) =></span> prev + chunk);
+      }
+    })().<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =></span> {
+      <span class="hljs-keyword">if</span> (err.<span class="hljs-property">name</span> !== <span class="hljs-string">"AbortError"</span>) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err);
+    });
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =></span> controller.<span class="hljs-title function_">abort</span>(); <span class="hljs-comment">// cancels the request on unmount</span>
+  }, [url, body]);
+
+  <span class="hljs-keyword">return</span> text;
+}
+</code></pre><span class="code-lang">jsx</span></div>
+<p><code>AbortController</code> is the cancellation signal for the whole pipeline: aborting the fetch cancels the stream, which ends the <code>for await</code> loop.</p>
+<p><a href="https://hadimobarra.github.io/blog/async-iterators-generators-streams/">View this part on the site</a></p>
+<h2 id="producing-streams">Producing streams</h2>
+<p>You can create streams from any source, including an async generator:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fromAsyncIterable</span>(<span class="hljs-params">iterable</span>) {
+  <span class="hljs-keyword">const</span> iterator = iterable[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">asyncIterator</span>]();
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReadableStream</span>({
+    <span class="hljs-keyword">async</span> <span class="hljs-title function_">pull</span>(<span class="hljs-params">controller</span>) {
+      <span class="hljs-keyword">const</span> { value, done } = <span class="hljs-keyword">await</span> iterator.<span class="hljs-title function_">next</span>();
+      done ? controller.<span class="hljs-title function_">close</span>() : controller.<span class="hljs-title function_">enqueue</span>(value);
+    },
+    <span class="hljs-keyword">async</span> <span class="hljs-title function_">cancel</span>(<span class="hljs-params">reason</span>) {
+      <span class="hljs-keyword">await</span> iterator.<span class="hljs-property">return</span>?.(reason);
+    },
+  });
+}
+</code></pre><span class="code-lang">js</span></div>
+<p>Using <code>pull</code> (instead of pushing everything in <code>start</code>) means the generator only advances when the consumer has room in its queue, so backpressure flows from the consumer back to the source. Newer runtimes provide <code>ReadableStream.from(iterable)</code> which does this for you.</p>
+<p>On the server, a streamed <code>Response</code> is just a stream in the body:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-comment">// Route handler (Next.js, Remix, Hono, Workers...)</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">GET</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> encoder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TextEncoder</span>();
+  <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>* <span class="hljs-title function_">events</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++) {
+      <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =></span> <span class="hljs-built_in">setTimeout</span>(r, <span class="hljs-number">500</span>));
+      <span class="hljs-keyword">yield</span> encoder.<span class="hljs-title function_">encode</span>(<span class="hljs-string">`data: tick <span class="hljs-subst">${i}</span>\n\n`</span>);
     }
   }
-}
-</code></pre><span class="code-lang">js</span></div>
-<p>Yielding makes a frame <em>possible</em>. It doesn't force one, so when something must be visible before the work starts, wait for a frame explicitly. The <a href="https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/">INP article</a> has a demo of the difference.</p>
-<p><code>scheduler.yield()</code> has a nice property over <code>setTimeout</code>: the continuation is placed at the <em>front</em> of the task queue, so your work resumes before other, lower-priority tasks that were queued in the meantime.</p>
-<h2 id="where-requestanimationframe-fits">Where <code>requestAnimationFrame</code> fits</h2>
-<p><code>rAF</code> callbacks run in the rendering step, right before style and layout. That makes it the right place for visual updates and the wrong place for heavy computation.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-comment">// Measuring before the browser has applied a change</span>
-el.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">"expanded"</span>);
-
-<span class="hljs-title function_">requestAnimationFrame</span>(<span class="hljs-function">() =></span> {
-  <span class="hljs-comment">// Still before layout for this frame. Reading layout here forces it.</span>
-  <span class="hljs-title function_">requestAnimationFrame</span>(<span class="hljs-function">() =></span> {
-    <span class="hljs-comment">// Runs in the *next* frame — the previous one has been painted.</span>
-    el.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">"animate"</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-title function_">fromAsyncIterable</span>(<span class="hljs-title function_">events</span>()), {
+    <span class="hljs-attr">headers</span>: { <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"text/event-stream"</span> },
   });
-});
-</code></pre><span class="code-lang">js</span></div>
-<p>The "double rAF" trick is a well-known way to guarantee a style has been committed to a frame before you change it again, which is needed to trigger CSS transitions from an initial state.</p>
-<p>Two other facts worth knowing:</p>
-<ul>
-<li><code>rAF</code> is <strong>paused in background tabs</strong>. Don't use it for logic that must keep running.</li>
-<li><code>rAF</code> fires at the display's refresh rate. On a 120Hz screen, a <code>rAF</code>-driven animation that assumes 16.7ms per frame will run twice as fast. Always use the timestamp argument to compute deltas.</li>
-</ul>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">let</span> last;
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">tick</span>(<span class="hljs-params">now</span>) {
-  <span class="hljs-keyword">const</span> dt = last === <span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : (now - last) / <span class="hljs-number">1000</span>; <span class="hljs-comment">// seconds</span>
-  last = now;
-  position += velocity * dt; <span class="hljs-comment">// frame-rate independent</span>
-  <span class="hljs-title function_">requestAnimationFrame</span>(tick);
-}
-<span class="hljs-title function_">requestAnimationFrame</span>(tick);
-</code></pre><span class="code-lang">js</span></div>
-<h2 id="settimeoutfn-0-is-not-zero"><code>setTimeout(fn, 0)</code> is not zero</h2>
-<p>Timers are clamped: after 5 levels of nesting, browsers enforce a minimum of about 4ms, and in background tabs timers can be throttled to once per second or less. If you need "as soon as possible, but after rendering and input", <code>MessageChannel</code> is the classic zero-delay task primitive (React's scheduler used it for years):</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> channel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageChannel</span>();
-<span class="hljs-keyword">const</span> queue = [];
-channel.<span class="hljs-property">port1</span>.<span class="hljs-property">onmessage</span> = <span class="hljs-function">() =></span> queue.<span class="hljs-title function_">shift</span>()?.();
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">postTask</span>(<span class="hljs-params">fn</span>) {
-  queue.<span class="hljs-title function_">push</span>(fn);
-  channel.<span class="hljs-property">port2</span>.<span class="hljs-title function_">postMessage</span>(<span class="hljs-literal">null</span>);
 }
 </code></pre><span class="code-lang">js</span></div>
-<h2 id="a-debugging-checklist">A debugging checklist</h2>
-<p>When something runs in the "wrong" order, ask:</p>
-<ol>
-<li><strong>Is it a task or a microtask?</strong> Promise reactions always beat timers.</li>
-<li><strong>Did the microtask queue drain?</strong> A long chain of <code>then</code>s delays everything else, including paint.</li>
-<li><strong>Do I need a frame or a task?</strong> Visual changes belong in <code>rAF</code>; yielding for responsiveness needs a task (<code>scheduler.yield</code>, <code>setTimeout</code>, <code>MessageChannel</code>).</li>
-<li><strong>Is the tab in the background?</strong> <code>rAF</code> stops and timers are throttled.</li>
-</ol>
+<h2 id="choosing-the-right-tool">Choosing the right tool</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lazy, synchronous sequence</td>
+<td>Generator / iterator helpers</td>
+</tr>
+<tr>
+<td>Values that arrive over time, consumer-paced</td>
+<td>Async generator + <code>for await</code></td>
+</tr>
+<tr>
+<td>Bytes or text across network/file boundaries, piping, compression</td>
+<td>Web Streams (<code>pipeThrough</code>, <code>CompressionStream</code>)</td>
+</tr>
+<tr>
+<td>Cancellation</td>
+<td><code>AbortController</code> + <code>break</code> / <code>return()</code></td>
+</tr>
+</tbody>
+</table></div>
 <h2 id="conclusion">Conclusion</h2>
-<p>Learn the loop as three rules — one task per turn, microtasks drain fully, rendering is opportunistic — and most "weird async bugs" become predictable. That predictability is what lets you break long work into chunks, keep Interaction to Next Paint low, and write animations that stay smooth on every refresh rate.</p>
+<p>When you model data as a sequence over time, users see the first result sooner, memory stays flat regardless of input size, and cancellation works naturally. Generators make sequences easy to write, async iteration makes them easy to consume, and Web Streams connect them to the network on every modern JavaScript runtime.</p>
 <h2 id="further-reading">Further reading</h2>
 <ul>
-<li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops">Event loops in the HTML Standard</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield">Scheduler.yield() on MDN</a></li>
-<li><a href="https://web.dev/articles/optimize-long-tasks">Optimize long tasks on web.dev</a></li>
-<li><a href="https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/">Taming INP</a></li>
-<li><a href="https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/">The browser rendering pipeline</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">Streams API on MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of">for await...of on MDN</a></li>
+<li><a href="https://streams.spec.whatwg.org/">Streams Standard</a></li>
+<li><a href="https://hadimobarra.github.io/blog/resumable-uploads-tus/">Resumable uploads: what happens when the connection drops</a></li>
+<li><a href="https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/">Inside the JavaScript event loop</a></li>
+</ul>]]></content:encoded>
+    </item>
+    <item>
+      <title>The Browser Rendering Pipeline: Writing 60fps Animations</title>
+      <link>https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/</link>
+      <guid>https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Style, layout, paint and composite — what each stage costs, which CSS properties trigger which stages, and how to build animations that stay smooth with transforms, will-change, FLIP and the View Transitions API.</description>
+      <category>CSS</category>
+      <category>Performance</category>
+      <category>Browser Internals</category>
+      <content:encoded><![CDATA[<h2 id="the-pixel-pipeline">The pixel pipeline</h2>
+<p>Every frame the browser produces goes through up to five stages:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="language-text">JavaScript → Style → Layout → Paint → Composite
+</code></pre><span class="code-lang">text</span></div>
+<ol>
+<li><strong>JavaScript</strong> — your code (or CSS animations/transitions) changes something.</li>
+<li><strong>Style</strong> — the browser works out which CSS rules apply to which elements and computes final styles.</li>
+<li><strong>Layout</strong> — it calculates the geometry of every affected box: size and position.</li>
+<li><strong>Paint</strong> — it records drawing commands (text, colours, borders, shadows, images) for each layer.</li>
+<li><strong>Composite</strong> — layers are rasterised (often on the GPU) and assembled into the final image.</li>
+</ol>
+<p>At 60Hz you have <strong>16.7ms per frame</strong> for all of this, and in practice closer to 10ms of budget for your own work. At 120Hz it's 8.3ms.</p>
+<p>The key optimisation insight: <strong>later stages are cheaper, and you can skip earlier ones.</strong></p>
+<p><a href="https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/">View this part on the site</a></p>
+<h2 id="which-properties-trigger-which-stages">Which properties trigger which stages</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>You change…</th>
+<th>Layout</th>
+<th>Paint</th>
+<th>Composite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, <code>margin</code>, <code>padding</code>, <code>font-size</code></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>color</code>, <code>background-color</code>, <code>box-shadow</code>, <code>border-radius</code></td>
+<td>—</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>transform</code>, <code>opacity</code> (on a composited layer)</td>
+<td>—</td>
+<td>—</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table></div>
+<p>Animating <code>left</code> from 0 to 300px re-runs layout and paint every frame. Animating <code>transform: translateX()</code> across the same distance only needs compositing — which can even run on the compositor thread while the main thread is busy.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-comment">/* ❌ Layout + paint every frame */</span>
+<span class="hljs-selector-class">.drawer</span> { <span class="hljs-attribute">transition</span>: left <span class="hljs-number">300ms</span> ease; }
+<span class="hljs-selector-class">.drawer</span><span class="hljs-selector-class">.open</span> { <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>; }
+
+<span class="hljs-comment">/* ✅ Composite only */</span>
+<span class="hljs-selector-class">.drawer</span> { <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">300ms</span> ease; <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(-<span class="hljs-number">100%</span>); }
+<span class="hljs-selector-class">.drawer</span><span class="hljs-selector-class">.open</span> { <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>); }
+</code></pre><span class="code-lang">css</span></div>
+<h2 id="layers-and-will-change">Layers and <code>will-change</code></h2>
+<p>To composite an element on its own, the browser must promote it to a <strong>layer</strong>. Elements with active transform/opacity animations get promoted automatically, but promotion at animation start can cause a one-frame hitch. <code>will-change</code> tells the browser ahead of time:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-selector-class">.card</span><span class="hljs-selector-pseudo">:hover</span> { <span class="hljs-attribute">will-change</span>: transform; }
+</code></pre><span class="code-lang">css</span></div>
+<p>Use it sparingly:</p>
+<ul>
+<li>Every layer costs GPU memory. Putting <code>will-change: transform</code> on hundreds of list items can make performance <em>worse</em>, especially on mobile.</li>
+<li>Prefer adding it just before an animation (on hover, or from JS right before starting) and removing it afterwards.</li>
+<li>Layer promotion changes stacking and can affect text anti-aliasing.</li>
+</ul>
+<h2 id="forced-synchronous-layout-layout-thrashing">Forced synchronous layout (layout thrashing)</h2>
+<p>Browsers batch style and layout work until the end of the frame. But if you <strong>read</strong> a layout property (<code>offsetHeight</code>, <code>getBoundingClientRect()</code>, <code>scrollTop</code>…) after <strong>writing</strong> a style, the browser must calculate layout immediately to give you a correct answer.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-comment">// ❌ Each iteration: write → read → forced layout</span>
+items.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
+  item.<span class="hljs-property">style</span>.<span class="hljs-property">width</span> = container.<span class="hljs-property">offsetWidth</span> / <span class="hljs-number">3</span> + <span class="hljs-string">"px"</span>;
+});
+
+<span class="hljs-comment">// ✅ Read once, then write</span>
+<span class="hljs-keyword">const</span> width = container.<span class="hljs-property">offsetWidth</span> / <span class="hljs-number">3</span>;
+items.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
+  item.<span class="hljs-property">style</span>.<span class="hljs-property">width</span> = width + <span class="hljs-string">"px"</span>;
+});
+</code></pre><span class="code-lang">js</span></div>
+<p>DevTools' Performance panel flags these as purple <strong>Layout</strong> blocks with a "Forced reflow" warning, pointing to the line that caused them.</p>
+<h2 id="the-flip-technique">The FLIP technique</h2>
+<p>Some animations seem to require animating layout — reordering a list, expanding a card into a modal. <strong>FLIP</strong> (First, Last, Invert, Play) turns them into cheap transforms:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">flip</span>(<span class="hljs-params">element, mutate</span>) {
+  <span class="hljs-comment">// First: record the starting position</span>
+  <span class="hljs-keyword">const</span> first = element.<span class="hljs-title function_">getBoundingClientRect</span>();
+
+  <span class="hljs-comment">// Apply the DOM/layout change instantly</span>
+  <span class="hljs-title function_">mutate</span>();
+
+  <span class="hljs-comment">// Last: record the final position</span>
+  <span class="hljs-keyword">const</span> last = element.<span class="hljs-title function_">getBoundingClientRect</span>();
+
+  <span class="hljs-comment">// Invert: move it back to where it started using a transform</span>
+  <span class="hljs-keyword">const</span> dx = first.<span class="hljs-property">left</span> - last.<span class="hljs-property">left</span>;
+  <span class="hljs-keyword">const</span> dy = first.<span class="hljs-property">top</span> - last.<span class="hljs-property">top</span>;
+  <span class="hljs-keyword">const</span> sx = first.<span class="hljs-property">width</span> / last.<span class="hljs-property">width</span>;
+  <span class="hljs-keyword">const</span> sy = first.<span class="hljs-property">height</span> / last.<span class="hljs-property">height</span>;
+
+  <span class="hljs-comment">// Play: animate the transform back to identity</span>
+  element.<span class="hljs-title function_">animate</span>(
+    [
+      { <span class="hljs-attr">transformOrigin</span>: <span class="hljs-string">"top left"</span>, <span class="hljs-attr">transform</span>: <span class="hljs-string">`translate(<span class="hljs-subst">${dx}</span>px, <span class="hljs-subst">${dy}</span>px) scale(<span class="hljs-subst">${sx}</span>, <span class="hljs-subst">${sy}</span>)`</span> },
+      { <span class="hljs-attr">transformOrigin</span>: <span class="hljs-string">"top left"</span>, <span class="hljs-attr">transform</span>: <span class="hljs-string">"none"</span> },
+    ],
+    { <span class="hljs-attr">duration</span>: <span class="hljs-number">400</span>, <span class="hljs-attr">easing</span>: <span class="hljs-string">"cubic-bezier(0.16, 1, 0.3, 1)"</span> }
+  );
+}
+</code></pre><span class="code-lang">js</span></div>
+<p>The expensive layout happens once, and the animation itself is composite-only. This is exactly what Framer Motion's <code>layout</code> prop does under the hood.</p>
+<h2 id="the-view-transitions-api">The View Transitions API</h2>
+<p>For transitions between whole UI states — or even between pages — the browser can now do the FLIP work for you:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">updateView</span>(<span class="hljs-params">render</span>) {
+  <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">document</span>.<span class="hljs-property">startViewTransition</span>) <span class="hljs-keyword">return</span> <span class="hljs-title function_">render</span>();
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">startViewTransition</span>(<span class="hljs-function">() =></span> <span class="hljs-title function_">render</span>());
+}
+</code></pre><span class="code-lang">js</span></div>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-comment">/* Give elements a shared identity across the two states */</span>
+<span class="hljs-selector-class">.product-thumb</span> { <span class="hljs-attribute">view-transition-name</span>: product-hero; }
+
+<span class="hljs-comment">/* Customise the default cross-fade */</span>
+::<span class="hljs-built_in">view-transition-old</span>(root),
+::<span class="hljs-built_in">view-transition-new</span>(root) {
+  <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">250ms</span>;
+}
+</code></pre><span class="code-lang">css</span></div>
+<p>The browser snapshots the old state, runs your update, snapshots the new state and animates between them with pseudo-elements. Elements that share a <code>view-transition-name</code> morph from one position and size to the other. Cross-document view transitions (for multi-page apps) are enabled with a CSS opt-in: <code>@view-transition { navigation: auto; }</code>.</p>
+<h2 id="paint-cost-is-real-too">Paint cost is real too</h2>
+<p>Even without layout, some paints are expensive:</p>
+<ul>
+<li>Large <code>box-shadow</code> and <code>filter: blur()</code> values, especially when animated.</li>
+<li><code>backdrop-filter</code> over large or frequently changing areas.</li>
+<li>Huge areas invalidated by small changes. Use DevTools → Rendering → <strong>Paint flashing</strong> to see what repaints.</li>
+</ul>
+<p>A useful trick for animated shadows: put the shadow on a pseudo-element and animate its <code>opacity</code> instead of the shadow itself.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-selector-class">.card</span> { <span class="hljs-attribute">position</span>: relative; }
+<span class="hljs-selector-class">.card</span><span class="hljs-selector-pseudo">::after</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">""</span>;
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">inset</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">border-radius</span>: inherit;
+  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">20px</span> <span class="hljs-number">40px</span> <span class="hljs-built_in">rgb</span>(<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> / <span class="hljs-number">0.2</span>);
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">200ms</span>;
+}
+<span class="hljs-selector-class">.card</span><span class="hljs-selector-pseudo">:hover</span><span class="hljs-selector-pseudo">::after</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>; }
+</code></pre><span class="code-lang">css</span></div>
+<h2 id="containment">Containment</h2>
+<p>The <code>contain</code> property tells the browser an element's internals don't affect the outside, so it can limit how far style, layout and paint work spreads:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-selector-class">.widget</span> { <span class="hljs-attribute">contain</span>: layout paint; }
+<span class="hljs-selector-class">.offscreen-section</span> { <span class="hljs-attribute">content-visibility</span>: auto; <span class="hljs-attribute">contain-intrinsic-size</span>: auto <span class="hljs-number">600px</span>; }
+</code></pre><span class="code-lang">css</span></div>
+<p><code>content-visibility: auto</code> skips rendering off-screen subtrees entirely — often the biggest single win on long pages.</p>
+<h2 id="respect-user-preferences">Respect user preferences</h2>
+<p>Smooth isn't the same as necessary. Users with vestibular disorders can be made physically unwell by large motion:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-reduced-motion</span>: reduce) {
+  *, *<span class="hljs-selector-pseudo">::before</span>, *<span class="hljs-selector-pseudo">::after</span> {
+    <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">0.01ms</span> <span class="hljs-meta">!important</span>;
+    <span class="hljs-attribute">transition-duration</span>: <span class="hljs-number">0.01ms</span> <span class="hljs-meta">!important</span>;
+  }
+}
+</code></pre><span class="code-lang">css</span></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>Animate <code>transform</code> and <code>opacity</code>, batch layout reads before writes, use FLIP or View Transitions when layout really must change, and keep layers and expensive paints under control. Once you know which pipeline stages each change triggers, hitting 60fps (or 120fps) becomes a design decision rather than luck.</p>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="https://web.dev/articles/rendering-performance">Rendering performance on web.dev</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment">CSS containment on MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API">View Transition API on MDN</a></li>
+<li><a href="https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/">Inside the JavaScript event loop</a></li>
+<li><a href="https://hadimobarra.github.io/blog/less-javascript-same-blocking-time/">I cut this site's JavaScript by 45%, and blocking time didn't move</a></li>
 </ul>]]></content:encoded>
     </item>
     <item>
       <title>Building a Fine-Grained Reactivity System (Signals) From Scratch</title>
       <link>https://hadimobarra.github.io/blog/build-signals-from-scratch/</link>
       <guid>https://hadimobarra.github.io/blog/build-signals-from-scratch/</guid>
-      <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
       <description>Signals power Solid, Preact, Angular and Vue's reactivity. Build one in under 100 lines to understand dependency tracking, computed values, effects and glitch-free updates.</description>
       <category>JavaScript</category>
       <category>Architecture</category>
@@ -1216,10 +1465,339 @@ channel.<span class="hljs-property">port1</span>.<span class="hljs-property">onm
 </ul>]]></content:encoded>
     </item>
     <item>
+      <title>Hunting Memory Leaks in JavaScript Applications</title>
+      <link>https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/</link>
+      <guid>https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>How garbage collection really decides what to keep, the five leak patterns behind most SPA memory issues, and a repeatable DevTools workflow using heap snapshots, allocation timelines and WeakRef-aware design.</description>
+      <category>JavaScript</category>
+      <category>Performance</category>
+      <category>Debugging</category>
+      <content:encoded><![CDATA[<h2 id="leaks-in-a-garbage-collected-language">Leaks in a garbage-collected language</h2>
+<p>JavaScript frees memory automatically, so how can it leak? Because the garbage collector only frees what is <strong>unreachable</strong>. A leak is memory that's still reachable from a root (the global object, the current call stack, active closures, DOM, timers) even though your program will never use it again.</p>
+<p>In long-lived single-page apps — dashboards left open all day, editors, chat clients — these small mistakes add up until the tab gets slow or crashes.</p>
+<h2 id="how-reachability-works">How reachability works</h2>
+<p>Modern engines use a <strong>mark-and-sweep</strong> collector (generational and incremental in V8's case): starting from the roots, mark everything reachable by following references, then sweep everything unmarked.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">let</span> user = { <span class="hljs-attr">name</span>: <span class="hljs-string">"Ada"</span> };
+<span class="hljs-keyword">const</span> admins = [user];
+
+user = <span class="hljs-literal">null</span>;
+<span class="hljs-comment">// The object is still reachable through `admins[0]`, so it stays in memory.</span>
+</code></pre><span class="code-lang">js</span></div>
+<p>To find a leak, you must find the <strong>retaining path</strong>: the chain of references from a root to the object that shouldn't be there anymore.</p>
+<p><a href="https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/">View this part on the site</a></p>
+<h2 id="the-five-usual-suspects">The five usual suspects</h2>
+<h3 id="1-forgotten-event-listeners-and-subscriptions">1. Forgotten event listeners and subscriptions</h3>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mountChart</span>(<span class="hljs-params">el</span>) {
+  <span class="hljs-keyword">const</span> chart = <span class="hljs-title function_">createHugeChart</span>(el);
+  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"resize"</span>, <span class="hljs-function">() =></span> chart.<span class="hljs-title function_">resize</span>()); <span class="hljs-comment">// never removed</span>
+}
+</code></pre><span class="code-lang">js</span></div>
+<p><code>window</code> lives forever, so it keeps the listener alive, the listener's closure keeps <code>chart</code>, and <code>chart</code> keeps its DOM node and data. Mount and unmount this ten times and you have ten charts in memory.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mountChart</span>(<span class="hljs-params">el</span>) {
+  <span class="hljs-keyword">const</span> chart = <span class="hljs-title function_">createHugeChart</span>(el);
+  <span class="hljs-keyword">const</span> controller = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbortController</span>();
+  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"resize"</span>, <span class="hljs-function">() =></span> chart.<span class="hljs-title function_">resize</span>(), { <span class="hljs-attr">signal</span>: controller.<span class="hljs-property">signal</span> });
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =></span> {
+    controller.<span class="hljs-title function_">abort</span>(); <span class="hljs-comment">// removes every listener registered with this signal</span>
+    chart.<span class="hljs-title function_">destroy</span>();
+  };
+}
+</code></pre><span class="code-lang">js</span></div>
+<p><code>AbortController</code> is the cleanest way to remove many listeners at once. In React, return the cleanup from <code>useEffect</code>.</p>
+<h3 id="2-timers-and-intervals">2. Timers and intervals</h3>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =></span> {
+  <span class="hljs-keyword">const</span> id = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =></span> <span class="hljs-title function_">poll</span>(store), <span class="hljs-number">5000</span>);
+  <span class="hljs-comment">// ❌ no cleanup: the interval and everything its callback references live forever</span>
+}, []);
+
+<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =></span> {
+  <span class="hljs-keyword">const</span> id = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =></span> <span class="hljs-title function_">poll</span>(store), <span class="hljs-number">5000</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =></span> <span class="hljs-built_in">clearInterval</span>(id); <span class="hljs-comment">// ✅</span>
+}, []);
+</code></pre><span class="code-lang">js</span></div>
+<h3 id="3-detached-dom-nodes">3. Detached DOM nodes</h3>
+<p>A DOM node removed from the document but still referenced from JavaScript can't be collected — and it keeps its <strong>whole subtree</strong> alive.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showRow</span>(<span class="hljs-params">id</span>) {
+  <span class="hljs-keyword">const</span> row = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">"tr"</span>);
+  cache.<span class="hljs-title function_">set</span>(id, row);       <span class="hljs-comment">// reference kept forever</span>
+  table.<span class="hljs-title function_">appendChild</span>(row);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">clearTable</span>(<span class="hljs-params"></span>) {
+  table.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">""</span>;     <span class="hljs-comment">// rows are detached, but the Map still holds them</span>
+}
+</code></pre><span class="code-lang">js</span></div>
+<p>Heap snapshots let you filter for <strong>"Detached"</strong> nodes, which makes this pattern easy to spot.</p>
+<h3 id="4-unbounded-caches">4. Unbounded caches</h3>
+<p>Memoisation without eviction is a leak with a nice name:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> cache = {};
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getUserView</span>(<span class="hljs-params">user</span>) {
+  <span class="hljs-keyword">return</span> (cache[user.<span class="hljs-property">id</span>] ??= <span class="hljs-title function_">renderExpensiveView</span>(user)); <span class="hljs-comment">// grows forever</span>
+}
+</code></pre><span class="code-lang">js</span></div>
+<p>Fix it with a size limit (LRU), a TTL, or by keying on objects with a <code>WeakMap</code>:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getUserView</span>(<span class="hljs-params">user</span>) {
+  <span class="hljs-keyword">let</span> view = cache.<span class="hljs-title function_">get</span>(user);
+  <span class="hljs-keyword">if</span> (!view) cache.<span class="hljs-title function_">set</span>(user, (view = <span class="hljs-title function_">renderExpensiveView</span>(user)));
+  <span class="hljs-keyword">return</span> view;
+}
+<span class="hljs-comment">// When `user` becomes unreachable elsewhere, the cache entry can be collected too.</span>
+</code></pre><span class="code-lang">js</span></div>
+<h3 id="5-closures-capturing-more-than-you-think">5. Closures capturing more than you think</h3>
+<p>Closures created in the same scope can share a context object in V8. A long-lived closure can therefore keep alive a large variable that only a <em>short-lived</em> sibling closure used:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> hugeData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">1e6</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-string">"x"</span>);
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">unused</span> = (<span class="hljs-params"></span>) => hugeData.<span class="hljs-property">length</span>;  <span class="hljs-comment">// references hugeData</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"tick"</span>);      <span class="hljs-comment">// may still retain hugeData via the shared context</span>
+}
+<span class="hljs-keyword">const</span> tick = <span class="hljs-title function_">setup</span>();
+</code></pre><span class="code-lang">js</span></div>
+<p>If a heap snapshot shows a large object retained by a <code>context</code> of a function that doesn't use it, this is why. The fix is to avoid capturing big values in scopes that also create long-lived callbacks, or to set them to <code>null</code> when done.</p>
+<h2 id="a-repeatable-devtools-workflow">A repeatable DevTools workflow</h2>
+<h3 id="step-1-confirm-there-is-a-leak">Step 1: confirm there is a leak</h3>
+<p>Open <strong>Performance monitor</strong> (Command menu → "Show Performance monitor") and watch <em>JS heap size</em> and <em>DOM Nodes</em> while repeating an action — open and close a modal 20 times, navigate between two routes, and so on. Force GC with the trash-can button in the Memory panel. If the baseline keeps climbing after GC, something is leaking.</p>
+<h3 id="step-2-three-snapshot-technique">Step 2: three-snapshot technique</h3>
+<ol>
+<li>Load the page, do the action once (to warm caches), force GC, take <strong>Snapshot 1</strong>.</li>
+<li>Repeat the action several times, force GC, take <strong>Snapshot 2</strong>.</li>
+<li>Repeat again, force GC, take <strong>Snapshot 3</strong>.</li>
+<li>In Snapshot 3, choose <strong>"Objects allocated between Snapshot 1 and Snapshot 2"</strong>.</li>
+</ol>
+<p>Objects created during the middle phase that <em>survive into snapshot 3</em> are your strongest leak candidates. Sort by <strong>Retained Size</strong>, not Shallow Size — retained size is how much memory would be freed if that object were collected.</p>
+<h3 id="step-3-read-the-retainers">Step 3: read the retainers</h3>
+<p>Select a suspicious object and read the <strong>Retainers</strong> panel from bottom to top. You'll see something like:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="language-text">ChartInstance
+  ← chart in system / Context
+  ← context in () @ chart.js:14
+  ← [3] in Array (event listeners)
+  ← resize in Window
+</code></pre><span class="code-lang">text</span></div>
+<p>That's the leak: the <code>resize</code> listener on <code>window</code>, created at <code>chart.js:14</code>.</p>
+<h3 id="step-4-allocation-timeline-for-the-tricky-cases">Step 4: allocation timeline for the tricky cases</h3>
+<p>The <strong>Allocations on timeline</strong> profile records allocations as blue bars over time; bars that stay blue (rather than turning grey) were never freed. Click one to see the allocation stack trace.</p>
+<h2 id="weakref-and-finalizationregistry">WeakRef and FinalizationRegistry</h2>
+<p><code>WeakRef</code> holds a reference that doesn't prevent collection, and <code>FinalizationRegistry</code> runs a callback some time after an object is collected:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> registry = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FinalizationRegistry</span>(<span class="hljs-function">(<span class="hljs-params">key</span>) =></span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${key}</span> was garbage-collected`</span>);
+});
+registry.<span class="hljs-title function_">register</span>(chartInstance, <span class="hljs-string">"chart#1"</span>);
+</code></pre><span class="code-lang">js</span></div>
+<p>They're useful for caches of expensive, recreatable objects and for <strong>verifying</strong> fixes during development. But GC timing is non-deterministic and finalizers may never run, so don't use them for program logic or essential cleanup.</p>
+<h2 id="preventing-leaks-by-design">Preventing leaks by design</h2>
+<ul>
+<li>Every <code>add</code> has a matching <code>remove</code>: listeners, intervals, observers (<code>ResizeObserver</code>, <code>IntersectionObserver</code>), subscriptions and WebSockets.</li>
+<li>Tie lifetimes to a single <code>AbortSignal</code> per component or feature.</li>
+<li>Bound every cache. Prefer <code>WeakMap</code> when keys are objects.</li>
+<li>Add a memory test to CI for critical flows: drive the UI with Playwright, read <code>performance.measureUserAgentSpecificMemory()</code> (it requires cross-origin isolation) or snapshot via the Chrome DevTools Protocol, and fail when growth passes a threshold.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Most leaks come from one of five patterns: listeners, timers, detached DOM, unbounded caches and over-capturing closures. Confirm the leak with the performance monitor, isolate it with the three-snapshot technique, and follow the retainer chain to the exact line. With cleanup tied to clear lifetimes, long-running apps stay fast after hours of use.</p>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="https://developer.chrome.com/docs/devtools/memory-problems">Fix memory problems, Chrome DevTools</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakRef">WeakRef on MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController on MDN</a></li>
+<li><a href="https://hadimobarra.github.io/blog/build-signals-from-scratch/">Build signals from scratch</a></li>
+<li><a href="https://hadimobarra.github.io/blog/web-workers-off-main-thread/">Web Workers in practice</a></li>
+</ul>]]></content:encoded>
+    </item>
+    <item>
+      <title>Inside the JavaScript Event Loop: Tasks, Microtasks and the Rendering Steps</title>
+      <link>https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/</link>
+      <guid>https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A precise mental model of how the browser schedules your code — tasks, microtasks, requestAnimationFrame and rendering — and how to use it to write UIs that never freeze.</description>
+      <category>JavaScript</category>
+      <category>Browser Internals</category>
+      <category>Performance</category>
+      <content:encoded><![CDATA[<h2 id="why-the-event-loop-still-trips-up-senior-engineers">Why the event loop still trips up senior engineers</h2>
+<p>Most of us learned the event loop as "JavaScript is single-threaded, async things go into a queue". That model is good enough until it isn't: a <code>Promise</code> chain that starves the renderer, a <code>setTimeout(fn, 0)</code> that fires <em>after</em> a frame you expected it to beat, or a <code>requestAnimationFrame</code> callback that runs twice as often as you thought.</p>
+<p>This article builds a precise model based on the HTML specification, then uses it to answer real production questions.</p>
+<h2 id="the-model-in-one-picture">The model in one picture</h2>
+<p>Every browser tab's main thread runs a loop that, simplified, looks like this:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-comment">// 1. Run ONE task (macrotask) from a task queue</span>
+  <span class="hljs-keyword">const</span> task = <span class="hljs-title function_">pickTaskFromSomeQueue</span>();
+  <span class="hljs-keyword">if</span> (task) <span class="hljs-title function_">run</span>(task);
+
+  <span class="hljs-comment">// 2. Drain the ENTIRE microtask queue</span>
+  <span class="hljs-keyword">while</span> (microtaskQueue.<span class="hljs-property">length</span>) {
+    <span class="hljs-title function_">run</span>(microtaskQueue.<span class="hljs-title function_">shift</span>());
+  }
+
+  <span class="hljs-comment">// 3. Maybe render (roughly every 16.7ms on a 60Hz display)</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isRenderingOpportunity</span>()) {
+    <span class="hljs-title function_">runResizeAndScrollSteps</span>();
+    <span class="hljs-title function_">runAnimationFrameCallbacks</span>(); <span class="hljs-comment">// requestAnimationFrame</span>
+    <span class="hljs-title function_">recalcStyle</span>();
+    <span class="hljs-title function_">layout</span>();
+    <span class="hljs-title function_">runResizeObserverCallbacks</span>();
+    <span class="hljs-title function_">paint</span>();
+  }
+
+  <span class="hljs-comment">// 4. If idle, run requestIdleCallback callbacks</span>
+}
+</code></pre><span class="code-lang">js</span></div>
+<p>Three rules fall out of this pseudo-code, and nearly every event-loop puzzle reduces to them:</p>
+<ol>
+<li><strong>One task per turn.</strong> Tasks never run back-to-back without giving microtasks (and possibly rendering) a chance.</li>
+<li><strong>Microtasks drain completely.</strong> If a microtask schedules another microtask, that one runs too, before anything else.</li>
+<li><strong>Rendering is opportunistic.</strong> The browser decides when a frame is due; your code can only <em>ask</em> to run right before it, via <code>requestAnimationFrame</code>.</li>
+</ol>
+<p><a href="https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/">View this part on the site</a></p>
+<h2 id="tasks-vs-microtasks">Tasks vs microtasks</h2>
+<p><strong>Tasks</strong> (often called macrotasks) come from: <code>setTimeout</code>/<code>setInterval</code>, user input events, <code>MessageChannel</code> messages, network callbacks, and parsing HTML.</p>
+<p><strong>Microtasks</strong> come from: promise reactions (<code>.then</code>, <code>await</code> continuations), <code>queueMicrotask</code>, and <code>MutationObserver</code>.</p>
+<p>Here's the classic quiz:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1: script"</span>);
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"2: timeout"</span>), <span class="hljs-number">0</span>);
+
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>()
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"3: microtask A"</span>))
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"4: microtask B"</span>));
+
+<span class="hljs-title function_">queueMicrotask</span>(<span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"5: queueMicrotask"</span>));
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"6: script end"</span>);
+</code></pre><span class="code-lang">js</span></div>
+<p>Output:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="language-text">1: script
+6: script end
+3: microtask A
+5: queueMicrotask
+4: microtask B
+2: timeout
+</code></pre><span class="code-lang">text</span></div>
+<p>The whole script is itself a task. When it finishes, the microtask queue holds <code>A</code> and <code>5</code>. Running <code>A</code> enqueues <code>B</code> at the <em>end</em> of the queue, so <code>5</code> goes first. Only after the queue is empty does the loop pick the next task — the timeout.</p>
+<p><a href="https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/">View this part on the site</a></p>
+<h2 id="await-is-just-a-microtask-boundary"><code>await</code> is just a microtask boundary</h2>
+<p>Every <code>await</code> splits a function: everything after it becomes a promise reaction. This is why <code>async</code> code that "looks" synchronous can still interleave with other microtasks:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"a1"</span>);
+  <span class="hljs-keyword">await</span> <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"a2"</span>);
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">b</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"b1"</span>);
+  <span class="hljs-keyword">await</span> <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"b2"</span>);
+}
+
+<span class="hljs-title function_">a</span>();
+<span class="hljs-title function_">b</span>();
+<span class="hljs-comment">// a1, b1, a2, b2</span>
+</code></pre><span class="code-lang">js</span></div>
+<blockquote>
+<p><strong>Rule of thumb:</strong> an <code>await</code> never yields to rendering or to user input. It only yields to <em>other microtasks</em>. If you want the browser to paint, you need a task boundary or a frame boundary.</p>
+</blockquote>
+<h2 id="starving-the-renderer-with-microtasks">Starving the renderer with microtasks</h2>
+<p>Because microtasks drain completely, a recursive microtask chain blocks the page exactly like an infinite <code>while</code> loop:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">spin</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">queueMicrotask</span>(spin); <span class="hljs-comment">// the page is now frozen</span>
+}
+<span class="hljs-title function_">spin</span>();
+</code></pre><span class="code-lang">js</span></div>
+<p>A more realistic version: processing a big array with <code>await</code> in a loop and expecting the UI to stay responsive.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-comment">// ❌ Looks async, still blocks painting until all 50k items are done</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">processAll</span>(<span class="hljs-params">items</span>) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> items) {
+    <span class="hljs-keyword">await</span> <span class="hljs-title function_">processItem</span>(item); <span class="hljs-comment">// resolves synchronously → microtask</span>
+  }
+}
+</code></pre><span class="code-lang">js</span></div>
+<p>If <code>processItem</code> resolves immediately, every iteration is a microtask and the browser never gets a rendering opportunity.</p>
+<h2 id="yielding-to-the-main-thread-properly">Yielding to the main thread properly</h2>
+<p>To let the browser paint and handle input, yield with a <strong>task</strong>, not a microtask. The modern API is <code>scheduler.yield()</code>, with a <code>setTimeout</code> fallback:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">yieldToMain</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (globalThis.<span class="hljs-property">scheduler</span>?.<span class="hljs-property">yield</span>) {
+    <span class="hljs-keyword">return</span> scheduler.<span class="hljs-title function_">yield</span>();
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =></span> <span class="hljs-built_in">setTimeout</span>(resolve, <span class="hljs-number">0</span>));
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">processAll</span>(<span class="hljs-params">items</span>) {
+  <span class="hljs-keyword">let</span> lastYield = performance.<span class="hljs-title function_">now</span>();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> items) {
+    <span class="hljs-title function_">processItem</span>(item);
+    <span class="hljs-comment">// Yield roughly every 50ms (the "long task" threshold)</span>
+    <span class="hljs-keyword">if</span> (performance.<span class="hljs-title function_">now</span>() - lastYield > <span class="hljs-number">50</span>) {
+      <span class="hljs-keyword">await</span> <span class="hljs-title function_">yieldToMain</span>();
+      lastYield = performance.<span class="hljs-title function_">now</span>();
+    }
+  }
+}
+</code></pre><span class="code-lang">js</span></div>
+<p>Yielding makes a frame <em>possible</em>. It doesn't force one, so when something must be visible before the work starts, wait for a frame explicitly. The <a href="https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/">INP article</a> has a demo of the difference.</p>
+<p><code>scheduler.yield()</code> has a nice property over <code>setTimeout</code>: the continuation is placed at the <em>front</em> of the task queue, so your work resumes before other, lower-priority tasks that were queued in the meantime.</p>
+<h2 id="where-requestanimationframe-fits">Where <code>requestAnimationFrame</code> fits</h2>
+<p><code>rAF</code> callbacks run in the rendering step, right before style and layout. That makes it the right place for visual updates and the wrong place for heavy computation.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-comment">// Measuring before the browser has applied a change</span>
+el.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">"expanded"</span>);
+
+<span class="hljs-title function_">requestAnimationFrame</span>(<span class="hljs-function">() =></span> {
+  <span class="hljs-comment">// Still before layout for this frame. Reading layout here forces it.</span>
+  <span class="hljs-title function_">requestAnimationFrame</span>(<span class="hljs-function">() =></span> {
+    <span class="hljs-comment">// Runs in the *next* frame — the previous one has been painted.</span>
+    el.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">"animate"</span>);
+  });
+});
+</code></pre><span class="code-lang">js</span></div>
+<p>The "double rAF" trick is a well-known way to guarantee a style has been committed to a frame before you change it again, which is needed to trigger CSS transitions from an initial state.</p>
+<p>Two other facts worth knowing:</p>
+<ul>
+<li><code>rAF</code> is <strong>paused in background tabs</strong>. Don't use it for logic that must keep running.</li>
+<li><code>rAF</code> fires at the display's refresh rate. On a 120Hz screen, a <code>rAF</code>-driven animation that assumes 16.7ms per frame will run twice as fast. Always use the timestamp argument to compute deltas.</li>
+</ul>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">let</span> last;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">tick</span>(<span class="hljs-params">now</span>) {
+  <span class="hljs-keyword">const</span> dt = last === <span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : (now - last) / <span class="hljs-number">1000</span>; <span class="hljs-comment">// seconds</span>
+  last = now;
+  position += velocity * dt; <span class="hljs-comment">// frame-rate independent</span>
+  <span class="hljs-title function_">requestAnimationFrame</span>(tick);
+}
+<span class="hljs-title function_">requestAnimationFrame</span>(tick);
+</code></pre><span class="code-lang">js</span></div>
+<h2 id="settimeoutfn-0-is-not-zero"><code>setTimeout(fn, 0)</code> is not zero</h2>
+<p>Timers are clamped: after 5 levels of nesting, browsers enforce a minimum of about 4ms, and in background tabs timers can be throttled to once per second or less. If you need "as soon as possible, but after rendering and input", <code>MessageChannel</code> is the classic zero-delay task primitive (React's scheduler used it for years):</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> channel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageChannel</span>();
+<span class="hljs-keyword">const</span> queue = [];
+channel.<span class="hljs-property">port1</span>.<span class="hljs-property">onmessage</span> = <span class="hljs-function">() =></span> queue.<span class="hljs-title function_">shift</span>()?.();
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">postTask</span>(<span class="hljs-params">fn</span>) {
+  queue.<span class="hljs-title function_">push</span>(fn);
+  channel.<span class="hljs-property">port2</span>.<span class="hljs-title function_">postMessage</span>(<span class="hljs-literal">null</span>);
+}
+</code></pre><span class="code-lang">js</span></div>
+<h2 id="a-debugging-checklist">A debugging checklist</h2>
+<p>When something runs in the "wrong" order, ask:</p>
+<ol>
+<li><strong>Is it a task or a microtask?</strong> Promise reactions always beat timers.</li>
+<li><strong>Did the microtask queue drain?</strong> A long chain of <code>then</code>s delays everything else, including paint.</li>
+<li><strong>Do I need a frame or a task?</strong> Visual changes belong in <code>rAF</code>; yielding for responsiveness needs a task (<code>scheduler.yield</code>, <code>setTimeout</code>, <code>MessageChannel</code>).</li>
+<li><strong>Is the tab in the background?</strong> <code>rAF</code> stops and timers are throttled.</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Learn the loop as three rules — one task per turn, microtasks drain fully, rendering is opportunistic — and most "weird async bugs" become predictable. That predictability is what lets you break long work into chunks, keep Interaction to Next Paint low, and write animations that stay smooth on every refresh rate.</p>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops">Event loops in the HTML Standard</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield">Scheduler.yield() on MDN</a></li>
+<li><a href="https://web.dev/articles/optimize-long-tasks">Optimize long tasks on web.dev</a></li>
+<li><a href="https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/">Taming INP</a></li>
+<li><a href="https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/">The browser rendering pipeline</a></li>
+</ul>]]></content:encoded>
+    </item>
+    <item>
       <title>Metaprogramming in JavaScript with Proxy and Reflect</title>
       <link>https://hadimobarra.github.io/blog/proxy-and-reflect-metaprogramming/</link>
       <guid>https://hadimobarra.github.io/blog/proxy-and-reflect-metaprogramming/</guid>
-      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
       <description>Intercept property access, validation, and function calls with Proxy traps. Learn the invariants, the role of Reflect and receivers, and build a tiny reactive store, a validation layer and a negative-index array.</description>
       <category>JavaScript</category>
       <category>Architecture</category>
@@ -1392,10 +1970,151 @@ p.<span class="hljs-title function_">inc</span>(); <span class="hljs-comment">//
 </ul>]]></content:encoded>
     </item>
     <item>
+      <title>A Mental Model for React Server Components and Streaming</title>
+      <link>https://hadimobarra.github.io/blog/react-server-components-mental-model/</link>
+      <guid>https://hadimobarra.github.io/blog/react-server-components-mental-model/</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Server Components, Client Components, the RSC payload, Suspense streaming and Server Actions — explained as one coherent model, with the composition patterns and pitfalls that matter in a real Next.js codebase.</description>
+      <category>React</category>
+      <category>Next.js</category>
+      <category>Architecture</category>
+      <content:encoded><![CDATA[<h2 id="two-kinds-of-components-one-tree">Two kinds of components, one tree</h2>
+<p>React Server Components (RSC) split your component tree across two environments:</p>
+<ul>
+<li><strong>Server Components</strong> run only on the server (at build time or request time). They can be <code>async</code>, read databases and files directly, and <strong>ship zero JavaScript</strong> to the browser.</li>
+<li><strong>Client Components</strong> are the components you already know. They are marked with <code>"use client"</code>, run on the server for the initial HTML <em>and</em> in the browser, and can use state, effects and event handlers.</li>
+</ul>
+<p>In the Next.js App Router, every component is a Server Component unless something makes it a client one.</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/page.tsx — a Server Component</span>
+<span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/lib/db"</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">LikeButton</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./like-button"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">PostsPage</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> posts = <span class="hljs-keyword">await</span> db.<span class="hljs-property">post</span>.<span class="hljs-title function_">findMany</span>({ <span class="hljs-attr">take</span>: <span class="hljs-number">20</span> }); <span class="hljs-comment">// direct data access</span>
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">ul</span>></span>
+      {posts.map((post) => (
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{post.id}</span>></span>
+          <span class="hljs-tag">&#x3C;<span class="hljs-name">h2</span>></span>{post.title}<span class="hljs-tag">&#x3C;/<span class="hljs-name">h2</span>></span>
+          <span class="hljs-tag">&#x3C;<span class="hljs-name">LikeButton</span> <span class="hljs-attr">postId</span>=<span class="hljs-string">{post.id}</span> <span class="hljs-attr">initialLikes</span>=<span class="hljs-string">{post.likes}</span> /></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">li</span>></span>
+      ))}
+    <span class="hljs-tag">&#x3C;/<span class="hljs-name">ul</span>></span></span>
+  );
+}
+</code></pre><span class="code-lang">tsx</span></div>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/like-button.tsx</span>
+<span class="hljs-string">"use client"</span>;
+
+<span class="hljs-keyword">import</span> { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">LikeButton</span>(<span class="hljs-params">{ postId, initialLikes }: { postId: <span class="hljs-built_in">string</span>; initialLikes: <span class="hljs-built_in">number</span> }</span>) {
+  <span class="hljs-keyword">const</span> [likes, setLikes] = <span class="hljs-title function_">useState</span>(initialLikes);
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =></span> setLikes((n) => n + 1)}>♥ {likes}<span class="hljs-tag">&#x3C;/<span class="hljs-name">button</span>></span></span>;
+}
+</code></pre><span class="code-lang">tsx</span></div>
+<p>The database client, the query and the mapping code never reach the browser. Only <code>LikeButton</code>'s code does.</p>
+<p><a href="https://hadimobarra.github.io/blog/react-server-components-mental-model/">View this part on the site</a></p>
+<h2 id="use-client-marks-a-boundary-not-a-component"><code>"use client"</code> marks a boundary, not a component</h2>
+<p>The directive marks a <strong>module boundary</strong>: that file and everything it <em>imports</em> become part of the client bundle. That's why you should push <code>"use client"</code> as far down the tree as possible — mark the small interactive leaf, not the whole page.</p>
+<p>A frequent mistake is putting <code>"use client"</code> at the top of a layout because one child needs <code>useState</code>. Now every import of that layout — markdown parsers, date libraries, icon sets — ships to the browser.</p>
+<h2 id="what-actually-goes-over-the-wire">What actually goes over the wire</h2>
+<p>Server Components don't render to HTML in the browser; they render to the <strong>RSC payload</strong>, a streamable serialised description of the tree. Conceptually it looks like:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="language-text">0: ["$", "ul", null, { children: ["$L1", "$L2"] }]
+1: ["$", "li", null, { children: [["$", "h2", null, { children: "Hello RSC" }],
+     ["$", "$Lclient:LikeButton", null, { postId: "1", initialLikes: 3 }]] }]
+client:LikeButton: { id: "./like-button.js", chunks: ["chunk-abc.js"] }
+</code></pre><span class="code-lang">text</span></div>
+<p>Server Component output is inlined as plain elements. Client Components appear as <strong>references</strong> to a module plus the props to pass them. The browser downloads only those referenced chunks and hydrates them.</p>
+<p>Two consequences follow:</p>
+<ol>
+<li><strong>Props passed from server to client must be serialisable</strong> — plain objects, arrays, strings, numbers, <code>Date</code>, <code>Map</code>, <code>Set</code>, promises and server actions. Not class instances, and not ordinary functions.</li>
+<li><strong>Navigations fetch payloads, not HTML.</strong> On client navigation, React requests the RSC payload for the new route and merges it into the existing tree, so client state in shared layouts survives.</li>
+</ol>
+<h2 id="the-composition-rule-pass-server-components-as-children">The composition rule: pass Server Components as children</h2>
+<p>A Client Component can't <em>import</em> a Server Component (the import would pull server-only code into the client bundle). But it can <em>render</em> one passed in as a prop:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// ❌ Inside a client component file</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">ServerSidebar</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./server-sidebar"</span>; <span class="hljs-comment">// becomes client code</span>
+
+<span class="hljs-comment">// ✅ Compose from a server component instead</span>
+<span class="hljs-comment">// app/layout.tsx (server)</span>
+<span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">CollapsiblePanel</span>></span>          {/* client: owns open/closed state */}
+  <span class="hljs-tag">&#x3C;<span class="hljs-name">ServerSidebar</span> /></span>          {/* server: rendered on the server, passed as children */}
+<span class="hljs-tag">&#x3C;/<span class="hljs-name">CollapsiblePanel</span>></span></span>
+</code></pre><span class="code-lang">tsx</span></div>
+<p><code>children</code> here is already-rendered output in the RSC payload, so the client component just places it. This "donut" pattern — an interactive shell around server-rendered content — is the most important RSC composition technique.</p>
+<h2 id="streaming-with-suspense">Streaming with Suspense</h2>
+<p>Because the payload is a stream, the server can send the page shell immediately and fill in slow parts later:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Suspense</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Dashboard</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&#x3C;></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">Header</span> /></span>                                  {/* sent immediately */}
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&#x3C;<span class="hljs-attr">ChartSkeleton</span> /></span>}>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">RevenueChart</span> /></span>                          {/* async; streams in when ready */}
+      <span class="hljs-tag">&#x3C;/<span class="hljs-name">Suspense</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&#x3C;<span class="hljs-attr">FeedSkeleton</span> /></span>}>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">ActivityFeed</span> /></span>
+      <span class="hljs-tag">&#x3C;/<span class="hljs-name">Suspense</span>></span>
+    <span class="hljs-tag">&#x3C;/></span></span>
+  );
+}
+</code></pre><span class="code-lang">tsx</span></div>
+<p>Each boundary resolves independently. The user sees and can interact with the header while the chart query is still running, and React hydrates parts of the page as their code arrives (<strong>selective hydration</strong>), prioritising the part the user interacts with first.</p>
+<p>Watch out for <strong>waterfalls</strong>. Awaiting in sequence serialises requests:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// ❌ 300ms + 300ms</span>
+<span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getUser</span>(id);
+<span class="hljs-keyword">const</span> orders = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getOrders</span>(id);
+
+<span class="hljs-comment">// ✅ ~300ms — start both, then await</span>
+<span class="hljs-keyword">const</span> [user, orders] = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([<span class="hljs-title function_">getUser</span>(id), <span class="hljs-title function_">getOrders</span>(id)]);
+</code></pre><span class="code-lang">tsx</span></div>
+<p>Or better, move each fetch into the component that needs it and give each its own Suspense boundary.</p>
+<h2 id="mutations-with-server-actions">Mutations with Server Actions</h2>
+<p>Server Actions are async functions marked with <code>"use server"</code> that the client can call like a function. React turns the call into a POST request:</p>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/actions.ts</span>
+<span class="hljs-string">"use server"</span>;
+
+<span class="hljs-keyword">import</span> { revalidatePath } <span class="hljs-keyword">from</span> <span class="hljs-string">"next/cache"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createPost</span>(<span class="hljs-params"><span class="hljs-attr">formData</span>: <span class="hljs-title class_">FormData</span></span>) {
+  <span class="hljs-keyword">const</span> title = <span class="hljs-title class_">String</span>(formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">"title"</span>) ?? <span class="hljs-string">""</span>);
+  <span class="hljs-keyword">if</span> (!title) <span class="hljs-keyword">return</span> { <span class="hljs-attr">error</span>: <span class="hljs-string">"Title is required"</span> };
+  <span class="hljs-keyword">await</span> db.<span class="hljs-property">post</span>.<span class="hljs-title function_">create</span>({ <span class="hljs-attr">data</span>: { title } });
+  <span class="hljs-title function_">revalidatePath</span>(<span class="hljs-string">"/posts"</span>); <span class="hljs-comment">// re-render affected server components</span>
+}
+</code></pre><span class="code-lang">tsx</span></div>
+<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// Works even before JavaScript loads (progressive enhancement)</span>
+&#x3C;form action={createPost}>
+  <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"title"</span> /></span></span>
+  <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>></span>Publish<span class="hljs-tag">&#x3C;/<span class="hljs-name">button</span>></span></span>
+&#x3C;/form>
+</code></pre><span class="code-lang">tsx</span></div>
+<p><strong>Treat every Server Action as a public API endpoint.</strong> Anyone can call it with any arguments. Authenticate, authorise and validate inside the action itself — never rely on the UI hiding a button.</p>
+<h2 id="pitfalls-checklist">Pitfalls checklist</h2>
+<ul>
+<li><strong>Leaking secrets:</strong> a module imported by a client component can end up in the browser. Add <code>import "server-only"</code> to modules that touch secrets so the build fails if that happens.</li>
+<li><strong>Context:</strong> <code>createContext</code> providers must be Client Components. Wrap them in a small client <code>Providers</code> component and render it from your server layout.</li>
+<li><strong>Over-fetching in loops:</strong> use React's <code>cache()</code> to dedupe the same data request across components within a single render.</li>
+<li><strong>Large props:</strong> everything you pass to a client component is serialised into the payload. Pass the 3 fields it needs, not the full database row.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Server Components render to a serialisable stream. Client Components are references in that stream that hydrate in the browser. <code>"use client"</code> marks a bundle boundary, and composition through <code>children</code> lets server content live inside interactive shells. Suspense streams the slow parts, and Server Actions handle mutations as public endpoints. Keep <code>"use client"</code> at the leaves, fetch in parallel and validate every action, and RSC will give you smaller bundles and faster pages.</p>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="https://react.dev/reference/rsc/server-components">Server Components in the React docs</a></li>
+<li><a href="https://nextjs.org/docs/app/getting-started/server-and-client-components">Server and Client Components in the Next.js docs</a></li>
+<li><a href="https://hadimobarra.github.io/blog/nextjs-best-practices/">Shipping a static Next.js site</a></li>
+<li><a href="https://hadimobarra.github.io/blog/react-architecture/">React architecture</a></li>
+</ul>]]></content:encoded>
+    </item>
+    <item>
       <title>Taming INP: A Practical Guide to Interaction to Next Paint</title>
       <link>https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/</link>
       <guid>https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/</guid>
-      <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
       <description>INP replaced FID as a Core Web Vital. Learn how it's measured, how to find the slow interactions in your app, and the concrete techniques that cut it: yielding, deferring non-urgent work, React transitions and smaller DOMs.</description>
       <category>Performance</category>
       <category>Core Web Vitals</category>
@@ -1575,7 +2294,7 @@ cards.<span class="hljs-title function_">forEach</span>(<span class="hljs-functi
       <title>Type-Level Programming in TypeScript: Conditional, Mapped and Template Literal Types</title>
       <link>https://hadimobarra.github.io/blog/typescript-type-level-programming/</link>
       <guid>https://hadimobarra.github.io/blog/typescript-type-level-programming/</guid>
-      <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
       <description>Treat TypeScript's type system as a small functional language. Learn conditional types and infer, distributive behaviour, key remapping, recursive types and template literals, then build a type-safe router and a deep-path getter.</description>
       <category>TypeScript</category>
       <content:encoded><![CDATA[<h2 id="types-are-a-programming-language">Types are a programming language</h2>
@@ -1720,7 +2439,7 @@ cards.<span class="hljs-title function_">forEach</span>(<span class="hljs-functi
       <title>Off the Main Thread: Web Workers, Transferables and RPC in Practice</title>
       <link>https://hadimobarra.github.io/blog/web-workers-off-main-thread/</link>
       <guid>https://hadimobarra.github.io/blog/web-workers-off-main-thread/</guid>
-      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
       <description>Move expensive work off the UI thread. Covers dedicated workers in modern bundlers, structured clone costs, zero-copy transferables, a promise-based RPC layer, SharedArrayBuffer with Atomics, and OffscreenCanvas.</description>
       <category>JavaScript</category>
       <category>Performance</category>
@@ -1884,668 +2603,6 @@ self.<span class="hljs-property">onmessage</span> = <span class="hljs-function">
 <li><a href="https://github.com/GoogleChromeLabs/comlink">Comlink</a></li>
 <li><a href="https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/">Taming INP</a></li>
 <li><a href="https://hadimobarra.github.io/blog/resumable-uploads-tus/">Resumable uploads</a></li>
-</ul>]]></content:encoded>
-    </item>
-    <item>
-      <title>A Mental Model for React Server Components and Streaming</title>
-      <link>https://hadimobarra.github.io/blog/react-server-components-mental-model/</link>
-      <guid>https://hadimobarra.github.io/blog/react-server-components-mental-model/</guid>
-      <pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Server Components, Client Components, the RSC payload, Suspense streaming and Server Actions — explained as one coherent model, with the composition patterns and pitfalls that matter in a real Next.js codebase.</description>
-      <category>React</category>
-      <category>Next.js</category>
-      <category>Architecture</category>
-      <content:encoded><![CDATA[<h2 id="two-kinds-of-components-one-tree">Two kinds of components, one tree</h2>
-<p>React Server Components (RSC) split your component tree across two environments:</p>
-<ul>
-<li><strong>Server Components</strong> run only on the server (at build time or request time). They can be <code>async</code>, read databases and files directly, and <strong>ship zero JavaScript</strong> to the browser.</li>
-<li><strong>Client Components</strong> are the components you already know. They are marked with <code>"use client"</code>, run on the server for the initial HTML <em>and</em> in the browser, and can use state, effects and event handlers.</li>
-</ul>
-<p>In the Next.js App Router, every component is a Server Component unless something makes it a client one.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/page.tsx — a Server Component</span>
-<span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">"@/lib/db"</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">LikeButton</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./like-button"</span>;
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">PostsPage</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-keyword">const</span> posts = <span class="hljs-keyword">await</span> db.<span class="hljs-property">post</span>.<span class="hljs-title function_">findMany</span>({ <span class="hljs-attr">take</span>: <span class="hljs-number">20</span> }); <span class="hljs-comment">// direct data access</span>
-
-  <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">ul</span>></span>
-      {posts.map((post) => (
-        <span class="hljs-tag">&#x3C;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{post.id}</span>></span>
-          <span class="hljs-tag">&#x3C;<span class="hljs-name">h2</span>></span>{post.title}<span class="hljs-tag">&#x3C;/<span class="hljs-name">h2</span>></span>
-          <span class="hljs-tag">&#x3C;<span class="hljs-name">LikeButton</span> <span class="hljs-attr">postId</span>=<span class="hljs-string">{post.id}</span> <span class="hljs-attr">initialLikes</span>=<span class="hljs-string">{post.likes}</span> /></span>
-        <span class="hljs-tag">&#x3C;/<span class="hljs-name">li</span>></span>
-      ))}
-    <span class="hljs-tag">&#x3C;/<span class="hljs-name">ul</span>></span></span>
-  );
-}
-</code></pre><span class="code-lang">tsx</span></div>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/like-button.tsx</span>
-<span class="hljs-string">"use client"</span>;
-
-<span class="hljs-keyword">import</span> { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">LikeButton</span>(<span class="hljs-params">{ postId, initialLikes }: { postId: <span class="hljs-built_in">string</span>; initialLikes: <span class="hljs-built_in">number</span> }</span>) {
-  <span class="hljs-keyword">const</span> [likes, setLikes] = <span class="hljs-title function_">useState</span>(initialLikes);
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =></span> setLikes((n) => n + 1)}>♥ {likes}<span class="hljs-tag">&#x3C;/<span class="hljs-name">button</span>></span></span>;
-}
-</code></pre><span class="code-lang">tsx</span></div>
-<p>The database client, the query and the mapping code never reach the browser. Only <code>LikeButton</code>'s code does.</p>
-<p><a href="https://hadimobarra.github.io/blog/react-server-components-mental-model/">View this part on the site</a></p>
-<h2 id="use-client-marks-a-boundary-not-a-component"><code>"use client"</code> marks a boundary, not a component</h2>
-<p>The directive marks a <strong>module boundary</strong>: that file and everything it <em>imports</em> become part of the client bundle. That's why you should push <code>"use client"</code> as far down the tree as possible — mark the small interactive leaf, not the whole page.</p>
-<p>A frequent mistake is putting <code>"use client"</code> at the top of a layout because one child needs <code>useState</code>. Now every import of that layout — markdown parsers, date libraries, icon sets — ships to the browser.</p>
-<h2 id="what-actually-goes-over-the-wire">What actually goes over the wire</h2>
-<p>Server Components don't render to HTML in the browser; they render to the <strong>RSC payload</strong>, a streamable serialised description of the tree. Conceptually it looks like:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="language-text">0: ["$", "ul", null, { children: ["$L1", "$L2"] }]
-1: ["$", "li", null, { children: [["$", "h2", null, { children: "Hello RSC" }],
-     ["$", "$Lclient:LikeButton", null, { postId: "1", initialLikes: 3 }]] }]
-client:LikeButton: { id: "./like-button.js", chunks: ["chunk-abc.js"] }
-</code></pre><span class="code-lang">text</span></div>
-<p>Server Component output is inlined as plain elements. Client Components appear as <strong>references</strong> to a module plus the props to pass them. The browser downloads only those referenced chunks and hydrates them.</p>
-<p>Two consequences follow:</p>
-<ol>
-<li><strong>Props passed from server to client must be serialisable</strong> — plain objects, arrays, strings, numbers, <code>Date</code>, <code>Map</code>, <code>Set</code>, promises and server actions. Not class instances, and not ordinary functions.</li>
-<li><strong>Navigations fetch payloads, not HTML.</strong> On client navigation, React requests the RSC payload for the new route and merges it into the existing tree, so client state in shared layouts survives.</li>
-</ol>
-<h2 id="the-composition-rule-pass-server-components-as-children">The composition rule: pass Server Components as children</h2>
-<p>A Client Component can't <em>import</em> a Server Component (the import would pull server-only code into the client bundle). But it can <em>render</em> one passed in as a prop:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// ❌ Inside a client component file</span>
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">ServerSidebar</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./server-sidebar"</span>; <span class="hljs-comment">// becomes client code</span>
-
-<span class="hljs-comment">// ✅ Compose from a server component instead</span>
-<span class="hljs-comment">// app/layout.tsx (server)</span>
-<span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">CollapsiblePanel</span>></span>          {/* client: owns open/closed state */}
-  <span class="hljs-tag">&#x3C;<span class="hljs-name">ServerSidebar</span> /></span>          {/* server: rendered on the server, passed as children */}
-<span class="hljs-tag">&#x3C;/<span class="hljs-name">CollapsiblePanel</span>></span></span>
-</code></pre><span class="code-lang">tsx</span></div>
-<p><code>children</code> here is already-rendered output in the RSC payload, so the client component just places it. This "donut" pattern — an interactive shell around server-rendered content — is the most important RSC composition technique.</p>
-<h2 id="streaming-with-suspense">Streaming with Suspense</h2>
-<p>Because the payload is a stream, the server can send the page shell immediately and fill in slow parts later:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Suspense</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Dashboard</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&#x3C;></span>
-      <span class="hljs-tag">&#x3C;<span class="hljs-name">Header</span> /></span>                                  {/* sent immediately */}
-      <span class="hljs-tag">&#x3C;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&#x3C;<span class="hljs-attr">ChartSkeleton</span> /></span>}>
-        <span class="hljs-tag">&#x3C;<span class="hljs-name">RevenueChart</span> /></span>                          {/* async; streams in when ready */}
-      <span class="hljs-tag">&#x3C;/<span class="hljs-name">Suspense</span>></span>
-      <span class="hljs-tag">&#x3C;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&#x3C;<span class="hljs-attr">FeedSkeleton</span> /></span>}>
-        <span class="hljs-tag">&#x3C;<span class="hljs-name">ActivityFeed</span> /></span>
-      <span class="hljs-tag">&#x3C;/<span class="hljs-name">Suspense</span>></span>
-    <span class="hljs-tag">&#x3C;/></span></span>
-  );
-}
-</code></pre><span class="code-lang">tsx</span></div>
-<p>Each boundary resolves independently. The user sees and can interact with the header while the chart query is still running, and React hydrates parts of the page as their code arrives (<strong>selective hydration</strong>), prioritising the part the user interacts with first.</p>
-<p>Watch out for <strong>waterfalls</strong>. Awaiting in sequence serialises requests:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// ❌ 300ms + 300ms</span>
-<span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getUser</span>(id);
-<span class="hljs-keyword">const</span> orders = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getOrders</span>(id);
-
-<span class="hljs-comment">// ✅ ~300ms — start both, then await</span>
-<span class="hljs-keyword">const</span> [user, orders] = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([<span class="hljs-title function_">getUser</span>(id), <span class="hljs-title function_">getOrders</span>(id)]);
-</code></pre><span class="code-lang">tsx</span></div>
-<p>Or better, move each fetch into the component that needs it and give each its own Suspense boundary.</p>
-<h2 id="mutations-with-server-actions">Mutations with Server Actions</h2>
-<p>Server Actions are async functions marked with <code>"use server"</code> that the client can call like a function. React turns the call into a POST request:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/actions.ts</span>
-<span class="hljs-string">"use server"</span>;
-
-<span class="hljs-keyword">import</span> { revalidatePath } <span class="hljs-keyword">from</span> <span class="hljs-string">"next/cache"</span>;
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createPost</span>(<span class="hljs-params"><span class="hljs-attr">formData</span>: <span class="hljs-title class_">FormData</span></span>) {
-  <span class="hljs-keyword">const</span> title = <span class="hljs-title class_">String</span>(formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">"title"</span>) ?? <span class="hljs-string">""</span>);
-  <span class="hljs-keyword">if</span> (!title) <span class="hljs-keyword">return</span> { <span class="hljs-attr">error</span>: <span class="hljs-string">"Title is required"</span> };
-  <span class="hljs-keyword">await</span> db.<span class="hljs-property">post</span>.<span class="hljs-title function_">create</span>({ <span class="hljs-attr">data</span>: { title } });
-  <span class="hljs-title function_">revalidatePath</span>(<span class="hljs-string">"/posts"</span>); <span class="hljs-comment">// re-render affected server components</span>
-}
-</code></pre><span class="code-lang">tsx</span></div>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-tsx"><span class="hljs-comment">// Works even before JavaScript loads (progressive enhancement)</span>
-&#x3C;form action={createPost}>
-  <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"title"</span> /></span></span>
-  <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>></span>Publish<span class="hljs-tag">&#x3C;/<span class="hljs-name">button</span>></span></span>
-&#x3C;/form>
-</code></pre><span class="code-lang">tsx</span></div>
-<p><strong>Treat every Server Action as a public API endpoint.</strong> Anyone can call it with any arguments. Authenticate, authorise and validate inside the action itself — never rely on the UI hiding a button.</p>
-<h2 id="pitfalls-checklist">Pitfalls checklist</h2>
-<ul>
-<li><strong>Leaking secrets:</strong> a module imported by a client component can end up in the browser. Add <code>import "server-only"</code> to modules that touch secrets so the build fails if that happens.</li>
-<li><strong>Context:</strong> <code>createContext</code> providers must be Client Components. Wrap them in a small client <code>Providers</code> component and render it from your server layout.</li>
-<li><strong>Over-fetching in loops:</strong> use React's <code>cache()</code> to dedupe the same data request across components within a single render.</li>
-<li><strong>Large props:</strong> everything you pass to a client component is serialised into the payload. Pass the 3 fields it needs, not the full database row.</li>
-</ul>
-<h2 id="conclusion">Conclusion</h2>
-<p>Server Components render to a serialisable stream. Client Components are references in that stream that hydrate in the browser. <code>"use client"</code> marks a bundle boundary, and composition through <code>children</code> lets server content live inside interactive shells. Suspense streams the slow parts, and Server Actions handle mutations as public endpoints. Keep <code>"use client"</code> at the leaves, fetch in parallel and validate every action, and RSC will give you smaller bundles and faster pages.</p>
-<h2 id="further-reading">Further reading</h2>
-<ul>
-<li><a href="https://react.dev/reference/rsc/server-components">Server Components in the React docs</a></li>
-<li><a href="https://nextjs.org/docs/app/getting-started/server-and-client-components">Server and Client Components in the Next.js docs</a></li>
-<li><a href="https://hadimobarra.github.io/blog/nextjs-best-practices/">Shipping a static Next.js site</a></li>
-<li><a href="https://hadimobarra.github.io/blog/react-architecture/">React architecture</a></li>
-</ul>]]></content:encoded>
-    </item>
-    <item>
-      <title>Async Iterators, Generators and Web Streams in Practice</title>
-      <link>https://hadimobarra.github.io/blog/async-iterators-generators-streams/</link>
-      <guid>https://hadimobarra.github.io/blog/async-iterators-generators-streams/</guid>
-      <pubDate>Mon, 26 Jan 2026 00:00:00 GMT</pubDate>
-      <description>Process data incrementally instead of all at once. A practical tour of generators, async iteration, backpressure, and the Web Streams API — with examples for paginated APIs, streaming fetch responses and LLM-style token streams.</description>
-      <category>JavaScript</category>
-      <category>Browser Internals</category>
-      <content:encoded><![CDATA[<h2 id="why-incremental-processing-matters">Why incremental processing matters</h2>
-<p>Loading a 200MB CSV into memory before showing anything, or waiting for a whole LLM response before rendering a word, are both symptoms of one habit: treating data as a single value instead of a <strong>sequence over time</strong>. JavaScript has three tools for sequences: generators, async iterators and streams.</p>
-<h2 id="generators-pausable-functions">Generators: pausable functions</h2>
-<p>A generator function returns an iterator. Each <code>yield</code> pauses execution until the consumer asks for the next value:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">range</span>(<span class="hljs-params">start, end, step = <span class="hljs-number">1</span></span>) {
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start; i &#x3C; end; i += step) <span class="hljs-keyword">yield</span> i;
-}
-
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> n <span class="hljs-keyword">of</span> <span class="hljs-title function_">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">3</span>)) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n); <span class="hljs-comment">// 0 3 6 9</span>
-</code></pre><span class="code-lang">js</span></div>
-<p>Because they're lazy, generators can describe infinite sequences and compose without creating intermediate arrays:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">map</span>(<span class="hljs-params">iter, fn</span>) { <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> x <span class="hljs-keyword">of</span> iter) <span class="hljs-keyword">yield</span> <span class="hljs-title function_">fn</span>(x); }
-<span class="hljs-keyword">function</span>* <span class="hljs-title function_">filter</span>(<span class="hljs-params">iter, fn</span>) { <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> x <span class="hljs-keyword">of</span> iter) <span class="hljs-keyword">if</span> (<span class="hljs-title function_">fn</span>(x)) <span class="hljs-keyword">yield</span> x; }
-<span class="hljs-keyword">function</span>* <span class="hljs-title function_">take</span>(<span class="hljs-params">iter, n</span>) {
-  <span class="hljs-keyword">if</span> (n &#x3C;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> x <span class="hljs-keyword">of</span> iter) {
-    <span class="hljs-keyword">yield</span> x;
-    <span class="hljs-keyword">if</span> (--n &#x3C;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>; <span class="hljs-comment">// closes the source iterator too</span>
-  }
-}
-
-<span class="hljs-keyword">function</span>* <span class="hljs-title function_">naturals</span>(<span class="hljs-params"></span>) { <span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>; <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) <span class="hljs-keyword">yield</span> n++; }
-
-<span class="hljs-keyword">const</span> firstFiveEvenSquares = [...<span class="hljs-title function_">take</span>(<span class="hljs-title function_">filter</span>(<span class="hljs-title function_">map</span>(<span class="hljs-title function_">naturals</span>(), <span class="hljs-function">(<span class="hljs-params">n</span>) =></span> n * n), <span class="hljs-function">(<span class="hljs-params">n</span>) =></span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>), <span class="hljs-number">5</span>)];
-<span class="hljs-comment">// [0, 4, 16, 36, 64]</span>
-</code></pre><span class="code-lang">js</span></div>
-<p>Modern engines also ship <strong>iterator helpers</strong> natively, so the same pipeline can be written as <code>naturals().map(...).filter(...).take(5).toArray()</code>.</p>
-<h2 id="async-generators-sequences-that-arrive-over-time">Async generators: sequences that arrive over time</h2>
-<p>Add <code>async</code> and you can <code>await</code> inside and <code>yield</code> values as they become available. Consumers use <code>for await...of</code>.</p>
-<p>A classic use: hiding pagination behind a simple loop.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>* <span class="hljs-title function_">fetchAllIssues</span>(<span class="hljs-params">repo</span>) {
-  <span class="hljs-keyword">let</span> url = <span class="hljs-string">`https://api.github.com/repos/<span class="hljs-subst">${repo}</span>/issues?per_page=100`</span>;
-  <span class="hljs-keyword">while</span> (url) {
-    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url);
-    <span class="hljs-keyword">if</span> (!res.<span class="hljs-property">ok</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`HTTP <span class="hljs-subst">${res.status}</span>`</span>);
-    <span class="hljs-keyword">yield</span>* <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();                       <span class="hljs-comment">// yield each issue individually</span>
-    url = <span class="hljs-title function_">parseNextLink</span>(res.<span class="hljs-property">headers</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">"link"</span>));  <span class="hljs-comment">// null when there are no more pages</span>
-  }
-}
-
-<span class="hljs-keyword">for</span> <span class="hljs-title function_">await</span> (<span class="hljs-keyword">const</span> issue <span class="hljs-keyword">of</span> <span class="hljs-title function_">fetchAllIssues</span>(<span class="hljs-string">"facebook/react"</span>)) {
-  <span class="hljs-keyword">if</span> (issue.<span class="hljs-property">title</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"hydration"</span>)) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(issue.<span class="hljs-property">number</span>, issue.<span class="hljs-property">title</span>);
-    <span class="hljs-keyword">break</span>; <span class="hljs-comment">// stops fetching further pages</span>
-  }
-}
-</code></pre><span class="code-lang">js</span></div>
-<p>That <code>break</code> matters: leaving a <code>for await</code> loop calls the generator's <code>return()</code>, which runs any <code>finally</code> blocks. Pages after the one you needed are never requested. The consumer controls the pace — that's <strong>pull-based backpressure</strong>.</p>
-<h2 id="cleanup-with-finally">Cleanup with <code>finally</code></h2>
-<p>Generators are a natural place to tie resource lifetime to iteration:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>* <span class="hljs-title function_">watchEvents</span>(<span class="hljs-params">url</span>) {
-  <span class="hljs-keyword">const</span> source = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventSource</span>(url);
-  <span class="hljs-keyword">const</span> queue = [];
-  <span class="hljs-keyword">let</span> notify;
-  source.<span class="hljs-property">onmessage</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =></span> { queue.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(e.<span class="hljs-property">data</span>)); notify?.(); };
-  <span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
-      <span class="hljs-keyword">while</span> (queue.<span class="hljs-property">length</span>) <span class="hljs-keyword">yield</span> queue.<span class="hljs-title function_">shift</span>();
-      <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =></span> (notify = r));
-    }
-  } <span class="hljs-keyword">finally</span> {
-    source.<span class="hljs-title function_">close</span>(); <span class="hljs-comment">// runs on break, return or throw</span>
-  }
-}
-</code></pre><span class="code-lang">js</span></div>
-<h2 id="web-streams-the-platforms-streaming-primitive">Web Streams: the platform's streaming primitive</h2>
-<p><code>ReadableStream</code>, <code>WritableStream</code> and <code>TransformStream</code> are standard in browsers, Node.js, Deno, Bun and edge runtimes. <code>fetch</code> response bodies are <code>ReadableStream</code>s, which means you can process a download <strong>as it arrives</strong>:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">"/api/large-export.ndjson"</span>);
-
-<span class="hljs-keyword">const</span> lines = res.<span class="hljs-property">body</span>
-  .<span class="hljs-title function_">pipeThrough</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TextDecoderStream</span>())   <span class="hljs-comment">// bytes -> text chunks</span>
-  .<span class="hljs-title function_">pipeThrough</span>(<span class="hljs-title function_">splitLines</span>());             <span class="hljs-comment">// text chunks -> lines</span>
-
-<span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
-<span class="hljs-keyword">for</span> <span class="hljs-title function_">await</span> (<span class="hljs-keyword">const</span> line <span class="hljs-keyword">of</span> lines) {         <span class="hljs-comment">// ReadableStream is async iterable</span>
-  <span class="hljs-keyword">if</span> (!line) <span class="hljs-keyword">continue</span>;
-  <span class="hljs-keyword">const</span> record = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(line);
-  count++;
-  <span class="hljs-keyword">if</span> (count % <span class="hljs-number">1000</span> === <span class="hljs-number">0</span>) <span class="hljs-title function_">renderProgress</span>(count);
-}
-</code></pre><span class="code-lang">js</span></div>
-<p>The <code>splitLines</code> transform buffers partial lines across chunk boundaries — the classic streaming bug to avoid:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">splitLines</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-keyword">let</span> buffer = <span class="hljs-string">""</span>;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformStream</span>({
-    <span class="hljs-title function_">transform</span>(<span class="hljs-params">chunk, controller</span>) {
-      buffer += chunk;
-      <span class="hljs-keyword">const</span> lines = buffer.<span class="hljs-title function_">split</span>(<span class="hljs-string">"\n"</span>);
-      buffer = lines.<span class="hljs-title function_">pop</span>(); <span class="hljs-comment">// the last item may be an incomplete line</span>
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> line <span class="hljs-keyword">of</span> lines) controller.<span class="hljs-title function_">enqueue</span>(line);
-    },
-    <span class="hljs-title function_">flush</span>(<span class="hljs-params">controller</span>) {
-      <span class="hljs-keyword">if</span> (buffer) controller.<span class="hljs-title function_">enqueue</span>(buffer);
-    },
-  });
-}
-</code></pre><span class="code-lang">js</span></div>
-<blockquote>
-<p>Async iteration of <code>ReadableStream</code> is supported in Node, Deno, Firefox and recent Chromium. Where it's missing, use <code>stream.getReader()</code> and call <code>read()</code> in a loop.</p>
-</blockquote>
-<h2 id="streaming-text-into-the-ui">Streaming text into the UI</h2>
-<p>The same technique renders streamed AI responses token by token:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">useStreamedText</span>(<span class="hljs-params">url, body</span>) {
-  <span class="hljs-keyword">const</span> [text, setText] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">""</span>);
-
-  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =></span> {
-    <span class="hljs-keyword">const</span> controller = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbortController</span>();
-    (<span class="hljs-title function_">async</span> () => {
-      <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url, { <span class="hljs-attr">method</span>: <span class="hljs-string">"POST"</span>, body, <span class="hljs-attr">signal</span>: controller.<span class="hljs-property">signal</span> });
-      <span class="hljs-keyword">const</span> stream = res.<span class="hljs-property">body</span>.<span class="hljs-title function_">pipeThrough</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TextDecoderStream</span>());
-      <span class="hljs-keyword">for</span> <span class="hljs-title function_">await</span> (<span class="hljs-keyword">const</span> chunk <span class="hljs-keyword">of</span> stream) {
-        <span class="hljs-title function_">setText</span>(<span class="hljs-function">(<span class="hljs-params">prev</span>) =></span> prev + chunk);
-      }
-    })().<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =></span> {
-      <span class="hljs-keyword">if</span> (err.<span class="hljs-property">name</span> !== <span class="hljs-string">"AbortError"</span>) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err);
-    });
-    <span class="hljs-keyword">return</span> <span class="hljs-function">() =></span> controller.<span class="hljs-title function_">abort</span>(); <span class="hljs-comment">// cancels the request on unmount</span>
-  }, [url, body]);
-
-  <span class="hljs-keyword">return</span> text;
-}
-</code></pre><span class="code-lang">jsx</span></div>
-<p><code>AbortController</code> is the cancellation signal for the whole pipeline: aborting the fetch cancels the stream, which ends the <code>for await</code> loop.</p>
-<p><a href="https://hadimobarra.github.io/blog/async-iterators-generators-streams/">View this part on the site</a></p>
-<h2 id="producing-streams">Producing streams</h2>
-<p>You can create streams from any source, including an async generator:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fromAsyncIterable</span>(<span class="hljs-params">iterable</span>) {
-  <span class="hljs-keyword">const</span> iterator = iterable[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">asyncIterator</span>]();
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReadableStream</span>({
-    <span class="hljs-keyword">async</span> <span class="hljs-title function_">pull</span>(<span class="hljs-params">controller</span>) {
-      <span class="hljs-keyword">const</span> { value, done } = <span class="hljs-keyword">await</span> iterator.<span class="hljs-title function_">next</span>();
-      done ? controller.<span class="hljs-title function_">close</span>() : controller.<span class="hljs-title function_">enqueue</span>(value);
-    },
-    <span class="hljs-keyword">async</span> <span class="hljs-title function_">cancel</span>(<span class="hljs-params">reason</span>) {
-      <span class="hljs-keyword">await</span> iterator.<span class="hljs-property">return</span>?.(reason);
-    },
-  });
-}
-</code></pre><span class="code-lang">js</span></div>
-<p>Using <code>pull</code> (instead of pushing everything in <code>start</code>) means the generator only advances when the consumer has room in its queue, so backpressure flows from the consumer back to the source. Newer runtimes provide <code>ReadableStream.from(iterable)</code> which does this for you.</p>
-<p>On the server, a streamed <code>Response</code> is just a stream in the body:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-comment">// Route handler (Next.js, Remix, Hono, Workers...)</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">GET</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-keyword">const</span> encoder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TextEncoder</span>();
-  <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>* <span class="hljs-title function_">events</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++) {
-      <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =></span> <span class="hljs-built_in">setTimeout</span>(r, <span class="hljs-number">500</span>));
-      <span class="hljs-keyword">yield</span> encoder.<span class="hljs-title function_">encode</span>(<span class="hljs-string">`data: tick <span class="hljs-subst">${i}</span>\n\n`</span>);
-    }
-  }
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-title function_">fromAsyncIterable</span>(<span class="hljs-title function_">events</span>()), {
-    <span class="hljs-attr">headers</span>: { <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"text/event-stream"</span> },
-  });
-}
-</code></pre><span class="code-lang">js</span></div>
-<h2 id="choosing-the-right-tool">Choosing the right tool</h2>
-<div class="table-wrap" tabindex="0"><table>
-<thead>
-<tr>
-<th>Need</th>
-<th>Use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Lazy, synchronous sequence</td>
-<td>Generator / iterator helpers</td>
-</tr>
-<tr>
-<td>Values that arrive over time, consumer-paced</td>
-<td>Async generator + <code>for await</code></td>
-</tr>
-<tr>
-<td>Bytes or text across network/file boundaries, piping, compression</td>
-<td>Web Streams (<code>pipeThrough</code>, <code>CompressionStream</code>)</td>
-</tr>
-<tr>
-<td>Cancellation</td>
-<td><code>AbortController</code> + <code>break</code> / <code>return()</code></td>
-</tr>
-</tbody>
-</table></div>
-<h2 id="conclusion">Conclusion</h2>
-<p>When you model data as a sequence over time, users see the first result sooner, memory stays flat regardless of input size, and cancellation works naturally. Generators make sequences easy to write, async iteration makes them easy to consume, and Web Streams connect them to the network on every modern JavaScript runtime.</p>
-<h2 id="further-reading">Further reading</h2>
-<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">Streams API on MDN</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of">for await...of on MDN</a></li>
-<li><a href="https://streams.spec.whatwg.org/">Streams Standard</a></li>
-<li><a href="https://hadimobarra.github.io/blog/resumable-uploads-tus/">Resumable uploads: what happens when the connection drops</a></li>
-<li><a href="https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/">Inside the JavaScript event loop</a></li>
-</ul>]]></content:encoded>
-    </item>
-    <item>
-      <title>The Browser Rendering Pipeline: Writing 60fps Animations</title>
-      <link>https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/</link>
-      <guid>https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/</guid>
-      <pubDate>Mon, 17 Nov 2025 00:00:00 GMT</pubDate>
-      <description>Style, layout, paint and composite — what each stage costs, which CSS properties trigger which stages, and how to build animations that stay smooth with transforms, will-change, FLIP and the View Transitions API.</description>
-      <category>CSS</category>
-      <category>Performance</category>
-      <category>Browser Internals</category>
-      <content:encoded><![CDATA[<h2 id="the-pixel-pipeline">The pixel pipeline</h2>
-<p>Every frame the browser produces goes through up to five stages:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="language-text">JavaScript → Style → Layout → Paint → Composite
-</code></pre><span class="code-lang">text</span></div>
-<ol>
-<li><strong>JavaScript</strong> — your code (or CSS animations/transitions) changes something.</li>
-<li><strong>Style</strong> — the browser works out which CSS rules apply to which elements and computes final styles.</li>
-<li><strong>Layout</strong> — it calculates the geometry of every affected box: size and position.</li>
-<li><strong>Paint</strong> — it records drawing commands (text, colours, borders, shadows, images) for each layer.</li>
-<li><strong>Composite</strong> — layers are rasterised (often on the GPU) and assembled into the final image.</li>
-</ol>
-<p>At 60Hz you have <strong>16.7ms per frame</strong> for all of this, and in practice closer to 10ms of budget for your own work. At 120Hz it's 8.3ms.</p>
-<p>The key optimisation insight: <strong>later stages are cheaper, and you can skip earlier ones.</strong></p>
-<p><a href="https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/">View this part on the site</a></p>
-<h2 id="which-properties-trigger-which-stages">Which properties trigger which stages</h2>
-<div class="table-wrap" tabindex="0"><table>
-<thead>
-<tr>
-<th>You change…</th>
-<th>Layout</th>
-<th>Paint</th>
-<th>Composite</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, <code>margin</code>, <code>padding</code>, <code>font-size</code></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>color</code>, <code>background-color</code>, <code>box-shadow</code>, <code>border-radius</code></td>
-<td>—</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>transform</code>, <code>opacity</code> (on a composited layer)</td>
-<td>—</td>
-<td>—</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table></div>
-<p>Animating <code>left</code> from 0 to 300px re-runs layout and paint every frame. Animating <code>transform: translateX()</code> across the same distance only needs compositing — which can even run on the compositor thread while the main thread is busy.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-comment">/* ❌ Layout + paint every frame */</span>
-<span class="hljs-selector-class">.drawer</span> { <span class="hljs-attribute">transition</span>: left <span class="hljs-number">300ms</span> ease; }
-<span class="hljs-selector-class">.drawer</span><span class="hljs-selector-class">.open</span> { <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>; }
-
-<span class="hljs-comment">/* ✅ Composite only */</span>
-<span class="hljs-selector-class">.drawer</span> { <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">300ms</span> ease; <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(-<span class="hljs-number">100%</span>); }
-<span class="hljs-selector-class">.drawer</span><span class="hljs-selector-class">.open</span> { <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>); }
-</code></pre><span class="code-lang">css</span></div>
-<h2 id="layers-and-will-change">Layers and <code>will-change</code></h2>
-<p>To composite an element on its own, the browser must promote it to a <strong>layer</strong>. Elements with active transform/opacity animations get promoted automatically, but promotion at animation start can cause a one-frame hitch. <code>will-change</code> tells the browser ahead of time:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-selector-class">.card</span><span class="hljs-selector-pseudo">:hover</span> { <span class="hljs-attribute">will-change</span>: transform; }
-</code></pre><span class="code-lang">css</span></div>
-<p>Use it sparingly:</p>
-<ul>
-<li>Every layer costs GPU memory. Putting <code>will-change: transform</code> on hundreds of list items can make performance <em>worse</em>, especially on mobile.</li>
-<li>Prefer adding it just before an animation (on hover, or from JS right before starting) and removing it afterwards.</li>
-<li>Layer promotion changes stacking and can affect text anti-aliasing.</li>
-</ul>
-<h2 id="forced-synchronous-layout-layout-thrashing">Forced synchronous layout (layout thrashing)</h2>
-<p>Browsers batch style and layout work until the end of the frame. But if you <strong>read</strong> a layout property (<code>offsetHeight</code>, <code>getBoundingClientRect()</code>, <code>scrollTop</code>…) after <strong>writing</strong> a style, the browser must calculate layout immediately to give you a correct answer.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-comment">// ❌ Each iteration: write → read → forced layout</span>
-items.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
-  item.<span class="hljs-property">style</span>.<span class="hljs-property">width</span> = container.<span class="hljs-property">offsetWidth</span> / <span class="hljs-number">3</span> + <span class="hljs-string">"px"</span>;
-});
-
-<span class="hljs-comment">// ✅ Read once, then write</span>
-<span class="hljs-keyword">const</span> width = container.<span class="hljs-property">offsetWidth</span> / <span class="hljs-number">3</span>;
-items.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
-  item.<span class="hljs-property">style</span>.<span class="hljs-property">width</span> = width + <span class="hljs-string">"px"</span>;
-});
-</code></pre><span class="code-lang">js</span></div>
-<p>DevTools' Performance panel flags these as purple <strong>Layout</strong> blocks with a "Forced reflow" warning, pointing to the line that caused them.</p>
-<h2 id="the-flip-technique">The FLIP technique</h2>
-<p>Some animations seem to require animating layout — reordering a list, expanding a card into a modal. <strong>FLIP</strong> (First, Last, Invert, Play) turns them into cheap transforms:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">flip</span>(<span class="hljs-params">element, mutate</span>) {
-  <span class="hljs-comment">// First: record the starting position</span>
-  <span class="hljs-keyword">const</span> first = element.<span class="hljs-title function_">getBoundingClientRect</span>();
-
-  <span class="hljs-comment">// Apply the DOM/layout change instantly</span>
-  <span class="hljs-title function_">mutate</span>();
-
-  <span class="hljs-comment">// Last: record the final position</span>
-  <span class="hljs-keyword">const</span> last = element.<span class="hljs-title function_">getBoundingClientRect</span>();
-
-  <span class="hljs-comment">// Invert: move it back to where it started using a transform</span>
-  <span class="hljs-keyword">const</span> dx = first.<span class="hljs-property">left</span> - last.<span class="hljs-property">left</span>;
-  <span class="hljs-keyword">const</span> dy = first.<span class="hljs-property">top</span> - last.<span class="hljs-property">top</span>;
-  <span class="hljs-keyword">const</span> sx = first.<span class="hljs-property">width</span> / last.<span class="hljs-property">width</span>;
-  <span class="hljs-keyword">const</span> sy = first.<span class="hljs-property">height</span> / last.<span class="hljs-property">height</span>;
-
-  <span class="hljs-comment">// Play: animate the transform back to identity</span>
-  element.<span class="hljs-title function_">animate</span>(
-    [
-      { <span class="hljs-attr">transformOrigin</span>: <span class="hljs-string">"top left"</span>, <span class="hljs-attr">transform</span>: <span class="hljs-string">`translate(<span class="hljs-subst">${dx}</span>px, <span class="hljs-subst">${dy}</span>px) scale(<span class="hljs-subst">${sx}</span>, <span class="hljs-subst">${sy}</span>)`</span> },
-      { <span class="hljs-attr">transformOrigin</span>: <span class="hljs-string">"top left"</span>, <span class="hljs-attr">transform</span>: <span class="hljs-string">"none"</span> },
-    ],
-    { <span class="hljs-attr">duration</span>: <span class="hljs-number">400</span>, <span class="hljs-attr">easing</span>: <span class="hljs-string">"cubic-bezier(0.16, 1, 0.3, 1)"</span> }
-  );
-}
-</code></pre><span class="code-lang">js</span></div>
-<p>The expensive layout happens once, and the animation itself is composite-only. This is exactly what Framer Motion's <code>layout</code> prop does under the hood.</p>
-<h2 id="the-view-transitions-api">The View Transitions API</h2>
-<p>For transitions between whole UI states — or even between pages — the browser can now do the FLIP work for you:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">updateView</span>(<span class="hljs-params">render</span>) {
-  <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">document</span>.<span class="hljs-property">startViewTransition</span>) <span class="hljs-keyword">return</span> <span class="hljs-title function_">render</span>();
-  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">startViewTransition</span>(<span class="hljs-function">() =></span> <span class="hljs-title function_">render</span>());
-}
-</code></pre><span class="code-lang">js</span></div>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-comment">/* Give elements a shared identity across the two states */</span>
-<span class="hljs-selector-class">.product-thumb</span> { <span class="hljs-attribute">view-transition-name</span>: product-hero; }
-
-<span class="hljs-comment">/* Customise the default cross-fade */</span>
-::<span class="hljs-built_in">view-transition-old</span>(root),
-::<span class="hljs-built_in">view-transition-new</span>(root) {
-  <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">250ms</span>;
-}
-</code></pre><span class="code-lang">css</span></div>
-<p>The browser snapshots the old state, runs your update, snapshots the new state and animates between them with pseudo-elements. Elements that share a <code>view-transition-name</code> morph from one position and size to the other. Cross-document view transitions (for multi-page apps) are enabled with a CSS opt-in: <code>@view-transition { navigation: auto; }</code>.</p>
-<h2 id="paint-cost-is-real-too">Paint cost is real too</h2>
-<p>Even without layout, some paints are expensive:</p>
-<ul>
-<li>Large <code>box-shadow</code> and <code>filter: blur()</code> values, especially when animated.</li>
-<li><code>backdrop-filter</code> over large or frequently changing areas.</li>
-<li>Huge areas invalidated by small changes. Use DevTools → Rendering → <strong>Paint flashing</strong> to see what repaints.</li>
-</ul>
-<p>A useful trick for animated shadows: put the shadow on a pseudo-element and animate its <code>opacity</code> instead of the shadow itself.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-selector-class">.card</span> { <span class="hljs-attribute">position</span>: relative; }
-<span class="hljs-selector-class">.card</span><span class="hljs-selector-pseudo">::after</span> {
-  <span class="hljs-attribute">content</span>: <span class="hljs-string">""</span>;
-  <span class="hljs-attribute">position</span>: absolute;
-  <span class="hljs-attribute">inset</span>: <span class="hljs-number">0</span>;
-  <span class="hljs-attribute">border-radius</span>: inherit;
-  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">20px</span> <span class="hljs-number">40px</span> <span class="hljs-built_in">rgb</span>(<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> / <span class="hljs-number">0.2</span>);
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
-  <span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">200ms</span>;
-}
-<span class="hljs-selector-class">.card</span><span class="hljs-selector-pseudo">:hover</span><span class="hljs-selector-pseudo">::after</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>; }
-</code></pre><span class="code-lang">css</span></div>
-<h2 id="containment">Containment</h2>
-<p>The <code>contain</code> property tells the browser an element's internals don't affect the outside, so it can limit how far style, layout and paint work spreads:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-selector-class">.widget</span> { <span class="hljs-attribute">contain</span>: layout paint; }
-<span class="hljs-selector-class">.offscreen-section</span> { <span class="hljs-attribute">content-visibility</span>: auto; <span class="hljs-attribute">contain-intrinsic-size</span>: auto <span class="hljs-number">600px</span>; }
-</code></pre><span class="code-lang">css</span></div>
-<p><code>content-visibility: auto</code> skips rendering off-screen subtrees entirely — often the biggest single win on long pages.</p>
-<h2 id="respect-user-preferences">Respect user preferences</h2>
-<p>Smooth isn't the same as necessary. Users with vestibular disorders can be made physically unwell by large motion:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-css"><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-reduced-motion</span>: reduce) {
-  *, *<span class="hljs-selector-pseudo">::before</span>, *<span class="hljs-selector-pseudo">::after</span> {
-    <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">0.01ms</span> <span class="hljs-meta">!important</span>;
-    <span class="hljs-attribute">transition-duration</span>: <span class="hljs-number">0.01ms</span> <span class="hljs-meta">!important</span>;
-  }
-}
-</code></pre><span class="code-lang">css</span></div>
-<h2 id="conclusion">Conclusion</h2>
-<p>Animate <code>transform</code> and <code>opacity</code>, batch layout reads before writes, use FLIP or View Transitions when layout really must change, and keep layers and expensive paints under control. Once you know which pipeline stages each change triggers, hitting 60fps (or 120fps) becomes a design decision rather than luck.</p>
-<h2 id="further-reading">Further reading</h2>
-<ul>
-<li><a href="https://web.dev/articles/rendering-performance">Rendering performance on web.dev</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment">CSS containment on MDN</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API">View Transition API on MDN</a></li>
-<li><a href="https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/">Inside the JavaScript event loop</a></li>
-<li><a href="https://hadimobarra.github.io/blog/less-javascript-same-blocking-time/">I cut this site's JavaScript by 45%, and blocking time didn't move</a></li>
-</ul>]]></content:encoded>
-    </item>
-    <item>
-      <title>Hunting Memory Leaks in JavaScript Applications</title>
-      <link>https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/</link>
-      <guid>https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/</guid>
-      <pubDate>Mon, 29 Sep 2025 00:00:00 GMT</pubDate>
-      <description>How garbage collection really decides what to keep, the five leak patterns behind most SPA memory issues, and a repeatable DevTools workflow using heap snapshots, allocation timelines and WeakRef-aware design.</description>
-      <category>JavaScript</category>
-      <category>Performance</category>
-      <category>Debugging</category>
-      <content:encoded><![CDATA[<h2 id="leaks-in-a-garbage-collected-language">Leaks in a garbage-collected language</h2>
-<p>JavaScript frees memory automatically, so how can it leak? Because the garbage collector only frees what is <strong>unreachable</strong>. A leak is memory that's still reachable from a root (the global object, the current call stack, active closures, DOM, timers) even though your program will never use it again.</p>
-<p>In long-lived single-page apps — dashboards left open all day, editors, chat clients — these small mistakes add up until the tab gets slow or crashes.</p>
-<h2 id="how-reachability-works">How reachability works</h2>
-<p>Modern engines use a <strong>mark-and-sweep</strong> collector (generational and incremental in V8's case): starting from the roots, mark everything reachable by following references, then sweep everything unmarked.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">let</span> user = { <span class="hljs-attr">name</span>: <span class="hljs-string">"Ada"</span> };
-<span class="hljs-keyword">const</span> admins = [user];
-
-user = <span class="hljs-literal">null</span>;
-<span class="hljs-comment">// The object is still reachable through `admins[0]`, so it stays in memory.</span>
-</code></pre><span class="code-lang">js</span></div>
-<p>To find a leak, you must find the <strong>retaining path</strong>: the chain of references from a root to the object that shouldn't be there anymore.</p>
-<p><a href="https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/">View this part on the site</a></p>
-<h2 id="the-five-usual-suspects">The five usual suspects</h2>
-<h3 id="1-forgotten-event-listeners-and-subscriptions">1. Forgotten event listeners and subscriptions</h3>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mountChart</span>(<span class="hljs-params">el</span>) {
-  <span class="hljs-keyword">const</span> chart = <span class="hljs-title function_">createHugeChart</span>(el);
-  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"resize"</span>, <span class="hljs-function">() =></span> chart.<span class="hljs-title function_">resize</span>()); <span class="hljs-comment">// never removed</span>
-}
-</code></pre><span class="code-lang">js</span></div>
-<p><code>window</code> lives forever, so it keeps the listener alive, the listener's closure keeps <code>chart</code>, and <code>chart</code> keeps its DOM node and data. Mount and unmount this ten times and you have ten charts in memory.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mountChart</span>(<span class="hljs-params">el</span>) {
-  <span class="hljs-keyword">const</span> chart = <span class="hljs-title function_">createHugeChart</span>(el);
-  <span class="hljs-keyword">const</span> controller = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbortController</span>();
-  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"resize"</span>, <span class="hljs-function">() =></span> chart.<span class="hljs-title function_">resize</span>(), { <span class="hljs-attr">signal</span>: controller.<span class="hljs-property">signal</span> });
-  <span class="hljs-keyword">return</span> <span class="hljs-function">() =></span> {
-    controller.<span class="hljs-title function_">abort</span>(); <span class="hljs-comment">// removes every listener registered with this signal</span>
-    chart.<span class="hljs-title function_">destroy</span>();
-  };
-}
-</code></pre><span class="code-lang">js</span></div>
-<p><code>AbortController</code> is the cleanest way to remove many listeners at once. In React, return the cleanup from <code>useEffect</code>.</p>
-<h3 id="2-timers-and-intervals">2. Timers and intervals</h3>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =></span> {
-  <span class="hljs-keyword">const</span> id = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =></span> <span class="hljs-title function_">poll</span>(store), <span class="hljs-number">5000</span>);
-  <span class="hljs-comment">// ❌ no cleanup: the interval and everything its callback references live forever</span>
-}, []);
-
-<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =></span> {
-  <span class="hljs-keyword">const</span> id = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =></span> <span class="hljs-title function_">poll</span>(store), <span class="hljs-number">5000</span>);
-  <span class="hljs-keyword">return</span> <span class="hljs-function">() =></span> <span class="hljs-built_in">clearInterval</span>(id); <span class="hljs-comment">// ✅</span>
-}, []);
-</code></pre><span class="code-lang">js</span></div>
-<h3 id="3-detached-dom-nodes">3. Detached DOM nodes</h3>
-<p>A DOM node removed from the document but still referenced from JavaScript can't be collected — and it keeps its <strong>whole subtree</strong> alive.</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">showRow</span>(<span class="hljs-params">id</span>) {
-  <span class="hljs-keyword">const</span> row = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">"tr"</span>);
-  cache.<span class="hljs-title function_">set</span>(id, row);       <span class="hljs-comment">// reference kept forever</span>
-  table.<span class="hljs-title function_">appendChild</span>(row);
-}
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">clearTable</span>(<span class="hljs-params"></span>) {
-  table.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">""</span>;     <span class="hljs-comment">// rows are detached, but the Map still holds them</span>
-}
-</code></pre><span class="code-lang">js</span></div>
-<p>Heap snapshots let you filter for <strong>"Detached"</strong> nodes, which makes this pattern easy to spot.</p>
-<h3 id="4-unbounded-caches">4. Unbounded caches</h3>
-<p>Memoisation without eviction is a leak with a nice name:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> cache = {};
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">getUserView</span>(<span class="hljs-params">user</span>) {
-  <span class="hljs-keyword">return</span> (cache[user.<span class="hljs-property">id</span>] ??= <span class="hljs-title function_">renderExpensiveView</span>(user)); <span class="hljs-comment">// grows forever</span>
-}
-</code></pre><span class="code-lang">js</span></div>
-<p>Fix it with a size limit (LRU), a TTL, or by keying on objects with a <code>WeakMap</code>:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">getUserView</span>(<span class="hljs-params">user</span>) {
-  <span class="hljs-keyword">let</span> view = cache.<span class="hljs-title function_">get</span>(user);
-  <span class="hljs-keyword">if</span> (!view) cache.<span class="hljs-title function_">set</span>(user, (view = <span class="hljs-title function_">renderExpensiveView</span>(user)));
-  <span class="hljs-keyword">return</span> view;
-}
-<span class="hljs-comment">// When `user` becomes unreachable elsewhere, the cache entry can be collected too.</span>
-</code></pre><span class="code-lang">js</span></div>
-<h3 id="5-closures-capturing-more-than-you-think">5. Closures capturing more than you think</h3>
-<p>Closures created in the same scope can share a context object in V8. A long-lived closure can therefore keep alive a large variable that only a <em>short-lived</em> sibling closure used:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-keyword">const</span> hugeData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">1e6</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-string">"x"</span>);
-  <span class="hljs-keyword">const</span> <span class="hljs-title function_">unused</span> = (<span class="hljs-params"></span>) => hugeData.<span class="hljs-property">length</span>;  <span class="hljs-comment">// references hugeData</span>
-  <span class="hljs-keyword">return</span> <span class="hljs-function">() =></span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"tick"</span>);      <span class="hljs-comment">// may still retain hugeData via the shared context</span>
-}
-<span class="hljs-keyword">const</span> tick = <span class="hljs-title function_">setup</span>();
-</code></pre><span class="code-lang">js</span></div>
-<p>If a heap snapshot shows a large object retained by a <code>context</code> of a function that doesn't use it, this is why. The fix is to avoid capturing big values in scopes that also create long-lived callbacks, or to set them to <code>null</code> when done.</p>
-<h2 id="a-repeatable-devtools-workflow">A repeatable DevTools workflow</h2>
-<h3 id="step-1-confirm-there-is-a-leak">Step 1: confirm there is a leak</h3>
-<p>Open <strong>Performance monitor</strong> (Command menu → "Show Performance monitor") and watch <em>JS heap size</em> and <em>DOM Nodes</em> while repeating an action — open and close a modal 20 times, navigate between two routes, and so on. Force GC with the trash-can button in the Memory panel. If the baseline keeps climbing after GC, something is leaking.</p>
-<h3 id="step-2-three-snapshot-technique">Step 2: three-snapshot technique</h3>
-<ol>
-<li>Load the page, do the action once (to warm caches), force GC, take <strong>Snapshot 1</strong>.</li>
-<li>Repeat the action several times, force GC, take <strong>Snapshot 2</strong>.</li>
-<li>Repeat again, force GC, take <strong>Snapshot 3</strong>.</li>
-<li>In Snapshot 3, choose <strong>"Objects allocated between Snapshot 1 and Snapshot 2"</strong>.</li>
-</ol>
-<p>Objects created during the middle phase that <em>survive into snapshot 3</em> are your strongest leak candidates. Sort by <strong>Retained Size</strong>, not Shallow Size — retained size is how much memory would be freed if that object were collected.</p>
-<h3 id="step-3-read-the-retainers">Step 3: read the retainers</h3>
-<p>Select a suspicious object and read the <strong>Retainers</strong> panel from bottom to top. You'll see something like:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="language-text">ChartInstance
-  ← chart in system / Context
-  ← context in () @ chart.js:14
-  ← [3] in Array (event listeners)
-  ← resize in Window
-</code></pre><span class="code-lang">text</span></div>
-<p>That's the leak: the <code>resize</code> listener on <code>window</code>, created at <code>chart.js:14</code>.</p>
-<h3 id="step-4-allocation-timeline-for-the-tricky-cases">Step 4: allocation timeline for the tricky cases</h3>
-<p>The <strong>Allocations on timeline</strong> profile records allocations as blue bars over time; bars that stay blue (rather than turning grey) were never freed. Click one to see the allocation stack trace.</p>
-<h2 id="weakref-and-finalizationregistry">WeakRef and FinalizationRegistry</h2>
-<p><code>WeakRef</code> holds a reference that doesn't prevent collection, and <code>FinalizationRegistry</code> runs a callback some time after an object is collected:</p>
-<div class="code-block" dir="ltr"><pre tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">const</span> registry = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FinalizationRegistry</span>(<span class="hljs-function">(<span class="hljs-params">key</span>) =></span> {
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${key}</span> was garbage-collected`</span>);
-});
-registry.<span class="hljs-title function_">register</span>(chartInstance, <span class="hljs-string">"chart#1"</span>);
-</code></pre><span class="code-lang">js</span></div>
-<p>They're useful for caches of expensive, recreatable objects and for <strong>verifying</strong> fixes during development. But GC timing is non-deterministic and finalizers may never run, so don't use them for program logic or essential cleanup.</p>
-<h2 id="preventing-leaks-by-design">Preventing leaks by design</h2>
-<ul>
-<li>Every <code>add</code> has a matching <code>remove</code>: listeners, intervals, observers (<code>ResizeObserver</code>, <code>IntersectionObserver</code>), subscriptions and WebSockets.</li>
-<li>Tie lifetimes to a single <code>AbortSignal</code> per component or feature.</li>
-<li>Bound every cache. Prefer <code>WeakMap</code> when keys are objects.</li>
-<li>Add a memory test to CI for critical flows: drive the UI with Playwright, read <code>performance.measureUserAgentSpecificMemory()</code> (it requires cross-origin isolation) or snapshot via the Chrome DevTools Protocol, and fail when growth passes a threshold.</li>
-</ul>
-<h2 id="conclusion">Conclusion</h2>
-<p>Most leaks come from one of five patterns: listeners, timers, detached DOM, unbounded caches and over-capturing closures. Confirm the leak with the performance monitor, isolate it with the three-snapshot technique, and follow the retainer chain to the exact line. With cleanup tied to clear lifetimes, long-running apps stay fast after hours of use.</p>
-<h2 id="further-reading">Further reading</h2>
-<ul>
-<li><a href="https://developer.chrome.com/docs/devtools/memory-problems">Fix memory problems, Chrome DevTools</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakRef">WeakRef on MDN</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController on MDN</a></li>
-<li><a href="https://hadimobarra.github.io/blog/build-signals-from-scratch/">Build signals from scratch</a></li>
-<li><a href="https://hadimobarra.github.io/blog/web-workers-off-main-thread/">Web Workers in practice</a></li>
 </ul>]]></content:encoded>
     </item>
     <item>
