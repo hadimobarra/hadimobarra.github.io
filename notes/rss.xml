@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hadi Mobarra — Notes</title>
+    <link>https://hadimobarra.github.io/notes/</link>
+    <description>Notes</description>
+    <language>en</language>
+    <atom:link href="https://hadimobarra.github.io/notes/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>No chart tool mirrored by default</title>
+      <link>https://hadimobarra.github.io/notes/#arabic-charts-study</link>
+      <guid>https://hadimobarra.github.io/notes/#arabic-charts-study</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p>A peer-reviewed study tested seven popular chart tools with Arabic data and interviewed eleven practitioners. None of the tools produced a mirrored chart by default, and Eastern numerals were often read as text. <a href="https://kclpure.kcl.ac.uk/ws/files/383439862/2026_VIS_RTL_Interviews_tools_revised_-2.pdf">Designing Within the Lines</a> is worth reading if you build dashboards.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>Font preloading works per CSS chunk</title>
+      <link>https://hadimobarra.github.io/notes/#font-preload-chunks</link>
+      <guid>https://hadimobarra.github.io/notes/#font-preload-chunks</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p>Two root layouts, one <code>next/font</code> each, and the build merged their CSS. Result: every English page preloaded the Persian fonts, and the other way around. Nothing in the code looks wrong. The network panel shows it at once.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>Next.js metadata replaces, it doesn't merge</title>
+      <link>https://hadimobarra.github.io/notes/#metadata-replaces</link>
+      <guid>https://hadimobarra.github.io/notes/#metadata-replaces</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p>Set <code>openGraph</code> in a page and you lose the layout's social image. Set <code>alternates</code> and you lose the RSS link. And a page that sets neither inherits the layout's canonical URL, so my blog index told search engines it was the homepage. One function that returns everything fixed all three.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>Two Pagefind instances share one memory</title>
+      <link>https://hadimobarra.github.io/notes/#two-search-indexes</link>
+      <guid>https://hadimobarra.github.io/notes/#two-search-indexes</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p>Persian pages here search a Persian and an English index. Creating two instances from one Pagefind bundle made the Persian search fail in 8 of 15 test runs: they share one WebAssembly state. Building two separate bundles, one per language, passed 30 of 30.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>Yielding is not a frame</title>
+      <link>https://hadimobarra.github.io/notes/#yield-is-not-a-frame</link>
+      <guid>https://hadimobarra.github.io/notes/#yield-is-not-a-frame</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p><code>await scheduler.yield()</code> lets the browser do something else. It doesn't promise that the something is a paint. In a <a href="https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/">demo</a> that only yielded, the next frame came after all the work, 435 ms later. Wait for <code>requestAnimationFrame</code> first, then yield.</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

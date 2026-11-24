@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>هادی مبرا — یادداشت‌ها</title>
+    <link>https://hadimobarra.github.io/fa/notes/</link>
+    <description>یادداشت‌ها</description>
+    <language>fa</language>
+    <atom:link href="https://hadimobarra.github.io/fa/notes/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>هیچ ابزار نموداری به‌طور پیش‌فرض آینه نشد</title>
+      <link>https://hadimobarra.github.io/fa/notes/#arabic-charts-study</link>
+      <guid>https://hadimobarra.github.io/fa/notes/#arabic-charts-study</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p>پژوهشی داوری‌شده هفت ابزار رایج نمودار را با داده عربی آزمود و با یازده متخصص گفت‌وگو کرد. هیچ ابزاری به‌طور پیش‌فرض نمودار آینه‌شده نساخت و ارقام شرقی اغلب متن تلقی شدند. اگر داشبورد می‌سازید <a href="https://kclpure.kcl.ac.uk/ws/files/383439862/2026_VIS_RTL_Interviews_tools_revised_-2.pdf">Designing Within the Lines</a> را بخوانید.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>preload فونت به‌ازای هر تکه CSS است</title>
+      <link>https://hadimobarra.github.io/fa/notes/#font-preload-chunks</link>
+      <guid>https://hadimobarra.github.io/fa/notes/#font-preload-chunks</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p>دو root layout، هرکدام با یک <code>next/font</code>، و بیلدی که CSS آن‌ها را ادغام کرد. نتیجه: هر صفحه انگلیسی فونت فارسی را preload می‌کرد و برعکس. در کد هیچ چیز عجیب نیست؛ تب شبکه فوراً نشانش می‌دهد.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>متادیتای Next.js جایگزین می‌شود، ادغام نه</title>
+      <link>https://hadimobarra.github.io/fa/notes/#metadata-replaces</link>
+      <guid>https://hadimobarra.github.io/fa/notes/#metadata-replaces</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p>اگر <code>openGraph</code> را در صفحه تنظیم کنید، تصویر اجتماعی layout از بین می‌رود. با <code>alternates</code> پیوند RSS حذف می‌شود. صفحه‌ای که هیچ‌کدام را تنظیم نکند نشانی canonical را به ارث می‌برد؛ فهرست وبلاگ من به موتور جست‌وجو می‌گفت صفحه اصلی است. یک تابع که همه را با هم برمی‌گرداند هر سه را حل کرد.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>دو نمونه Pagefind یک حافظه مشترک دارند</title>
+      <link>https://hadimobarra.github.io/fa/notes/#two-search-indexes</link>
+      <guid>https://hadimobarra.github.io/fa/notes/#two-search-indexes</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p>صفحه‌های فارسی این سایت هم نمایه فارسی و هم انگلیسی را جست‌وجو می‌کنند. ساخت دو نمونه از یک بسته Pagefind باعث شد جست‌وجوی فارسی در ۸ اجرا از ۱۵ اجرا شکست بخورد، چون یک وضعیت WebAssembly مشترک دارند. دو بسته جدا، یکی برای هر زبان، ۳۰ بار از ۳۰ بار درست کار کرد.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>yield کردن به معنی رسم فریم نیست</title>
+      <link>https://hadimobarra.github.io/fa/notes/#yield-is-not-a-frame</link>
+      <guid>https://hadimobarra.github.io/fa/notes/#yield-is-not-a-frame</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<p><code>await scheduler.yield()</code> به مرورگر اجازه می‌دهد کار دیگری انجام دهد، اما قول نمی‌دهد آن کار رسم صفحه باشد. در <a href="https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/">دمویی</a> که فقط yield می‌کرد، فریم بعدی پس از پایان همه کار آمد: ۴۳۵ میلی‌ثانیه بعد. اول منتظر <code>requestAnimationFrame</code> بمانید، بعد yield کنید.</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

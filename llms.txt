@@ -1,0 +1,66 @@
+# Hadi Mobarra
+
+> Front-End Engineer with 4+ years building data-intensive React and TypeScript apps: data catalogs, ETL interfaces and dashboards. Apache Superset contributor. Open to remote roles.
+
+Location: Tehran, Iran · Remote (UTC+3:30). Open to remote roles · full-time or contract. Contact: hadimobarra@gmail.com
+
+## Claims and their proof
+
+Labels: "Public proof" can be checked by anyone, "Confirmed by a colleague" comes from a published recommendation, "My word" has no public proof.
+
+- [Public proof] Fixed blank chart and dashboard image exports on Safari in Apache Superset. (Oct 2026) Proof: https://github.com/apache/superset/pull/44529 https://hadimobarra.github.io/projects/superset-safari-export/ https://hadimobarra.github.io/blog/safari-blank-chart-exports/
+- [Public proof] Stopped malformed data from crashing version pages in OpenMetadata, and fixed two display bugs on the way. (Nov 2026) Proof: https://github.com/open-metadata/OpenMetadata/pull/33580 https://hadimobarra.github.io/projects/openmetadata/ https://hadimobarra.github.io/blog/never-trust-json-parse-in-render/
+- [Public proof] Two further Explore fixes for Superset are open and waiting for review. (In review) Proof: https://github.com/apache/superset/pull/46105 https://github.com/apache/superset/pull/45168
+- [Confirmed by a colleague] Front-end engineer at Adin, on a data governance and ETL platform. (Apr 2023 – present) Proof: https://hadimobarra.github.io/#testimonials
+- [Confirmed by a colleague] Played a pivotal role in developing Adin's OpenMetadata-based platform. (Apr 2023 – present) Proof: https://hadimobarra.github.io/#testimonials https://hadimobarra.github.io/projects/openmetadata/
+- [My word] Architected a resumable multi-GB upload module. The product is private; the demo shows the same protocol. (Apr 2023 – present) Proof: https://hadimobarra.github.io/projects/resumable-uploads/#demo https://hadimobarra.github.io/blog/resumable-uploads-tus/
+- [My word] Built an ETL pipeline editor with live YAML preview, and owned the Add Pipeline page end to end. (Apr 2023 – present) Proof: https://hadimobarra.github.io/projects/openmetadata/
+- [My word] Built the data catalog, Mapping Table and Mapping Column interfaces. (Apr 2023 – present) Proof: https://hadimobarra.github.io/projects/data-catalog/
+- [My word] Replaced a static permission model with dynamic, fine-grained role management, and built a glossary approval workflow with an audit trail. (Apr 2023 – present) Proof: https://hadimobarra.github.io/projects/data-catalog/
+- [My word] Led full Persian (RTL) localization of the product. This bilingual site is the public sample. (Apr 2023 – present) Proof: https://hadimobarra.github.io/fa/catalog/ https://hadimobarra.github.io/blog/rtl-is-not-a-translation-step/
+- [My word] Built translation tooling for forms generated from JSON Schema. (Apr 2023 – present) Proof: https://hadimobarra.github.io/blog/translating-json-schema-forms/
+- [My word] Built features for production telecom dashboards at MCI (graduate internship). (Nov 2022 – Apr 2023)
+- [Public proof] Rebuilt this site with 45% less homepage JavaScript and two indexable languages. (Nov 2026) Proof: https://hadimobarra.github.io/projects/this-website/ https://github.com/hadimobarra/my-space-
+- [Public proof] Every deploy has to pass browser tests, accessibility checks in both themes and a JavaScript budget. (Nov 2026) Proof: https://github.com/hadimobarra/my-space-/blob/main/.github/workflows/ci.yml https://github.com/hadimobarra/my-space-/blob/main/tests
+- [Public proof] Writes about front-end engineering, with interactive demos. How AI is used is documented. (Since 2026) Proof: https://hadimobarra.github.io/blog/ https://hadimobarra.github.io/ai/
+- [Confirmed by a colleague] Communicates well, helps colleagues and cares about details, according to two people who worked with me. (Apr 2023 – present) Proof: https://hadimobarra.github.io/#testimonials
+- [My word] M.Sc. in Computer Engineering, Iran University of Science and Technology. (2022 – 2024)
+- [My word] B.Sc. in Computer Engineering, University of Mohaghegh Ardabili. (2017 – 2021)
+- [My word] Member of Iran's National Elite Foundation. (2022)
+
+## Case studies
+
+- [Fixing blank image exports on Safari in Apache Superset](https://hadimobarra.github.io/projects/superset-safari-export/): Chart and dashboard image exports came out blank on Safari, an issue open since May 2024. I traced it to a WebKit restriction and shipped a Safari-only capture path without touching other browsers.
+- [Resumable multi-GB uploads with Uppy and TUS](https://hadimobarra.github.io/projects/resumable-uploads/): An upload module for large CSV, TSV, JSON and Excel files that can pause, resume and retry on its own. Includes a live demo of the protocol that you can break on purpose.
+- [OpenMetadata: a pipeline editor, translation tooling and an upstream fix](https://hadimobarra.github.io/projects/openmetadata/): Custom features on an OpenMetadata fork at Adin, including an ETL pipeline editor with live YAML preview, plus an upstream fix that stops malformed data from crashing version pages.
+- [An enterprise data catalog interface](https://hadimobarra.github.io/projects/data-catalog/): Search, tagging, relationship mapping, access control and approvals for enterprise datasets, in Persian and English.
+- [This website: 45% less JavaScript, two indexable languages](https://hadimobarra.github.io/projects/this-website/): A rebuild of this site around server components and CSS scroll-driven animation. It cut homepage JavaScript by 45% and made the Persian version visible to search engines.
+
+## Articles
+
+- [Getting a First PR Merged into a 75,000-Star Project](https://hadimobarra.github.io/blog/first-pr-in-a-large-project/): Nine days, four review rounds, three of them asking for changes, and one honest admission. How a fix to Apache Superset got merged, and what the review taught me.
+- [I Cut This Site's JavaScript by 45%, and Blocking Time Didn't Move](https://hadimobarra.github.io/blog/less-javascript-same-blocking-time/): Removing 127 KB of JavaScript halved the time to largest paint and did almost nothing for Total Blocking Time. What I measured, what I ruled out, and a font mistake that CI caught.
+- [Never Trust JSON.parse in a Render](https://hadimobarra.github.io/blog/never-trust-json-parse-in-render/): One malformed string in a database was enough to crash an OpenMetadata page. How I fixed it upstream with small shape validators, and the two unrelated bugs that writing the tests uncovered.
+- [Resumable Uploads: What Happens When the Connection Drops](https://hadimobarra.github.io/blog/resumable-uploads-tus/): A large upload will be interrupted. This article walks through the TUS protocol request by request, with a live demo you can break, and the client-side decisions that make resuming reliable.
+- [RTL Is Not a Translation Step](https://hadimobarra.github.io/blog/rtl-is-not-a-translation-step/): Right-to-left support isn't a mirrored stylesheet added at the end. Logical properties, text isolation, icons, fonts and numbers: the parts of an interface that change direction, and the parts that must not.
+- [Why Safari Exported Blank Charts in Apache Superset](https://hadimobarra.github.io/blog/safari-blank-chart-exports/): A chart export that worked everywhere except Safari led through SVG foreignObject, WebGL drawing buffers and tainted canvases. Here is the root cause, the fix that was merged, and the part I got wrong.
+- [Translating Forms Generated from JSON Schema](https://hadimobarra.github.io/blog/translating-json-schema-forms/): When forms are generated from a schema, their labels aren't in your translation files. A practical approach: extract text by path, translate it in a catalog, and localize the schema before it reaches the form.
+- [Inside the JavaScript Event Loop: Tasks, Microtasks and the Rendering Steps](https://hadimobarra.github.io/blog/javascript-event-loop-deep-dive/): A precise mental model of how the browser schedules your code — tasks, microtasks, requestAnimationFrame and rendering — and how to use it to write UIs that never freeze.
+- [Building a Fine-Grained Reactivity System (Signals) From Scratch](https://hadimobarra.github.io/blog/build-signals-from-scratch/): Signals power Solid, Preact, Angular and Vue's reactivity. Build one in under 100 lines to understand dependency tracking, computed values, effects and glitch-free updates.
+- [Metaprogramming in JavaScript with Proxy and Reflect](https://hadimobarra.github.io/blog/proxy-and-reflect-metaprogramming/): Intercept property access, validation, and function calls with Proxy traps. Learn the invariants, the role of Reflect and receivers, and build a tiny reactive store, a validation layer and a negative-index array.
+- [Taming INP: A Practical Guide to Interaction to Next Paint](https://hadimobarra.github.io/blog/taming-inp-interaction-to-next-paint/): INP replaced FID as a Core Web Vital. Learn how it's measured, how to find the slow interactions in your app, and the concrete techniques that cut it: yielding, deferring non-urgent work, React transitions and smaller DOMs.
+- [Type-Level Programming in TypeScript: Conditional, Mapped and Template Literal Types](https://hadimobarra.github.io/blog/typescript-type-level-programming/): Treat TypeScript's type system as a small functional language. Learn conditional types and infer, distributive behaviour, key remapping, recursive types and template literals, then build a type-safe router and a deep-path getter.
+- [Off the Main Thread: Web Workers, Transferables and RPC in Practice](https://hadimobarra.github.io/blog/web-workers-off-main-thread/): Move expensive work off the UI thread. Covers dedicated workers in modern bundlers, structured clone costs, zero-copy transferables, a promise-based RPC layer, SharedArrayBuffer with Atomics, and OffscreenCanvas.
+- [A Mental Model for React Server Components and Streaming](https://hadimobarra.github.io/blog/react-server-components-mental-model/): Server Components, Client Components, the RSC payload, Suspense streaming and Server Actions — explained as one coherent model, with the composition patterns and pitfalls that matter in a real Next.js codebase.
+- [Async Iterators, Generators and Web Streams in Practice](https://hadimobarra.github.io/blog/async-iterators-generators-streams/): Process data incrementally instead of all at once. A practical tour of generators, async iteration, backpressure, and the Web Streams API — with examples for paginated APIs, streaming fetch responses and LLM-style token streams.
+- [The Browser Rendering Pipeline: Writing 60fps Animations](https://hadimobarra.github.io/blog/browser-rendering-pipeline-60fps/): Style, layout, paint and composite — what each stage costs, which CSS properties trigger which stages, and how to build animations that stay smooth with transforms, will-change, FLIP and the View Transitions API.
+- [Hunting Memory Leaks in JavaScript Applications](https://hadimobarra.github.io/blog/hunting-memory-leaks-javascript/): How garbage collection really decides what to keep, the five leak patterns behind most SPA memory issues, and a repeatable DevTools workflow using heap snapshots, allocation timelines and WeakRef-aware design.
+- [Shipping a Static Next.js Site: Seven Things the Docs Won't Warn You About](https://hadimobarra.github.io/blog/nextjs-best-practices/): Metadata that silently disappears, two root layouts, social images without extensions, icons paid for twice. Lessons from rebuilding this bilingual site with Next.js 16 and static export.
+- [A Front-End Performance Workflow That Survives Real Users](https://hadimobarra.github.io/blog/frontend-performance/): Measure in the field, find the one metric that hurts, break it into parts, fix the largest part, and put a budget on it. A workflow for LCP, INP and CLS, with numbers from a real site.
+- [React Architecture: Where State Lives and Where Boundaries Go](https://hadimobarra.github.io/blog/react-architecture/): Most React codebases don't suffer from the wrong folder names. They suffer from state in the wrong place and modules without edges. A practical guide to both.
+
+## About this site
+
+- [Résumé](https://hadimobarra.github.io/resume/)
+- [How AI was used](https://hadimobarra.github.io/ai/)
+- [Corrections](https://hadimobarra.github.io/corrections/)
